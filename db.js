@@ -1,13 +1,16 @@
 const config = require('./config.json');
 const Knex = require('knex');
 
-exports.Knex = knex({
-    client: 'mysql2',
+exports.knex = Knex({
+    client: config.DB_CONNECTION,
     connection: {
-        host: config.DB_SERVER,
+        server: config.DB_SERVER,
         user: config.DB_USER,
         password: config.DB_PESS,
         database: config.DATABASE,
-        port: config.DB_PORT || 1433
+        port: config.DB_PORT || 1433,
+        options: {
+            trustedConnection: true
+        }
     }
 })

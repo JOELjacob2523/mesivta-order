@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/login.css">
     <title>Login</title>
 </head>
 <body>
-    
+    <div>
+    <form action="/login" method="POST">
+        <p>Enter username: 
+            <input type="email" name="email" class="email" placeholder="Enter your E-Mail..." required>
+        </p>
+        <p>Enter password: 
+            <input type="password" name="password" class="password" placeholder="Enter your password..." required>
+        </p>
+        <p>Enter building #: 
+            <input type="text" name="building" class="building" placeholder="Enter your building #...">
+        </p>
+        <button type="submit" class="submit">Login</button>
+    </form>
+    <div>
+        <p>Don't have an account?</p>
+        <button type="button" class="button"
+         onclick="window.location.href='/signup'">Click Here To Create An Account</button>
+    </div>
+</div>
 </body>
 </html>
