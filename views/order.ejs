@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view</title>
+</head>
+<body>
+    <h1>Product List</h1>
+    <div class="logout-div">
+		<form action="/logout" method="GET">
+			<p class="logout-p">Click Here To Logout</p>
+			<button type="submit" class="logout-btn">Logout</button>
+		</form>
+	</div>
+    <div>
+    <% for(let user of users){ %>
+    <div>
+        <h2>Hello, <%= user.username %></h2>
+        <h3>You are assigned to buiding <%= user.building %></h3>
+    </div>
+    <% } %>
+</div>
+</body>
+</html>

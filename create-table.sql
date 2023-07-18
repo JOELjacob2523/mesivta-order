@@ -1,10 +1,8 @@
 /* This is for MsSQL*/
-CREATE TABLE List (
-listId BIGINT IDENTITY (1,1) PRIMARY KEY,
-subject VARCHAR(255),
-description VARCHAR(255),
-date DATE,
-time TIME,
+CREATE TABLE products (
+productId BIGINT IDENTITY (1,1) PRIMARY KEY,
+description VARCHAR(255) NULL,
+price VARCHAR(255) NULL,
 userId BIGINT FOREIGN KEY REFERENCES users(userId)
 );
 
@@ -17,6 +15,12 @@ CREATE TABLE users (
   token VARCHAR (MAX) NULL
 );
 
+CREATE TABLE vendors(
+  vendorId BIGINT IDENTITY (1,1) PRIMARY KEY,
+  vendorName VARCHAR (255) NULL,
+  vendorEmail VARCHAR (255) NULL,
+)
+
 /* This is for MySQL*/
 CREATE TABLE users (
   userId BIGINT NOT NULL AUTO_INCREMENT,
@@ -28,14 +32,12 @@ CREATE TABLE users (
   PRIMARY KEY (userId)
 );
 
-CREATE TABLE List (
-  listId BIGINT NOT NULL AUTO_INCREMENT,
-  subject VARCHAR(255),
+CREATE TABLE products (
+  productId BIGINT NOT NULL AUTO_INCREMENT,
   description VARCHAR(255),
-  date DATE NULL,
-  time TIME NULL,
+  price VARCHAR (255) NULL,
   userId BIGINT,
   FOREIGN KEY(userId) REFERENCES users(userId),
-  PRIMARY KEY (listId)
+  PRIMARY KEY (productId)
 );
 
