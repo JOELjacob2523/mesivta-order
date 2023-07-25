@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>view</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/order.css">
+    <title>orders</title>
 </head>
 <body>
-    <h1>Product List</h1>
     <div class="logout-div">
 		<form action="/logout" method="GET">
-			<p class="logout-p">Click Here To Logout</p>
+			<p class="logout-p">Click here to logout</p>
 			<button type="submit" class="logout-btn">Logout</button>
 		</form>
 	</div>
@@ -17,9 +18,44 @@
     <% for(let user of users){ %>
     <div>
         <h2>Hello, <%= user.username %></h2>
-        <h3>You are assigned to buiding <%= user.building %></h3>
+        <h3>You are assigned to building <%= user.building %></h3>
     </div>
-    <% } %>
-</div>
+        <% } %>
+    </div>
+     
+        <div>
+            <form action="/updateVendor" method="POST">
+            <label for="vendors">Choose a vendor:</label>
+            <input type="text" list="vendors" name="vendors" required>
+            <datalist id="vendors" aria-required="true">
+             <% for(let vendor of vendors){ %> 
+                <option value="<%= vendor.companyname %>">
+             <% } %>
+            </datalist>
+            <input type="submit" value="Submit">
+        </form>
+        </div>
+
+        <div>
+            <h3>Create new vendor</h3>
+            <form action="/createVendor" method="POST">
+                <div>
+                    <input type="text" name="vendorname" class="username" placeholder="Username...">
+                </div>
+                <div>
+                    <input type="text" name="companyname" class="companyname" placeholder="Company Name...">
+                </div>
+                <div>
+                    <input type="email" name="vendoremail" class="email" placeholder="E-Mail...">
+                </div>
+                <div>
+                    <input type="tel" name="phone" class="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone #...">
+                </div>
+                <div>
+                    <input type="submit" value="Submit" class="submit-v">
+                </div>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>

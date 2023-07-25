@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/create-product.css">
+    <title>Create Product</title>
+</head>
+<body>
+    <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
+    <div>
+        <% for(let vendor of vendors){ %>
+            <% if (vendor.vendorId === vendorId) { %>
+                <h2>You are making an order for <span class="companyname"><%= vendor.companyname %></span></h2>
+            <% } %>
+        <% } %>
+    </div>
+    <div class="create">
+        <h3>Create new product</h3>
+        <form action="/createProduct" method="POST">
+            <div class="description">
+                <input type="textarea" rows="4" name="description" class="description" placeholder="Description...">
+            </div>
+            <div class="qty">
+                <input type="number" class="per-cs" name="perCase" placeholder="Per Case...">
+            </div>
+            <div class="price">
+                <input type="number" class="price" name="price" step="0.01" placeholder="Price...">
+            </div>
+            <div class="submit">
+                <input type="submit" value="Submit" class="submit-p">
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <table>
+            <thead>
+                <th>No.</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Qty Per Case</th>
+                <th>Price</th>
+                <th>Total Boxes</th>
+                <th>Total Price</th>
+            </thead>
+            <tbody>
+                <% for(let product of products){ %>
+                    <% for(let vendor of vendors){ %>
+                        <% if (product.vendorId === vendor.vendorId) { %>
+                <tr>
+                    <td>1</td>
+                    <td class="td-amount"><input type="text" class="amount"></td>
+                    <td><%= product.description %></td>
+                    <td><%= product.perCase %></td>
+                    <td>$<%= product.price %></td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+                <% } %>
+                <% } %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="button" class="back" onclick="location.replace(document.referrer)">Go Back</button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</body>
+</html>

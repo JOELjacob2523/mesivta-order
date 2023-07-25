@@ -31,30 +31,61 @@ Router.post('/login', async (req, res, next) => {
     }
   });
 
-  /*Router.get('/view', async (req, res, next) => {
-    try{      
-    let users = await Controller.getAllUsers(req.session.userId);
-    console.log(users)
-    for (let user of users) {
-      user.done = user.done ? true : false;
-    }
-    res.render('view', { users: users });
-  }catch(err){
-    console.error(err);
-    res.redirect('/login');
-  }});*/
-
   Router.get('/order', async (req, res, next) => {
     try{
     let users = await Controller.getAllUsers(req.session.userId);
-    res.render('order', { users });
+    let vendors = await Controller.getVendors();
+    res.render('order', { users, vendors });
   }catch(err){
-    console.error(err);
     res.redirect('/login');
-  }});
+    console.error(err);    
+  }});  
 
-  Router.get('/create', (req, res, next) => {
-    res.render('create-product');
+  Router.post('/createVendor', async (req, res, next) =>{
+    try{
+      await Controller.createVandor(req.body.vendorname, req.body.companyname, req.body.vendoremail, req.body.phone);
+      res.redirect('/order');
+    }
+    catch(err){
+      console.error(err);
+    }
+  });
+
+  Router.post('/updateVendor', async(req, res, next) => {
+    try{
+      let id = req.body.vendors;
+      const {vendorId} = await Controller.updateVendor(req.session.vendorname, id, req.session.vendoremail);
+      req.session.vendorId = vendorId
+
+      res.redirect('/viewProducts');
+    }catch(err){
+      res.redirect('/updateVendor')
+      console.error(err)
+    }
+  });
+
+  Router.get('/viewProducts', async(req, res, next) => {
+    const vendorId = req.session.vendorId;
+    const products = await Controller.getAll();
+    let vendors = await Controller.getVendors();
+    res.render('view-products', {products, vendors, vendorId});
+  });
+
+  Router.post('/createProduct', async(req, res, next) => {
+    try{
+
+      const product = {
+        description: req.body.description,
+        perCase: req.body.perCase,
+        price: req.body.price,
+        vendorId: req.session.vendorId
+      }
+      console.log(product)
+      await Controller.createProduct(product);
+      res.redirect('/viewProducts');
+    } catch(err){
+      console.error(err)
+    }
   })
 
   Router.get('/logout', (req, res, next) => {

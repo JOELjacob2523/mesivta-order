@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
 const config = require('./config.json');
 const path = require('path');
-const session = require('express-session');
 const productRouter = require('./routes/productRouter');
 const bodyParser = require('body-parser');
 
@@ -11,6 +11,7 @@ app.use(
       secret: process.env.TOKEN_KEY,
       resave: false,
       saveUninitialized: false,
+      cookie: {maxAge: 3600000},
     })
   );
   

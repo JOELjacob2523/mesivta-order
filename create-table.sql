@@ -2,14 +2,15 @@
 CREATE TABLE products (
 productId BIGINT IDENTITY (1,1) PRIMARY KEY,
 description VARCHAR(255) NULL,
-price VARCHAR(255) NULL,
-userId BIGINT FOREIGN KEY REFERENCES users(userId)
+perCase VARCHAR (255) NULL,
+price DECIMAL(10,2) NULL,
+vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId)
 );
 
 CREATE TABLE users (
   userId BIGINT IDENTITY (1,1) PRIMARY KEY,
-  name VARCHAR(255) NULL,
   username VARCHAR(255) NULL,
+  email VARCHAR(255) NULL,
   password VARCHAR(255) NULL,
   building VARCHAR(10) NULL,
   token VARCHAR (MAX) NULL
@@ -17,9 +18,27 @@ CREATE TABLE users (
 
 CREATE TABLE vendors(
   vendorId BIGINT IDENTITY (1,1) PRIMARY KEY,
-  vendorName VARCHAR (255) NULL,
-  vendorEmail VARCHAR (255) NULL,
-)
+  username VARCHAR (255) NULL,
+  companyname VARCHAR (255) NULL,
+  email VARCHAR (255) NULL,
+  phone VARCHAR (255) NULL,
+  token VARCHAR (MAX) NULL
+);
+
+CREATE TABLE orders(
+  orderId BIGINT IDENTITY (1,1) PRIMARY KEY,
+  date DATETIME NULL,
+  vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId)
+);
+
+CREATE TABLE orderitems(
+  orderitemsId BIGINT IDENTITY (1,1) PRIMARY KEY,
+  productdesc VARCHAR (255) NULL,
+  qty VARCHAR (255) NULL,
+  price DECIMAL (10,2) NULL,
+  orderId BIGINT FOREIGN KEY REFERENCES orders(orderId),
+  vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId)
+);
 
 /* This is for MySQL*/
 CREATE TABLE users (
