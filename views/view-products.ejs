@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/create-product.css">
+    <link rel="stylesheet" href="/static/css/view-products.css">
     <title>Create Product</title>
 </head>
 <body>
@@ -16,6 +16,14 @@
             <% } %>
         <% } %>
     </div>
+
+    <div class="go-back">
+        <p class="back-p">Click here to go back to previous page</p>
+        <form action="/main" method="GET">
+            <input type="submit" value="Go Back" class="back">
+        </form>
+    </div>
+
     <div class="create">
         <h3>Create new product</h3>
         <form action="/createProduct" method="POST">
@@ -35,38 +43,40 @@
     </div>
 
     <div>
-        <table>
-            <thead>
-                <th>No.</th>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>Qty Per Case</th>
-                <th>Price</th>
-                <th>Total Boxes</th>
-                <th>Total Price</th>
-            </thead>
-            <tbody>
+        <div class="headers">
+            <p class="p-header">No.</p> 
+            <p class="p-header">Amount</p> 
+            <p class="p-header">Description</p> 
+            <p class="p-header">Qty Per Case</p> 
+            <p class="p-header">Price</p> 
+            <p class="p-header">Total Boxes</p> 
+            <p class="p-header">Total Price</p>
+        </div>
+        <form action="/orderDetails" method="POST">
                 <% for(let product of products){ %>
                     <% for(let vendor of vendors){ %>
                         <% if (product.vendorId === vendor.vendorId) { %>
-                <tr>
-                    <td>1</td>
-                    <td class="td-amount"><input type="text" class="amount"></td>
-                    <td><%= product.description %></td>
-                    <td><%= product.perCase %></td>
-                    <td>$<%= product.price %></td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
+                <div class="details">
+                    <input type="text" value="1" class="details-desc" readonly>
+                    <input type="text" name="amount" class="details-desc">
+                    <input type="text" value="<%= product.description %>" name="productdesc" class="details-desc" readonly>
+                    <input type="text" value="<%= product.perCase %>" name="qty" class="details-desc" readonly>
+                    <input type="text" value="$<%= product.price %>" name="price" class="details-desc" readonly>
+                    <input type="text" value="6" name="totalboxes" class="details-desc" readonly>
+                    <input type="text" value="$7" name="totalprice" class="details-desc" readonly>
+                </div>
                 <% } %>
-                <% } %>
-                <% } %>
-            </tbody>
-        </table>
+              <% } %>
+            <% } %>
+            <div class="submit-order-div">
+        <input type="submit" value="Submit Order" class="submit-order">
     </div>
+    </form>
+    </div>
+    <script
+     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
 
-    <button type="button" class="back" onclick="location.replace(document.referrer)">Go Back</button>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </script>
 
 </body>
 </html>

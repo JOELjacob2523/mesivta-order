@@ -8,54 +8,57 @@
     <title>orders</title>
 </head>
 <body>
+    <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
     <div class="logout-div">
 		<form action="/logout" method="GET">
 			<p class="logout-p">Click here to logout</p>
 			<button type="submit" class="logout-btn">Logout</button>
 		</form>
 	</div>
-    <div>
+    <div class="hello">
     <% for(let user of users){ %>
     <div>
-        <h2>Hello, <%= user.username %></h2>
-        <h3>You are assigned to building <%= user.building %></h3>
+        <h2 class="hello-h2">Hello, <span class="hello-name"><%= user.username %></span></h2>
+        <h3 class="hello-h3">You are assigned to building <span class="hello-building"><%= user.building %></span></h3>
     </div>
         <% } %>
     </div>
-     
-        <div>
-            <form action="/updateVendor" method="POST">
-            <label for="vendors">Choose a vendor:</label>
-            <input type="text" list="vendors" name="vendors" required>
-            <datalist id="vendors" aria-required="true">
-             <% for(let vendor of vendors){ %> 
-                <option value="<%= vendor.companyname %>">
-             <% } %>
-            </datalist>
-            <input type="submit" value="Submit">
-        </form>
-        </div>
-
-        <div>
-            <h3>Create new vendor</h3>
+     <div class="create-update">
+        <div class="text-center">
+            <h3 class="create-h3">Create new vendor</h3>
             <form action="/createVendor" method="POST">
                 <div>
-                    <input type="text" name="vendorname" class="username" placeholder="Username...">
+                    <input type="text" name="vendorname" class="v-details" placeholder="Username...">
                 </div>
                 <div>
-                    <input type="text" name="companyname" class="companyname" placeholder="Company Name...">
+                    <input type="text" name="companyname" class="v-details" placeholder="Company Name...">
                 </div>
                 <div>
-                    <input type="email" name="vendoremail" class="email" placeholder="E-Mail...">
+                    <input type="email" name="vendoremail" class="v-details" placeholder="E-Mail...">
                 </div>
                 <div>
-                    <input type="tel" name="phone" class="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone #...">
+                    <input type="tel" name="phone" class="v-details" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone #...">
                 </div>
                 <div>
                     <input type="submit" value="Submit" class="submit-v">
                 </div>
             </form>
         </div>
+        <div class="text-center">
+            <form action="/updateVendor" method="POST">
+                <h3 class="create-h3">Choose a vendor to create an order</h3>
+                    <input type="text" list="vendors" name="vendors" class="vendors" placeholder="Click to choose..." required>
+                        <datalist id="vendors" aria-required="true">
+                            <% for(let vendor of vendors){ %> 
+                                <option value="<%= vendor.companyname %>">
+                            <% } %>
+                        </datalist>
+            <div>
+            <input type="submit" value="Submit" class="submit">
+        </div>
+        </form>
+        </div>
+    </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 </html>

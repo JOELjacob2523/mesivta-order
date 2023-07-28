@@ -64,29 +64,78 @@ Router.post('/login', async (req, res, next) => {
     }
   });
 
+  Router.get('/main', (req, res, next) => {
+    res.redirect('/order')
+  })
+
   Router.get('/viewProducts', async(req, res, next) => {
     const vendorId = req.session.vendorId;
-    const products = await Controller.getAll();
-    let vendors = await Controller.getVendors();
+    const products = await Controller.getAll(vendorId);
+    const vendors = await Controller.getVendors();
     res.render('view-products', {products, vendors, vendorId});
   });
 
   Router.post('/createProduct', async(req, res, next) => {
     try{
-
       const product = {
         description: req.body.description,
         perCase: req.body.perCase,
         price: req.body.price,
         vendorId: req.session.vendorId
       }
-      console.log(product)
       await Controller.createProduct(product);
       res.redirect('/viewProducts');
     } catch(err){
       console.error(err)
     }
-  })
+  });
+
+  Router.post('/orderDetails', async (req, res, next) => {
+    try{
+
+      const order = {
+        date: new Date(),
+        vendorId: req.session.vendorId
+      }
+      const products = {
+        amount: req.body.amount,
+        productdesc: req.body.productdesc,
+        qty: req.body.qty,
+        price: req.body.price,
+        totalboxes: req. body.totalboxes,
+        totalprice: req.body.totalprice,
+        vendorId: req.session.vendorId
+      }
+      const { amount, productdesc, qty, price, totalboxes, totalprice, vendorId } = products;
+
+      const productItems = [];
+
+      const numProducts = amount.length;
+
+      for (let i = 0; i < numProducts; i++) {
+      const productItem = {
+        amount: amount[i],
+        productdesc: productdesc[i],
+        qty: qty[i],
+        price: price[i],
+        totalboxes: totalboxes[i],
+        totalprice: totalprice[i],
+        vendorId: vendorId
+      };
+
+      productItems.push(productItem);
+    }
+
+      await Controller.orders(order);
+      for (const productItem of productItems){
+      await Controller.orderDetails(productItem);
+      }
+      res.redirect('/viewProducts')
+
+    }catch(err){
+    console.error(err)
+    }
+  });
 
   Router.get('/logout', (req, res, next) => {
     req.session.destroy((err) => {

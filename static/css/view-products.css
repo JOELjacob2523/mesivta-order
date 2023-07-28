@@ -1,0 +1,141 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(245, 238, 228);
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+h2{
+    text-align: center;
+    margin-top: 35px;
+}
+
+.go-back{
+    background-color: rgb(189, 186, 186);
+    border: gray 1px solid;
+    border-radius: 5px;
+    width: 200px;
+    height: 120px;
+    margin-left: 20px;
+}
+
+.back-p{
+    text-align: center;
+    margin-top: 5px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.back{
+    background-color: blue;
+    color: aliceblue;
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+}
+
+h3{
+    margin-top: 10px;
+}
+
+.companyname{
+    font-weight: bold;
+}
+
+.create{
+    background-color: rgb(209, 206, 206);
+    display: block;
+    margin: auto;
+    width: 720px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 30px;
+    height: 275px;
+    border: 1px solid gray;
+}
+
+.description{
+    border-radius: 5px;
+    width: 500px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.per-cs{
+    border-radius: 5px;
+    width: 500px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.price{
+    border-radius: 5px;
+    width: 500px;
+    height: 40px;
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+}
+
+.submit-p{
+    border-radius: 5px;
+    background-color: blue;
+    color: aliceblue;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: x-large;
+    width: 300px;
+    height: 50px;
+}
+
+.headers{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.p-header{
+    margin-top: 15px;
+    margin-right: 60px;
+    margin-left: 60px;
+}
+
+.details{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.details-desc{
+    margin-right: 3px;
+    margin-left: 3px;
+    box-shadow: 3px 3px rgb(213, 209, 209);
+}
+
+.submit-order{
+    background-color: blue;
+    color: aliceblue;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: larger;
+    width: 350px;
+    height: 50px;
+    margin-top: 30px;
+    display: block;
+    margin: auto;
+}
+
+.submit-order-div{
+    margin-top: 30px;
+}

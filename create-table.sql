@@ -27,16 +27,18 @@ CREATE TABLE vendors(
 
 CREATE TABLE orders(
   orderId BIGINT IDENTITY (1,1) PRIMARY KEY,
-  date DATETIME NULL,
+  date DATE NULL,
   vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId)
 );
 
 CREATE TABLE orderitems(
   orderitemsId BIGINT IDENTITY (1,1) PRIMARY KEY,
+  amount VARCHAR (255) NULL,
   productdesc VARCHAR (255) NULL,
   qty VARCHAR (255) NULL,
   price DECIMAL (10,2) NULL,
-  orderId BIGINT FOREIGN KEY REFERENCES orders(orderId),
+  totalboxes VARCHAR(255) NULL,
+  totalprice DECIMAL (10,2) NULL,
   vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId)
 );
 

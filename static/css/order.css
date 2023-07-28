@@ -4,3 +4,104 @@ body{
     background-color: rgb(245, 238, 228);
 }
 
+h1{
+    font-weight: bold;
+    margin-top: 50px;
+    margin-left: 430px;
+}
+
+.hello-name{
+    font-weight: bold;
+}
+
+.hello-building{
+    font-weight: bold;
+}
+
+.hello{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.create-update{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.create-h3{
+    margin-top: 15px;
+    text-align: center;
+}
+
+.text-center{
+    background-color: rgb(211, 202, 202);
+    height: 300px;
+    width: 550px;
+    margin-top: 40px;
+    border-radius: 20px;
+    border: gray 2px solid;
+    margin-left: 50px;
+}
+
+.vendors{
+    width: 400px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+.submit{
+    background-color: rgb(41, 41, 243);
+    color: azure;
+    border-radius: 10px;
+    width: 175px;
+    margin-top: 80px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.v-details{
+    width: 400px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.submit-v{
+    background-color: rgb(41, 41, 243);
+    color: azure;
+    border-radius: 10px;
+    width: 175px;
+    margin-top: 30px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.logout-div{
+    background-color: rgb(213, 208, 208);
+    width: 250px;
+    height: 120px;
+    overflow: auto;
+    border-radius: 7px;
+    float: right;
+    margin-right: 90px;
+    margin-top: 20px;
+    border: gray 2px solid;
+  }
+
+  .logout-p{
+    text-align: center;
+    margin-top: 20px;
+    font-size: larger;
+    font-weight: bold;
+    color: rgb(37, 36, 36);
+  }
+
+  .logout-btn{
+    background-color: rgb(41, 41, 243);
+    color: azure;
+    border-radius: 20px;
+    width: 75px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+  }

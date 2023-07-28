@@ -12,7 +12,9 @@ module.exports = {
     createVandor,
     updateVendor,
     getVendors,
-    getAll
+    getAll,
+    orders,
+    orderDetails
 }
 
 
@@ -110,6 +112,14 @@ async function confirmUser(username, email, password, building) {
     return await knex("vendors").select();
   }
 
-  async function getAll(){
-    return await knex("products").select();
+  async function getAll(vendorId){
+    return await knex("products").select().where({vendorId: vendorId});
+  }
+
+  async function orders(order){
+    await knex("orders").insert(order);
+  }
+
+  async function orderDetails (products) {
+    await knex("orderitems").insert(products);
   }

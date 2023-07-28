@@ -1,0 +1,17 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(245, 238, 228);
+}
+
+h1{
+    font-weight: bold;
+    margin-top: 50px;
+    margin-left: 430px;
+}
+
+.login{
+    display: block;
+    margin-left: 40%;
+    margin-top: 40px;
+}
