@@ -1,0 +1,19 @@
+<script>
+    function sumBoxes() {
+        let rows = document.getElementsByClassName('details');
+        let totalBoxes = 0;
+
+        for (let i = 0; i < rows.length; i++) {
+            let amountInput = rows[i].querySelector('[name="amount"]');
+            let amount = parseFloat(amountInput.value);
+            let boxesPerCase = parseInt(rows[i].querySelector('[name="qty"]').value, 10);
+
+            let totalForRow = amount * boxesPerCase;
+            totalBoxes += totalForRow;
+
+            rows[i].querySelector('[name="totalboxes"]').value = totalForRow;
+        }
+
+        document.getElementById('total-boxes').value = totalBoxes;
+    }
+</script>

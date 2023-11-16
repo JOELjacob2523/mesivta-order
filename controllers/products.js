@@ -14,7 +14,11 @@ module.exports = {
     getVendors,
     getAll,
     orders,
-    orderDetails
+    orderDetails,
+    getId,
+    updateProduct,
+    between,
+    insertOrderId
 }
 
 
@@ -116,10 +120,44 @@ async function confirmUser(username, email, password, building) {
     return await knex("products").select().where({vendorId: vendorId});
   }
 
-  async function orders(order){
-    await knex("orders").insert(order);
+  async function orders(date, vendorId){
+    const vendor = await knex("vendors").where({vendorId: vendorId}).first();
+
+    const id = vendor.vendorId;
+    const payload = {
+      vendorId: id,
+    }
+    const token = jwt.sign(payload, process.env.TOKEN_KEY);
+    await knex("orders").insert({date, vendorid: vendorId, token});
+  }
+
+  async function insertOrderId(vendorId){
+    const order = await knex("orders").where({vendorId: vendorId}).first();
+    const orderid = order.orderId;
+
+    const payload = {
+      vendorId: vendorId,
+      orderId: orderid
+    }
+    const token = jwt.sign(payload, process.env.TOKEN_KEY);
+    await knex("orders").where("orderId", orderid).update({ token });
+    return orderid
   }
 
   async function orderDetails (products) {
     await knex("orderitems").insert(products);
   }
+
+  async function getId(productId){
+    return await knex("products").select().where({productId: productId});
+  }
+
+  async function updateProduct(product) {
+    const { productId, description, perCase, price } = product;
+    return knex("products").where({productId: productId}).update({ description, perCase, price });
+  }
+
+  async function between(from, to) {
+    return knex.select('amount', 'productdesc', 'qty', 'price', 'totalboxes', 'totalprice', 'date')
+    .from('orderitems').where('date', '>=', from).where('date', '=', to);
+    };

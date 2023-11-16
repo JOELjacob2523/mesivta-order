@@ -56,7 +56,6 @@ Router.post('/login', async (req, res, next) => {
       let id = req.body.vendors;
       const {vendorId} = await Controller.updateVendor(req.session.vendorname, id, req.session.vendoremail);
       req.session.vendorId = vendorId
-
       res.redirect('/viewProducts');
     }catch(err){
       res.redirect('/updateVendor')
@@ -72,7 +71,7 @@ Router.post('/login', async (req, res, next) => {
     const vendorId = req.session.vendorId;
     const products = await Controller.getAll(vendorId);
     const vendors = await Controller.getVendors();
-    res.render('view-products', {products, vendors, vendorId});
+    res.render('view-products', { products, vendors, vendorId });
   });
 
   Router.post('/createProduct', async(req, res, next) => {
@@ -90,23 +89,24 @@ Router.post('/login', async (req, res, next) => {
     }
   });
 
-  Router.post('/orderDetails', async (req, res, next) => {
+  Router.post('/orderItems', async (req, res, next) => {
     try{
+      await Controller.orders(new Date(), req.session.vendorId);
+      const orderid = await Controller.insertOrderId(req.session.vendorId)
 
-      const order = {
-        date: new Date(),
-        vendorId: req.session.vendorId
-      }
       const products = {
         amount: req.body.amount,
         productdesc: req.body.productdesc,
         qty: req.body.qty,
         price: req.body.price,
-        totalboxes: req. body.totalboxes,
+        totalboxes: req.body.totalboxes,
         totalprice: req.body.totalprice,
-        vendorId: req.session.vendorId
+        date: new Date(),
+        orderId: orderid,
+        vendorId: req.session.vendorId        
       }
-      const { amount, productdesc, qty, price, totalboxes, totalprice, vendorId } = products;
+
+      const { amount, productdesc, qty, price, totalboxes, totalprice, date ,orderId, vendorId } = products;
 
       const productItems = [];
 
@@ -120,20 +120,54 @@ Router.post('/login', async (req, res, next) => {
         price: price[i],
         totalboxes: totalboxes[i],
         totalprice: totalprice[i],
-        vendorId: vendorId
+        date: new Date(),
+        orderId: orderid,
+        vendorId: vendorId        
       };
 
       productItems.push(productItem);
     }
 
-      await Controller.orders(order);
       for (const productItem of productItems){
+
+        productItem.orderId = orderid;
+        productItem.qty = parseFloat(productItem.qty);
+        productItem.price = parseFloat(productItem.price);
+
       await Controller.orderDetails(productItem);
       }
-      res.redirect('/viewProducts')
+      setTimeout( () => {
+        res.redirect('/viewProducts')
+      }, 1500)
 
     }catch(err){
+      res.redirect('/login')
     console.error(err)
+    }
+  });
+
+  Router.get('/edit/:productId', async(req, res, next) => {
+    const products = await Controller.getId(req.params.productId);
+    res.render('update', { products })
+  });
+
+  Router.post('/update', async(req, res, next) => {
+    try{
+      const body = req.body;
+      await Controller.updateProduct(req.body)
+      res.redirect('/viewProducts')
+    }catch(err){
+      console.error(err)
+    }
+  });
+
+  Router.post('/between', async(req, res, next) => {
+    try{
+      let itemsDates = await Controller.between(req.body.from, req.body.to)
+      res.render('order-list', { itemsDates })
+    } catch(err){
+      res.redirect('login')
+      console.error(err)
     }
   });
 

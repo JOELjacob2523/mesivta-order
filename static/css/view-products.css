@@ -19,24 +19,32 @@ h2{
     background-color: rgb(189, 186, 186);
     border: gray 1px solid;
     border-radius: 5px;
-    width: 200px;
-    height: 120px;
+    width: 300px;
+    height: 140px;
     margin-left: 20px;
+    float: left;
 }
 
 .back-p{
     text-align: center;
-    margin-top: 5px;
+    margin-top: 15px;
     font-size: large;
     font-weight: bold;
 }
 
 .back{
-    background-color: blue;
-    color: aliceblue;
-    border-radius: 10px;
+    background-color: rgb(210, 206, 206);
+    color: blue;
+    border-radius: 8px;
     display: block;
     margin: auto;
+    border-color: blue;
+    width: 240px;
+}
+
+.back:hover{
+    background-color: blue;
+    color: aliceblue;
 }
 
 h3{
@@ -54,9 +62,21 @@ h3{
     width: 720px;
     text-align: center;
     border-radius: 10px;
-    margin-top: 30px;
+    margin-top: 50px;
     height: 275px;
     border: 1px solid gray;
+}
+
+.items {
+    background-color: rgb(209, 206, 206);
+    display: block;
+    margin: auto;
+    width: 1520px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 50px;
+    border: 1px solid gray;
+    padding: 20px;
 }
 
 .description{
@@ -86,15 +106,98 @@ h3{
     margin-bottom: 5px;
 }
 
+table {
+  counter-reset: rowNumber;
+}
+
+table tbody::before{
+  display: flexbox;
+  counter-increment: rowNumber;
+  content: counter(rowNumber) ".";
+  padding-right: 0.3em;
+  text-align: center;
+  position: absolute;
+}
+
+th{
+  background-color: rgb(215, 180, 249);
+  border-radius: 20px;
+}
+
+table, td{
+  border: rgb(92, 92, 242) solid 1px;
+  border-collapse: collapse;
+  background-color: rgb(176, 240, 219);
+}
+
+.tbl-num{
+  width: 100px;
+}
+
+.tbl-amount{
+  width: 100px;
+}
+
+.tbl-description{
+  width: 700px;
+}
+
+.tbl-qty{
+  width: 100px;
+}
+
+.tbl-price{
+  width: 100px;
+}
+
+.tbl-ttl-boxes{
+  width: 175px;
+}
+
+.tbl-ttl-price{
+  width: 175px;
+}
+
+.sub-total-input{
+  border-radius: 10px;
+  height: 35px;
+  width: 250px;
+}
+
+.submit-order{
+  background-color: rgb(245, 238, 228);
+  color: blue;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: larger;
+  width: 400px;
+  height: 50px;
+  margin-top: 30px;
+  border-color: blue;
+  align-items: center;
+
+}
+
+.submit-order:hover{
+  background-color: blue;
+  color: aliceblue;
+}
+
 .submit-p{
-    border-radius: 5px;
-    background-color: blue;
-    color: aliceblue;
+    border-radius: 10px;
+    background-color: rgb(209, 206, 206);
+    color: blue;
     margin-top: 10px;
     font-weight: bold;
     font-size: x-large;
     width: 300px;
     height: 50px;
+    border-color: blue;
+}
+
+.submit-p:hover{
+    background-color: blue;
+    color: aliceblue;
 }
 
 .headers{
@@ -107,8 +210,11 @@ h3{
 
 .p-header{
     margin-top: 15px;
-    margin-right: 60px;
-    margin-left: 60px;
+    margin-right: 30px;
+    margin-left: 30px;
+    background-color: rgb(245, 238, 228);
+    border-color: rgb(245, 238, 228);
+    text-decoration: underline;
 }
 
 .details{
@@ -117,25 +223,103 @@ h3{
   align-items: flex-end;
 }
 
-.details-desc{
-    margin-right: 3px;
-    margin-left: 3px;
-    box-shadow: 3px 3px rgb(213, 209, 209);
-}
-
-.submit-order{
-    background-color: blue;
-    color: aliceblue;
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: larger;
-    width: 350px;
-    height: 50px;
-    margin-top: 30px;
-    display: block;
-    margin: auto;
-}
-
 .submit-order-div{
     margin-top: 30px;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+.modal-content{
+    background-color: rgb(201, 223, 231);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    text-align: center;
+    border-radius: 10px;
+    height: 100px;
+}
+
+.modal-p{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.create-update {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(79, 77, 77, 0.4);
+  }
+
+  .text-center{
+    background-color: rgb(201, 223, 231);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 900px;
+    text-align: center;
+    border-radius: 10px;
+    height: 500px;
+  }
+
+  .between{
+    float: right;
+    background-color: rgb(183, 178, 178);
+    border-radius: 5px;
+    margin-right: 40px;
+    height: 250px;
+    width: 400px;
+  }
+
+  .select-p{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  .select-btn{
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 7px;
+    width: 150px;
+    background-color: rgb(183, 178, 178);
+    border-color: blue;
+    color: blue;
+    font-weight: bold;
+  }
+
+  .select-btn:hover{
+    background-color: blue;
+    color: aliceblue;
+  }
+
+  .label{
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+  }
+
+  .from-to{
+    display: block;
+    margin: auto;
+    font-size: medium;
+    width: 275px;
+    height: 40px;
+    border-radius: 7px;
+  }

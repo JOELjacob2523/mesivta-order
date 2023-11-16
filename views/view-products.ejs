@@ -18,14 +18,29 @@
     </div>
 
     <div class="go-back">
-        <p class="back-p">Click here to go back to previous page</p>
+        <p class="back-p">Click Here to Choose Another Vendor</p>
         <form action="/main" method="GET">
-            <input type="submit" value="Go Back" class="back">
+            <input type="submit" value="Choose Another Vendor" class="back">
+        </form>
+    </div>
+
+    <div class="between">
+        <form action="/between" method="POST">
+            <p class="select-p">Select a Date to See All Vendor Orders</p>
+            <div class="label">
+                <label for="from">From:</label>
+                    <input type="date" name="from" class="from-to">
+                <label for="to">To:</label>
+                    <input type="date" name="to" class="from-to">
+                </div>
+                    <div>
+                <input type="submit" value="Select" class="select-btn">
+            </div>
         </form>
     </div>
 
     <div class="create">
-        <h3>Create new product</h3>
+        <h3>Create New Product</h3>
         <form action="/createProduct" method="POST">
             <div class="description">
                 <input type="textarea" rows="4" name="description" class="description" placeholder="Description...">
@@ -37,46 +52,133 @@
                 <input type="number" class="price" name="price" step="0.01" placeholder="Price...">
             </div>
             <div class="submit">
-                <input type="submit" value="Submit" class="submit-p">
+                <input type="submit" value="Create" class="submit-p">
             </div>
         </form>
     </div>
 
-    <div>
-        <div class="headers">
-            <p class="p-header">No.</p> 
-            <p class="p-header">Amount</p> 
-            <p class="p-header">Description</p> 
-            <p class="p-header">Qty Per Case</p> 
-            <p class="p-header">Price</p> 
-            <p class="p-header">Total Boxes</p> 
-            <p class="p-header">Total Price</p>
-        </div>
-        <form action="/orderDetails" method="POST">
-                <% for(let product of products){ %>
-                    <% for(let vendor of vendors){ %>
-                        <% if (product.vendorId === vendor.vendorId) { %>
-                <div class="details">
-                    <input type="text" value="1" class="details-desc" readonly>
-                    <input type="text" name="amount" class="details-desc">
-                    <input type="text" value="<%= product.description %>" name="productdesc" class="details-desc" readonly>
-                    <input type="text" value="<%= product.perCase %>" name="qty" class="details-desc" readonly>
-                    <input type="text" value="$<%= product.price %>" name="price" class="details-desc" readonly>
-                    <input type="text" value="6" name="totalboxes" class="details-desc" readonly>
-                    <input type="text" value="$7" name="totalprice" class="details-desc" readonly>
+    <div class="items">
+        <form action="/orderItems" method="POST" id="order-items">
+                <table>
+                  <div>
+                    <thead>
+                        <th>No.</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total Cases</th>
+                        <th>Total Price</th>
+                    </thead>
                 </div>
+                <% for(let product of products) { %>
+                    <% for(let vendor of vendors) { %>
+                        <% if (product.vendorId === vendor.vendorId) { %>
+            <div>
+                <tbody>
+                    <tr ondblclick="edit()">
+                    <td class="tbl-num"></td>
+                    <td><input type="text" name="amount" id="amount" oninput="sumBoxes()" class="tbl-amount"></td>
+                    <td name="productdesc" class="tbl-description"><%= product.description %></td>
+                    <td name="qty" id="qty" class="tbl-qty"><%= product.perCase %></td>
+                    <td name="price" id="price" class="tbl-price"><%= product.price %></td>           
+                    <td name="totalboxes" id="total-boxes" class="tbl-ttl-boxes"></td>
+                    <td name="totalprice" id="totalprice" class="tbl-ttl-price"></td>
+                    <td type="hidden" name="date"></td>
+                    </tr>
+                </tbody> 
+            </div>          
                 <% } %>
+               <% } %>
               <% } %>
-            <% } %>
-            <div class="submit-order-div">
-        <input type="submit" value="Submit Order" class="submit-order">
+            </table>
+              <div class="submit-order-div">
+                    <div class="sub-total">
+                        <p class="sub-total-p">Sub Total</p>        
+                        <input type="number" id="sub-total" class="sub-total-input" readonly>
+                    </div>
+                    <input type="submit" class="submit-order" onclick="show()" value="Submit Order" id="submit-order">
+                </div>
+            </form> 
     </div>
-    </form>
-    </div>
-    <script
-     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+
+        <div class="modal" id="modal">
+            <div class="modal-content">
+                <p class="modal-p">Order Submitted Successfully</p>
+            </div>
+        </div>
+
+            <div class="create-update" id="create-update">
+                <div class="text-center">
+                    <h3 class="create-h3">Update Vendor</h3>
+                    <div>
+                    <form action="/update" method="POST" id="update">
+                        <% for (let product of products){ %>
+                        <input type="hidden" value="<%= product.productId %>" name="productId">
+                        <input type="text" value="<%= product.description %>" name="description" class="details-desc">
+                        <input type="text" value="<%= product.perCase %>" name="perCase" class="details-desc">
+                        <input type="text" value="<%= product.price %>" name="price" class="details-desc">
+                        <% } %>
+                    <div>
+                        <input type="submit" class="submit" value="Save">
+                    </div>
+                </form>
+            </div>
+                    <div class="go-back">
+                        <p class="back-p">Click here to go back to previous page</p>
+                        <form action="/main" method="GET">
+                            <input type="submit" value="Go Back" class="back">
+                        </form>
+                    </div>
+                </div>
+              </div>
+    <script>
+
+    function sumBoxes() {
+        let rows = document.getElementsByClassName('details');
+        let amount = document.getElementById('amount').value;
+        let boxes = document.getElementById('total-boxes').value;
+        let price = document.getElementById('price').value;
+
+        let totalBoxes = amount + boxes;
+        let subTotal = amount * price;
+        document.getElementById('total-boxes').value = totalBoxes;
+        document.getElementById('totalprice').value = subTotal;
+    }
+
+    /*function sumBoxes() {
+        let rows = document.getElementsByClassName('details');
+        let totalBoxes = document.getElementById('total-boxes').value;
+
+        for (let i = 0; i < rows.length; i++) {
+            let amountInput = rows[i].querySelector('[name="amount"]');
+            let amount = parseFloat(amountInput.value);
+            let boxesPerCase = parseInt(rows[i].querySelector('[name="qty"]').value, 10);
+
+            let totalForRow = amount * boxesPerCase;
+            totalBoxes += totalForRow;
+
+            rows[i].querySelector('[name="totalboxes"]').value = totalForRow;
+        }
+
+        document.getElementById('total-boxes').value = totalBoxes;
+    }*/
+
+    function edit(){
+        document.getElementById('create-update').style.display = 'block'
+    }
+
+    function show(){
+        document.querySelector('#order-items').addEventListener('submit', (event) => {
+        event.preventDefault();
+        document.getElementById('modal').style.display = 'block'        
+        setTimeout( () => {
+        document.getElementById('modal').style.display = 'none'
+        }, 1500)
+        document.getElementById('order-items').submit();
+    })
+}
 
     </script>
-
 </body>
 </html>

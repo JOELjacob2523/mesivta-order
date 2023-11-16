@@ -20,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(productRouter)
 
@@ -29,5 +29,5 @@ app.get('/', (req, res, next) => {
 })
 
 app.listen(config.PORT, () => {
-    console.log(`Server is now running at port ${config.PORT}`)
+    console.log(`Server is now running at http://localhost:${config.PORT}`)
 })
