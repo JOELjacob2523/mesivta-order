@@ -241,11 +241,65 @@ table, td{
   padding-bottom: 10px;
 }
 
+.update-h3{
+  font-weight: bold;
+  font-size: 40px;
+}
+
 .update-cancel{
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 15px;
+  margin-top: 55px;
+}
+
+.update-desc-div{
+  background-color: rgb(105, 177, 249);
+  height: 55px;
+  margin-top: 30px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.update-qty-div{
+  background-color: rgb(105, 177, 249);
+  height: 55px;
+  margin-top: 25px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.update-price-div{
+  background-color: rgb(105, 177, 249);
+  height: 55px;
+  margin-top: 25px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 7px;
+  padding: 10px;
+}
+
+.update-desc{
+  border-radius: 5px;
+  margin-left: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.update-qty{
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.update-price{
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .p-header{

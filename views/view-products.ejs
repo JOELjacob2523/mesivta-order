@@ -110,14 +110,22 @@
 
             <div class="create-update" id="create-update">
                 <div class="text-center">
-                    <h3 class="create-h3">Update Item</h3>
+                    <h3 class="update-h3">Update Item</h3>
                 <div>
                     
                 <form action="/update" method="POST" id="update">
-
-                        <input type="text" id="update-description" value="" name="description" class="details-desc">
-                        <input type="text" id="update-qty" value="" name="perCase" class="details-desc">
-                        <input type="text" id="update-price" value="" name="price" class="details-desc">
+                    <div class="update-desc-div">
+                        <p>Update Description:
+                        <input type="text" id="update-description" value="" name="description" class="update-desc">
+                    </p></div>
+                    <div class="update-qty-div">
+                        <p>Update Qty:
+                        <input type="text" id="update-qty" value="" name="perCase" class="update-qty">
+                    </p></div>
+                    <div class="update-price-div">
+                        <p>Update Price:
+                        <input type="text" id="update-price" value="" name="price" class="update-price">
+                    </p></div>
                     
                     <div class="update-cancel">
                         <input type="button" onclick="hideComformation()" value="Cancel" class="back">
@@ -206,7 +214,6 @@
         document.getElementById('update-description').value = rowData.description;
         document.getElementById('update-qty').value = rowData.qty;
         document.getElementById('update-price').value = rowData.price;
-
     }
 
     /*function sumBoxes() {
