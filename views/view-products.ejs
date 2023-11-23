@@ -18,9 +18,9 @@
     </div>
 
     <div class="go-back">
-        <p class="back-p">Click Here to Choose Another Vendor</p>
+        <p class="back-p">Click Here to go Back to Previews Page</p>
         <form action="/main" method="GET">
-            <input type="submit" value="Choose Another Vendor" class="back">
+            <input type="submit" value="Go Back" class="back-vendor">
         </form>
     </div>
 
@@ -62,7 +62,7 @@
                 <table>
                   <div>
                     <thead>
-                        <th>No.</th>
+                        <th>#</th>
                         <th>Amount</th>
                         <th>Description</th>
                         <th>Qty</th>
@@ -76,15 +76,15 @@
                         <% if (product.vendorId === vendor.vendorId) { %>
             <div>
                 <tbody>
-                    <tr ondblclick="edit()">
+                    <tr id="TR" ondblclick="editItem()">
                     <td class="tbl-num"></td>
                     <td><input type="text" name="amount" id="amount" oninput="sumBoxes()" class="tbl-amount"></td>
-                    <td name="productdesc" class="tbl-description"><%= product.description %></td>
-                    <td name="qty" id="qty" class="tbl-qty"><%= product.perCase %></td>
-                    <td name="price" id="price" class="tbl-price"><%= product.price %></td>           
+                    <td id="td-desc" name="productdesc" class="tbl-description"><%= product.description %></td>
+                    <td id="td-qty" name="qty" id="qty" class="tbl-qty"><%= product.perCase %></td>
+                    <td id="td-price" name="price" id="price" class="tbl-price"><%= product.price %></td>           
                     <td name="totalboxes" id="total-boxes" class="tbl-ttl-boxes"></td>
                     <td name="totalprice" id="totalprice" class="tbl-ttl-price"></td>
-                    <td type="hidden" name="date"></td>
+                    <input type="hidden" name="date">
                     </tr>
                 </tbody> 
             </div>          
@@ -110,28 +110,24 @@
 
             <div class="create-update" id="create-update">
                 <div class="text-center">
-                    <h3 class="create-h3">Update Vendor</h3>
-                    <div>
-                    <form action="/update" method="POST" id="update">
-                        <% for (let product of products){ %>
-                        <input type="hidden" value="<%= product.productId %>" name="productId">
-                        <input type="text" value="<%= product.description %>" name="description" class="details-desc">
-                        <input type="text" value="<%= product.perCase %>" name="perCase" class="details-desc">
-                        <input type="text" value="<%= product.price %>" name="price" class="details-desc">
-                        <% } %>
-                    <div>
-                        <input type="submit" class="submit" value="Save">
+                    <h3 class="create-h3">Update Item</h3>
+                <div>
+                    
+                <form action="/update" method="POST" id="update">
+
+                        <input type="text" id="update-description" value="" name="description" class="details-desc">
+                        <input type="text" id="update-qty" value="" name="perCase" class="details-desc">
+                        <input type="text" id="update-price" value="" name="price" class="details-desc">
+                    
+                    <div class="update-cancel">
+                        <input type="button" onclick="hideComformation()" value="Cancel" class="back">
+                        <input type="submit" class="submit-update" value="Update">
                     </div>
                 </form>
             </div>
-                    <div class="go-back">
-                        <p class="back-p">Click here to go back to previous page</p>
-                        <form action="/main" method="GET">
-                            <input type="submit" value="Go Back" class="back">
-                        </form>
-                    </div>
-                </div>
-              </div>
+         </div>
+       </div>
+
     <script>
 
     function sumBoxes() {
@@ -144,6 +140,73 @@
         let subTotal = amount * price;
         document.getElementById('total-boxes').value = totalBoxes;
         document.getElementById('totalprice').value = subTotal;
+    }
+
+    /*// Step 1: Add event listener to table rows
+    const table = document.getElementById('TR');
+    table.addEventListener('dblclick', handleRowDoubleClick);
+
+    function handleRowDoubleClick(event) {
+    // Step 2: Retrieve data from clicked row
+    const row = event.target.parentNode;
+    const rowData = {
+    // Retrieve data from the row and store it in an object
+    // For example:
+    description: row.cells[2].textContent,
+    qty: row.cells[3].textContent,
+    price: row.cells[4].textContent
+  };
+
+    // Step 3: Open a popup window
+    const popupWindow = window.open('edit-popup.html', 'Edit Popup', 'width=400,height=300', editForm);
+
+    // Step 4: Create HTML form in the popup window
+    // edit-popup.html
+
+
+    // Step 5: Populate input fields with retrieved data
+    popupWindow.addEventListener('DOMContentLoaded', () => {
+    const form = popupWindow.document.getElementById('update');
+    form.description.value = rowData.description;
+    form.qty.value = rowData.qty;
+    form.price.value = rowData.price;
+  });
+
+    // Step 6: Allow user to make changes
+
+    // Step 7: Add submit button event listener
+    popupWindow.document.getElementById('update').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Step 8: Retrieve updated data from input fields
+    const updatedData = {
+      description: popupWindow.document.getElementById('update-description').value,
+      perCase: popupWindow.document.getElementById('update-qty').value,
+      price: popupWindow.document.getElementById('update-price').value
+      // Retrieve other input field values
+    };
+
+    // Step 9: Close the popup window
+    popupWindow.close();
+
+    // Step 10: Update the table row with the new data
+    // Update the row with the updatedData
+  });
+}*/
+
+    function selectTableRowData(){
+
+        const row = event.target.parentNode;
+        const rowData = {
+        description: row.cells[2].textContent,
+        qty: row.cells[3].textContent,
+        price: row.cells[4].textContent
+       }
+
+        document.getElementById('update-description').value = rowData.description;
+        document.getElementById('update-qty').value = rowData.qty;
+        document.getElementById('update-price').value = rowData.price;
+
     }
 
     /*function sumBoxes() {
@@ -164,9 +227,14 @@
         document.getElementById('total-boxes').value = totalBoxes;
     }*/
 
-    function edit(){
-        document.getElementById('create-update').style.display = 'block'
-    }
+        function editItem(){
+            document.getElementById('create-update').style.display = 'block';
+            selectTableRowData();
+        }
+
+        function hideComformation(){
+            document.getElementById('create-update').style.display = 'none'
+        }
 
     function show(){
         document.querySelector('#order-items').addEventListener('submit', (event) => {

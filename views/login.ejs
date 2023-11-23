@@ -11,19 +11,19 @@
     <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
     <div class="login">
     <form action="/login" method="POST">
-        <p>Enter username: 
+        <p class="username-p">Enter username:
             <input type="email" name="email" class="email" placeholder="Enter your E-Mail..." required>
         </p>
-        <p>Enter password: 
+        <p class="password-p">Enter password: 
             <input type="password" name="password" class="password" placeholder="Enter your password..." required>
         </p>
-        <p>Enter building #: 
+        <p class="building-p">Enter building #: 
             <input type="text" name="building" class="building" placeholder="Enter your building #...">
         </p>
         <button type="submit" class="submit">Login</button>
     </form>
     <div>
-        <p>Don't have an account?</p>
+        <p class="question-p">Don't have an account?</p>
         <button type="button" class="button"
          onclick="window.location.href='/signup'">Click Here To Create An Account</button>
     </div>

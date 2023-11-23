@@ -32,17 +32,48 @@ h2{
     font-weight: bold;
 }
 
+.back-vendor{
+    background-color: rgb(210, 206, 206);
+    color: blue;
+    border-radius: 8px;
+    border-color: blue;
+    width: 250px;
+    display: block;
+    margin: auto;
+    font-weight: bold;
+}
+
+.back-vendor:hover{
+  background-color: blue;
+    color: aliceblue;
+}
+
 .back{
     background-color: rgb(210, 206, 206);
     color: blue;
     border-radius: 8px;
-    display: block;
-    margin: auto;
     border-color: blue;
-    width: 240px;
+    margin-right: 15px;
+    width: 150px;
+    font-weight: bold;
 }
 
 .back:hover{
+    background-color: blue;
+    color: aliceblue;
+}
+
+.submit-update{
+    background-color: rgb(210, 206, 206);
+    color: blue;
+    border-radius: 8px;
+    border-color: blue;
+    margin-left: 15px;
+    width: 150px;
+    font-weight: bold;
+}
+
+.submit-update:hover{
     background-color: blue;
     color: aliceblue;
 }
@@ -136,6 +167,8 @@ table, td{
 
 .tbl-amount{
   width: 100px;
+  background-color: rgb(176, 240, 219);
+  border: 0;
 }
 
 .tbl-description{
@@ -206,6 +239,13 @@ table, td{
   align-items: flex-end;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.update-cancel{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 15px;
 }
 
 .p-header{

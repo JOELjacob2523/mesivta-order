@@ -7,11 +7,96 @@ body{
 h1{
     font-weight: bold;
     margin-top: 50px;
-    margin-left: 430px;
+    margin-left: 30%;
 }
 
 .login{
-    display: block;
-    margin-left: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
     margin-top: 40px;
+    background-color: burlywood;
+    border-radius: 10px;
+    padding: 15px 15px 15px 15px;
+    text-align: center;
+}
+
+.username-p{
+    background-color: beige;
+    border-radius: 5px;
+    padding: 15px;
+    margin-left: 145px;
+    margin-right: 145px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.password-p{
+    background-color: beige;
+    border-radius: 5px;
+    padding: 15px;
+    margin-left: 145px;
+    margin-right: 145px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.building-p{
+    background-color: beige;
+    border-radius: 5px;
+    padding: 15px;
+    margin-left: 145px;
+    margin-right: 145px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.question-p{
+    margin-top: 70px;
+    font-size: larger;
+}
+
+.email{
+    border-radius: 7px;
+    margin-left: 15px;
+    width: 250px;
+}
+
+.password{
+    border-radius: 7px;
+    margin-left: 15px;
+    width: 250px;
+}
+
+.building{
+    border-radius: 7px;
+    margin-left: 15px;
+    width: 250px;
+}
+
+.submit{
+    width: 200px;
+    height: 40px;
+    background-color: burlywood;
+    border-radius: 10px;
+    border-color: cornsilk;
+    font-weight: bold;
+}
+
+.submit:hover{
+    background-color: rgb(153, 110, 54);
+    color: rgb(227, 192, 146);
+}
+
+.button{
+    width: 300px;
+    height: 40px;
+    background-color: burlywood;
+    border-radius: 10px;
+    border-color: cornsilk;
+    font-weight: bold;
+}
+
+.button:hover{
+    background-color: rgb(153, 110, 54);
+    color: rgb(227, 192, 146);
 }
