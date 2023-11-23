@@ -154,6 +154,8 @@ Router.post('/login', async (req, res, next) => {
 
   Router.post('/update', async(req, res, next) => {
     try{
+      const body = req.body;
+      console.log(body);
       await Controller.updateProduct(req.body)
       res.redirect('/viewProducts')
     }catch(err){

@@ -85,6 +85,7 @@
                     <td name="totalboxes" id="total-boxes" class="tbl-ttl-boxes"></td>
                     <td name="totalprice" id="totalprice" class="tbl-ttl-price"></td>
                     <input type="hidden" name="date">
+                    <input type="hidden" value="<% product.productId %>" name="productId" id="productId">
                     </tr>
                 </tbody> 
             </div>          
@@ -114,9 +115,7 @@
                 <div>
                     
                 <form action="/update" method="POST" id="update">
-                    <% for (let product of products){ %>
-                        <input type="hidden" value="<%= product.productId %>" name="productId">
-                        <% } %>
+                        <input type="hidden" value="" name="productId" id="productId">
                     <div class="update-desc-div">
                         <p>Update Description:
                         <input type="text" id="update-description" value="" name="description" class="update-desc">
@@ -209,11 +208,13 @@
 
         const row = event.target.parentNode;
         const rowData = {
+        productId: row.cells[5].textContent,
         description: row.cells[2].textContent,
         qty: row.cells[3].textContent,
         price: row.cells[4].textContent
        }
-
+        
+        document.getElementById('productId').value = rowData.productId;
         document.getElementById('update-description').value = rowData.description;
         document.getElementById('update-qty').value = rowData.qty;
         document.getElementById('update-price').value = rowData.price;
@@ -224,13 +225,14 @@
         event.preventDefault();
 
         const updatedData = {
+        productId: document.getElementById('productId').value,
         description: document.getElementById('update-description').value,
         perCase: document.getElementById('update-qty').value,
         price: document.getElementById('update-price').value
         };
         
         document.getElementById('create-update').style.display = 'none';
-
+        form.submit();
       });
     };
 
