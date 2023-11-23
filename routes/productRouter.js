@@ -152,13 +152,8 @@ Router.post('/login', async (req, res, next) => {
     res.render('update', { products })
   });
 
-  Router.get('/edit-popup.html', async(req, res, next) => {
-    res.json(`I'm the edit-popup.html page`)
-  });
-
   Router.post('/update', async(req, res, next) => {
     try{
-      const body = req.body;
       await Controller.updateProduct(req.body)
       res.redirect('/viewProducts')
     }catch(err){
