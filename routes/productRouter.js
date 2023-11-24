@@ -71,8 +71,7 @@ Router.post('/login', async (req, res, next) => {
     const vendorId = req.session.vendorId;
     const products = await Controller.getAll(vendorId);
     const vendors = await Controller.getVendors();
-    const productId = await Controller.getProductId()
-    res.render('view-products', { products, vendors, vendorId, productId });
+    res.render('view-products', { products, vendors, vendorId});
   });
 
   Router.post('/createProduct', async(req, res, next) => {
@@ -154,10 +153,10 @@ Router.post('/login', async (req, res, next) => {
 
   Router.post('/update', async(req, res, next) => {
     try{
-      const body = req.body;
-      console.log(body);
       await Controller.updateProduct(req.body)
-      res.redirect('/viewProducts')
+      setTimeout( () => {
+        res.redirect('/viewProducts')
+      }, 1500)
     }catch(err){
       console.error(err)
     }

@@ -77,6 +77,7 @@
             <div>
                 <tbody>
                     <tr id="TR" ondblclick="editItem()">
+                    <td class="tbl-id" id="tbl-id" name="productId" hidden><%= product.productId %></td>
                     <td class="tbl-num"></td>
                     <td><input type="text" name="amount" id="amount" oninput="sumBoxes()" class="tbl-amount"></td>
                     <td id="td-desc" name="productdesc" class="tbl-description"><%= product.description %></td>
@@ -85,7 +86,6 @@
                     <td name="totalboxes" id="total-boxes" class="tbl-ttl-boxes"></td>
                     <td name="totalprice" id="totalprice" class="tbl-ttl-price"></td>
                     <input type="hidden" name="date">
-                    <input type="hidden" value="<% product.productId %>" name="productId" id="productId">
                     </tr>
                 </tbody> 
             </div>          
@@ -98,7 +98,7 @@
                         <p class="sub-total-p">Sub Total</p>        
                         <input type="number" id="sub-total" class="sub-total-input" readonly>
                     </div>
-                    <input type="submit" class="submit-order" onclick="show()" value="Submit Order" id="submit-order">
+                    <input type="submit" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
                 </div>
             </form> 
     </div>
@@ -109,13 +109,19 @@
             </div>
         </div>
 
+        <div class="update-modal" id="update-modal">
+            <div class="update-modal-content">
+                <p class="update-modal-p">Item Updated Successfully</p>
+            </div>
+        </div>
+
             <div class="create-update" id="create-update">
                 <div class="text-center">
                     <h3 class="update-h3">Update Item</h3>
                 <div>
                     
-                <form action="/update" method="POST" id="update">
-                        <input type="hidden" value="" name="productId" id="productId">
+                <form action="/update" method="POST" id="update" onsubmit="itemUpdated()">
+                        <input type="hidden" value="" name="productId" id="update-productId">
                     <div class="update-desc-div">
                         <p>Update Description:
                         <input type="text" id="update-description" value="" name="description" class="update-desc">
@@ -152,69 +158,25 @@
         document.getElementById('totalprice').value = subTotal;
     }
 
-    /*// Step 1: Add event listener to table rows
-    const table = document.getElementById('TR');
-    table.addEventListener('dblclick', handleRowDoubleClick);
+    function editItem(){
+        document.getElementById('create-update').style.display = 'block';
+        selectTableRowData();
+    }
 
-    function handleRowDoubleClick(event) {
-    // Step 2: Retrieve data from clicked row
-    const row = event.target.parentNode;
-    const rowData = {
-    // Retrieve data from the row and store it in an object
-    // For example:
-    description: row.cells[2].textContent,
-    qty: row.cells[3].textContent,
-    price: row.cells[4].textContent
-  };
-
-    // Step 3: Open a popup window
-    const popupWindow = window.open('edit-popup.html', 'Edit Popup', 'width=400,height=300', editForm);
-
-    // Step 4: Create HTML form in the popup window
-    // edit-popup.html
-
-
-    // Step 5: Populate input fields with retrieved data
-    popupWindow.addEventListener('DOMContentLoaded', () => {
-    const form = popupWindow.document.getElementById('update');
-    form.description.value = rowData.description;
-    form.qty.value = rowData.qty;
-    form.price.value = rowData.price;
-  });
-
-    // Step 6: Allow user to make changes
-
-    // Step 7: Add submit button event listener
-    popupWindow.document.getElementById('update').addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    // Step 8: Retrieve updated data from input fields
-    const updatedData = {
-      description: popupWindow.document.getElementById('update-description').value,
-      perCase: popupWindow.document.getElementById('update-qty').value,
-      price: popupWindow.document.getElementById('update-price').value
-      // Retrieve other input field values
-    };
-
-    // Step 9: Close the popup window
-    popupWindow.close();
-
-    // Step 10: Update the table row with the new data
-    // Update the row with the updatedData
-  });
-}*/
+    function hideComformation(){
+        document.getElementById('create-update').style.display = 'none'
+    }
 
     function selectTableRowData(){
-
         const row = event.target.parentNode;
         const rowData = {
-        productId: row.cells[5].textContent,
-        description: row.cells[2].textContent,
-        qty: row.cells[3].textContent,
-        price: row.cells[4].textContent
+        productId: row.cells[0].textContent,
+        description: row.cells[3].textContent,
+        qty: row.cells[4].textContent,
+        price: row.cells[5].textContent
        }
         
-        document.getElementById('productId').value = rowData.productId;
+        document.getElementById('update-productId').value = rowData.productId;
         document.getElementById('update-description').value = rowData.description;
         document.getElementById('update-qty').value = rowData.qty;
         document.getElementById('update-price').value = rowData.price;
@@ -225,16 +187,23 @@
         event.preventDefault();
 
         const updatedData = {
-        productId: document.getElementById('productId').value,
+        productId: document.getElementById('update-productId').value,
         description: document.getElementById('update-description').value,
         perCase: document.getElementById('update-qty').value,
         price: document.getElementById('update-price').value
         };
-        
+
+        form.submit();        
         document.getElementById('create-update').style.display = 'none';
-        form.submit();
       });
     };
+
+    function itemUpdated(){
+        document.getElementById('update-modal').style.display = 'block'        
+        setTimeout( () => {
+        document.getElementById('update-modal').style.display = 'none'
+        }, 1500)
+    }
 
     /*function sumBoxes() {
         let rows = document.getElementsByClassName('details');
@@ -254,16 +223,7 @@
         document.getElementById('total-boxes').value = totalBoxes;
     }*/
 
-        function editItem(){
-            document.getElementById('create-update').style.display = 'block';
-            selectTableRowData();
-        }
-
-        function hideComformation(){
-            document.getElementById('create-update').style.display = 'none'
-        }
-
-    function show(){
+    function orderConfirmed(){
         document.querySelector('#order-items').addEventListener('submit', (event) => {
         event.preventDefault();
         document.getElementById('modal').style.display = 'block'        

@@ -18,8 +18,7 @@ module.exports = {
     getId,
     updateProduct,
     between,
-    insertOrderId,
-    getProductId
+    insertOrderId
 }
 
 
@@ -119,10 +118,6 @@ async function confirmUser(username, email, password, building) {
 
   async function getAll(vendorId){
     return await knex("products").select().where({vendorId: vendorId});
-  }
-
-  async function getProductId(){
-    return await knex("products").select("productId");
   }
 
   async function orders(date, vendorId){
