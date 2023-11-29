@@ -49,18 +49,21 @@ h2{
 }
 
 .back{
-    background-color: rgb(210, 206, 206);
+    background-color: rgb(201, 223, 231);
     color: blue;
-    border-radius: 8px;
-    border-color: blue;
-    margin-right: 15px;
-    width: 150px;
+    margin-right: 10px;
     font-weight: bold;
+    font-size: x-large;
+    float: right;
+    border: blue solid 1px;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
 }
 
 .back:hover{
-    background-color: blue;
-    color: aliceblue;
+  background-color: blue;
+  color: aliceblue;
 }
 
 .submit-update{
@@ -162,13 +165,13 @@ table, td{
 }
 
 .tbl-num{
-  width: 100px;
+  width: 150px;
 }
 
 .tbl-amount{
   width: 100px;
   background-color: rgb(176, 240, 219);
-  border: 0;
+  border: rgb(92, 92, 242) solid 1px;
 }
 
 .tbl-description{
@@ -192,6 +195,28 @@ table, td{
 }
 
 .tbl-id{
+  border: 0;
+}
+
+.tbl-description-input{
+  background-color: rgb(176, 240, 219);
+  border: 0;
+}
+
+.tbl-amount-input{
+  background-color: rgb(176, 240, 219);
+  border: 0;
+  width: 100px;
+}
+
+.tbl-qty-input{
+  background-color: rgb(176, 240, 219);
+  border: 0;
+  width: 100px;
+}
+
+.tbl-price-input{
+  background-color: rgb(176, 240, 219);
   border: 0;
 }
 

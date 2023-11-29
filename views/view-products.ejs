@@ -59,7 +59,7 @@
 
     <div class="items">
         <form action="/orderItems" method="POST" id="order-items">
-                <table>
+                <table id="myTable">
                   <div>
                     <thead>
                         <th>#</th>
@@ -76,15 +76,15 @@
                         <% if (product.vendorId === vendor.vendorId) { %>
             <div>
                 <tbody>
-                    <tr id="TR" ondblclick="editItem()">
-                    <td class="tbl-id" id="tbl-id" name="productId" hidden><%= product.productId %></td>
+                    <tr id="TR" ondblclick="selectTableRowData(event)">
+                    <input type="hidden" id="tbl-id" class="tbl-id-input" name="productId" value="<%= product.productId %>">
                     <td class="tbl-num"></td>
-                    <td><input type="text" name="amount" id="amount" oninput="sumBoxes()" class="tbl-amount"></td>
-                    <td id="td-desc" name="productdesc" class="tbl-description"><%= product.description %></td>
-                    <td id="td-qty" name="qty" id="qty" class="tbl-qty"><%= product.perCase %></td>
-                    <td id="td-price" name="price" id="price" class="tbl-price"><%= product.price %></td>           
-                    <td name="totalboxes" id="total-boxes" class="tbl-ttl-boxes"></td>
-                    <td name="totalprice" id="totalprice" class="tbl-ttl-price"></td>
+                    <td class="tbl-amount"><input type="text" class="tbl-amount-input" name="amount" id="amount" onchange="sumBoxes()"></td>
+                    <td class="tbl-description"><input type="text" class="tbl-description-input" id="td-desc" name="productdesc" value="<%= product.description %>" readonly></td>
+                    <td class="tbl-qty"><input type="text" class="tbl-qty-input" id="td-qty" name="qty" value="<%= product.perCase %>" readonly></td>
+                    <td class="tbl-price"><input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly></td>           
+                    <td class="tbl-ttl-boxes"><input type="text" name="totalboxes" id="total-boxes" value="" readonly></td>
+                    <td class="tbl-ttl-price"><input type="text" name="totalprice" id="total-price" value="" readonly></td>
                     <input type="hidden" name="date">
                     </tr>
                 </tbody> 
@@ -116,7 +116,8 @@
         </div>
 
             <div class="create-update" id="create-update">
-                <div class="text-center">
+                <div class="text-center">                    
+                    <input type="button" onclick="hideComformation()" value="X" class="back">
                     <h3 class="update-h3">Update Item</h3>
                 <div>
                     
@@ -136,53 +137,79 @@
                     </p></div>
                     
                     <div class="update-cancel">
-                        <input type="button" onclick="hideComformation()" value="Cancel" class="back">
                         <input type="submit" class="submit-update" value="Update">
                     </div>
                 </form>
+                <input type="submit" value="Delete">
             </div>
          </div>
        </div>
 
     <script>
 
+    /*function sumBoxes() {
+        
+        let table = document.getElementById("myTable");
+        let amount = document.getElementById('amount');
+        let boxes = document.getElementById('total-boxes');
+
+        for (var i = 0, row; row = table.rows[i]; i++) {
+        for (var j = 0, col; col = row.cells[j]; j++) {
+            boxes[j].innerHTML = amount + amount;
+      }
+    }*/
+        /*document.getElementById("total-boxes").innerHTML = sumVal;
+
+        let boxes = document.getElementById('total-boxes');
+        const row = event.target.parentNode;
+        const amount = row.cells[2].textContent;
+
+        boxes.innerText = amount * boxes;*/
+
+        /*let totalBoxes = amount * boxes;
+        document.getElementById('total-boxes').innerText = totalBoxes;*/
+    //}
+
     function sumBoxes() {
-        let rows = document.getElementsByClassName('details');
-        let amount = document.getElementById('amount').value;
-        let boxes = document.getElementById('total-boxes').value;
-        let price = document.getElementById('price').value;
+        let table = document.getElementById("myTable");
+        let amount = parseInt(document.getElementById('amount').value);
+        let boxes = document.getElementById('total-boxes');
 
-        let totalBoxes = amount + boxes;
-        let subTotal = amount * price;
-        document.getElementById('total-boxes').value = totalBoxes;
-        document.getElementById('totalprice').value = subTotal;
-    }
-
-    function editItem(){
-        document.getElementById('create-update').style.display = 'block';
-        selectTableRowData();
-    }
+        let sum = 0;
+        for (var i = 0, row; row = table.rows[i]; i++) {
+           for (var j = 0, col; col = row.cells[j]; j++) {
+            sum += parseFloat(col.innerHTML);
+            }
+            boxes.innerHTML = sum + amount;
+        }
+      }
 
     function hideComformation(){
         document.getElementById('create-update').style.display = 'none'
     }
 
-    function selectTableRowData(){
+    function selectTableRowData(event){
+        document.getElementById('create-update').style.display = 'block';
+
         const row = event.target.parentNode;
         const rowData = {
-        productId: row.cells[0].textContent,
-        description: row.cells[3].textContent,
-        qty: row.cells[4].textContent,
-        price: row.cells[5].textContent
-       }
+        //productId: row.cells[0].textContent,
+        //description: row.cells[3].textContent,
+        //qty: row.cells[4].textContent,
+        //price: row.cells[5].textContent
         
+        productId: row.querySelector('.tbl-id-input').value,
+        description: row.querySelector('.tbl-description-input').value,
+        qty: row.querySelector('.tbl-qty-input').value,
+        price: row.querySelector('.tbl-price-input').value,
+       }
+             
         document.getElementById('update-productId').value = rowData.productId;
         document.getElementById('update-description').value = rowData.description;
         document.getElementById('update-qty').value = rowData.qty;
         document.getElementById('update-price').value = rowData.price;
 
         const form = document.getElementById('update');
-
         form.addEventListener('submit', (event) => {
         event.preventDefault();
 
@@ -193,8 +220,9 @@
         price: document.getElementById('update-price').value
         };
 
-        form.submit();        
+        form.submit();
         document.getElementById('create-update').style.display = 'none';
+         
       });
     };
 

@@ -153,6 +153,7 @@ Router.post('/login', async (req, res, next) => {
 
   Router.post('/update', async(req, res, next) => {
     try{
+      console.log(req.body)
       await Controller.updateProduct(req.body)
       setTimeout( () => {
         res.redirect('/viewProducts')
