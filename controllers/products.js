@@ -18,7 +18,8 @@ module.exports = {
     getId,
     updateProduct,
     between,
-    insertOrderId
+    insertOrderId,
+    deleteProduct
 }
 
 
@@ -110,6 +111,10 @@ async function confirmUser(username, email, password, building) {
 
   async function createProduct(product){
     return await knex("products").insert(product);
+  }
+
+  async function deleteProduct(id) {
+    return knex("products").where("productId", id).del();
   }
 
   async function getVendors() {

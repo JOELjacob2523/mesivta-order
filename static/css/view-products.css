@@ -52,6 +52,7 @@ h2{
     background-color: rgb(201, 223, 231);
     color: blue;
     margin-right: 10px;
+    margin-left: -200px;
     font-weight: bold;
     font-size: x-large;
     float: right;
@@ -72,8 +73,9 @@ h2{
     border-radius: 8px;
     border-color: blue;
     margin-left: 15px;
-    width: 150px;
+    width: 175px;
     font-weight: bold;
+    font-size: larger;
 }
 
 .submit-update:hover{
@@ -105,7 +107,7 @@ h3{
     background-color: rgb(209, 206, 206);
     display: block;
     margin: auto;
-    width: 1520px;
+    width: 1220px;
     text-align: center;
     border-radius: 10px;
     margin-top: 50px;
@@ -142,6 +144,8 @@ h3{
 
 table {
   counter-reset: rowNumber;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 table tbody::before{
@@ -149,7 +153,6 @@ table tbody::before{
   counter-increment: rowNumber;
   content: counter(rowNumber) ".";
   padding-right: 0.3em;
-  text-align: center;
   position: absolute;
 }
 
@@ -160,12 +163,11 @@ th{
 
 table, td{
   border: rgb(92, 92, 242) solid 1px;
-  border-collapse: collapse;
   background-color: rgb(176, 240, 219);
 }
 
 .tbl-num{
-  width: 150px;
+  width: 100px;
 }
 
 .tbl-amount{
@@ -186,14 +188,6 @@ table, td{
   width: 100px;
 }
 
-.tbl-ttl-boxes{
-  width: 175px;
-}
-
-.tbl-ttl-price{
-  width: 175px;
-}
-
 .tbl-id{
   border: 0;
 }
@@ -201,6 +195,8 @@ table, td{
 .tbl-description-input{
   background-color: rgb(176, 240, 219);
   border: 0;
+  float: left;
+  margin-left: 7px;
 }
 
 .tbl-amount-input{
@@ -212,18 +208,40 @@ table, td{
 .tbl-qty-input{
   background-color: rgb(176, 240, 219);
   border: 0;
-  width: 100px;
+  width: 25px;
+  text-align: center;
+  float: left;
 }
 
 .tbl-price-input{
   background-color: rgb(176, 240, 219);
   border: 0;
+  width: 60px;
+  text-align: center;
+  float: left;
 }
 
-.sub-total-input{
+.total-price-input{
   border-radius: 10px;
   height: 35px;
   width: 250px;
+  margin-left: 10px;
+}
+
+.total-boxes-input{
+  border-radius: 10px;
+  height: 35px;
+  width: 250px;
+  margin-left: 10px;
+}
+
+.total-price-lbl{
+  margin-left: 45px;
+  font-weight: bold;
+}
+
+.total-boxes-lbl{
+  font-weight: bold;
 }
 
 .submit-order{
@@ -283,9 +301,9 @@ table, td{
 }
 
 .update-desc-div{
-  background-color: rgb(105, 177, 249);
+  background-color: rgb(154, 202, 250);
   height: 55px;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-left: 20%;
   margin-right: 20%;
   border-radius: 7px;
@@ -293,7 +311,7 @@ table, td{
 }
 
 .update-qty-div{
-  background-color: rgb(105, 177, 249);
+  background-color: rgb(154, 202, 250);
   height: 55px;
   margin-top: 25px;
   margin-left: 20%;
@@ -303,7 +321,7 @@ table, td{
 }
 
 .update-price-div{
-  background-color: rgb(105, 177, 249);
+  background-color: rgb(154, 202, 250);
   height: 55px;
   margin-top: 25px;
   margin-left: 20%;
@@ -475,3 +493,56 @@ table, td{
     height: 40px;
     border-radius: 7px;
   }
+
+  .delete-model {
+    background-color: rgba(130, 125, 125, 0.4);
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .delete-model-content{
+    background-color:rgb(243, 97, 126);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 35%;
+    text-align: center;
+    border-radius: 10px;
+    height: 400px;
+}
+
+  .delete-btn{
+    border: 0;
+    float: left;
+    background-color: rgb(201, 223, 231);
+    color: red;
+    font-size: larger;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.form-dlt-btn{
+  margin-top: 35px;
+}
+
+.dlt-description{
+  margin-top: 35px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.dlt-qty{
+  font-weight: bold;
+  font-size: large;
+}
+
+.dlt-price{
+  font-weight: bold;
+  font-size: large;
+}

@@ -153,8 +153,18 @@ Router.post('/login', async (req, res, next) => {
 
   Router.post('/update', async(req, res, next) => {
     try{
-      console.log(req.body)
       await Controller.updateProduct(req.body)
+      setTimeout( () => {
+        res.redirect('/viewProducts')
+      }, 1500)
+    }catch(err){
+      console.error(err)
+    }
+  });
+
+  Router.post('/delete', async(req, res, next) => {
+    try{
+      await Controller.deleteProduct(req.body)
       setTimeout( () => {
         res.redirect('/viewProducts')
       }, 1500)

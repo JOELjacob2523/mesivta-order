@@ -59,6 +59,7 @@
 
     <div class="items">
         <form action="/orderItems" method="POST" id="order-items">
+            <div class="table-div">
                 <table id="myTable">
                   <div>
                     <thead>
@@ -67,8 +68,6 @@
                         <th>Description</th>
                         <th>Qty</th>
                         <th>Price</th>
-                        <th>Total Cases</th>
-                        <th>Total Price</th>
                     </thead>
                 </div>
                 <% for(let product of products) { %>
@@ -79,12 +78,10 @@
                     <tr id="TR" ondblclick="selectTableRowData(event)">
                     <input type="hidden" id="tbl-id" class="tbl-id-input" name="productId" value="<%= product.productId %>">
                     <td class="tbl-num"></td>
-                    <td class="tbl-amount"><input type="text" class="tbl-amount-input" name="amount" id="amount" onchange="sumBoxes()"></td>
+                    <td class="tbl-amount"><input type="text" class="tbl-amount-input" name="amount" id="amount" onchange="sumBoxesPrice()"></td>
                     <td class="tbl-description"><input type="text" class="tbl-description-input" id="td-desc" name="productdesc" value="<%= product.description %>" readonly></td>
                     <td class="tbl-qty"><input type="text" class="tbl-qty-input" id="td-qty" name="qty" value="<%= product.perCase %>" readonly></td>
-                    <td class="tbl-price"><input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly></td>           
-                    <td class="tbl-ttl-boxes"><input type="text" name="totalboxes" id="total-boxes" value="" readonly></td>
-                    <td class="tbl-ttl-price"><input type="text" name="totalprice" id="total-price" value="" readonly></td>
+                    <td class="tbl-price"><input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly></td> 
                     <input type="hidden" name="date">
                     </tr>
                 </tbody> 
@@ -93,10 +90,17 @@
                <% } %>
               <% } %>
             </table>
+        </div>
+
               <div class="submit-order-div">
                     <div class="sub-total">
-                        <p class="sub-total-p">Sub Total</p>        
-                        <input type="number" id="sub-total" class="sub-total-input" readonly>
+
+                        <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes:</label>
+                        <input type="text" id="total-boxes-input" class="total-boxes-input" value="" readonly>
+
+                        <label for="total-price-input" class="total-price-lbl">Total Price:</label>        
+                        <input type="text" id="total-price-input" class="total-price-input" value="" readonly>
+
                     </div>
                     <input type="submit" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
                 </div>
@@ -115,14 +119,18 @@
             </div>
         </div>
 
+        <div class="update-modal" id="delete-modal-confarmation">
+            <div class="update-modal-content">
+                <p class="update-modal-p">Item Deleted Successfully</p>
+            </div>
+        </div>
+
             <div class="create-update" id="create-update">
                 <div class="text-center">                    
-                    <input type="button" onclick="hideComformation()" value="X" class="back">
-                    <h3 class="update-h3">Update Item</h3>
-                <div>
-                    
+                    <input type="button" onclick="hideUpdateComformation()" value="X" class="back">
+                    <h3 class="update-h3">Update Item</h3>                    
                 <form action="/update" method="POST" id="update" onsubmit="itemUpdated()">
-                        <input type="hidden" value="" name="productId" id="update-productId">
+                        <input type="hidden" value="" name="productId" id="update-productId" class="update-id">
                     <div class="update-desc-div">
                         <p>Update Description:
                         <input type="text" id="update-description" value="" name="description" class="update-desc">
@@ -134,15 +142,24 @@
                     <div class="update-price-div">
                         <p>Update Price:
                         <input type="text" id="update-price" value="" name="price" class="update-price">
-                    </p></div>
-                    
+                    </p></div>                    
                     <div class="update-cancel">
                         <input type="submit" class="submit-update" value="Update">
                     </div>
                 </form>
-                <input type="submit" value="Delete">
+                <input type="button" value="Delete Item" class="delete-btn" onclick="deleteItem()">
+                </div>
             </div>
-         </div>
+
+         <div class="delete-model" id="delete-model">
+            <div class="delete-model-content">
+            <input type="button" onclick="hideDeleteComformation()" value="X" class="back">
+            <h3>Are You Sure You Want to Delete Item</h3>
+            <p class="dlt-description"></p> <p class="dlt-qty"></p> <p class="dlt-price"></p>
+            <form action="/delete" method="POST" id="delete-form">
+                <input type="submit" value="Delete Item" class="form-dlt-btn">
+            </form>
+            </div>        
        </div>
 
     <script>
@@ -158,35 +175,21 @@
             boxes[j].innerHTML = amount + amount;
       }
     }*/
-        /*document.getElementById("total-boxes").innerHTML = sumVal;
 
-        let boxes = document.getElementById('total-boxes');
-        const row = event.target.parentNode;
-        const amount = row.cells[2].textContent;
+    function sumBoxesPrice() {
+        let amount = parseInt(document.querySelector('.tbl-amount-input').value);
+        let price = document.querySelector('.tbl-price-input').value
 
-        boxes.innerText = amount * boxes;*/
+        let totalBoxes = document.getElementById('total-boxes-input');
+        totalBoxes.value = amount + amount;
 
-        /*let totalBoxes = amount * boxes;
-        document.getElementById('total-boxes').innerText = totalBoxes;*/
-    //}
-
-    function sumBoxes() {
-        let table = document.getElementById("myTable");
-        let amount = parseInt(document.getElementById('amount').value);
-        let boxes = document.getElementById('total-boxes');
-
-        let sum = 0;
-        for (var i = 0, row; row = table.rows[i]; i++) {
-           for (var j = 0, col; col = row.cells[j]; j++) {
-            sum += parseFloat(col.innerHTML);
-            }
-            boxes.innerHTML = sum + amount;
+        let totalPrice = document.getElementById('total-price-input');
+        totalPrice.value = amount * price;
         }
-      }
 
-    function hideComformation(){
+    function hideUpdateComformation(){
         document.getElementById('create-update').style.display = 'none'
-    }
+    };
 
     function selectTableRowData(event){
         document.getElementById('create-update').style.display = 'block';
@@ -232,6 +235,49 @@
         document.getElementById('update-modal').style.display = 'none'
         }, 1500)
     }
+
+    function deleteItem() {        
+        document.getElementById('create-update').style.display = 'none';
+        document.getElementById('delete-model').style.display = 'block'
+
+        let form = document.getElementById('delete-form')
+
+        const itemData = {
+        productId: document.querySelector('.update-id').value,
+        description: document.querySelector('.update-desc').value,
+        qty: document.querySelector('.update-qty').value,
+        price: document.querySelector('.update-price').value
+        }
+
+        document.querySelector('.dlt-description').innerHTML = `Description: ${itemData.description}`;
+        document.querySelector('.dlt-qty').innerHTML = `Qty: ${itemData.qty}`;
+        document.querySelector('.dlt-price').innerHTML = `Price: ${itemData.price}`;
+
+        form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const updatedData = {
+        productId: itemData.productId,
+        description: itemData.description,
+        perCase: itemData.qty,
+        price: itemData.price
+        };
+
+        form.submit();
+        document.getElementById('delete-model').style.display = 'none';
+    });
+    }
+
+    function itemDeleted(){
+        document.getElementById('delete-modal-confarmation').style.display = 'block'        
+        setTimeout( () => {
+        document.getElementById('delete-modal-confarmation').style.display = 'none'
+        }, 1500)
+    }
+
+    function hideDeleteComformation(){
+        document.getElementById('delete-model').style.display = 'none'
+    };
 
     /*function sumBoxes() {
         let rows = document.getElementsByClassName('details');
