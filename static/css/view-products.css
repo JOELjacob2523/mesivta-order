@@ -194,7 +194,7 @@ table, td{
 
 .tbl-description-input{
   background-color: rgb(176, 240, 219);
-  border: 0;
+  border: none;
   float: left;
   margin-left: 7px;
 }
@@ -507,7 +507,7 @@ table, td{
   }
 
   .delete-model-content{
-    background-color:rgb(243, 97, 126);
+    background-color: lightblue;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -515,6 +515,10 @@ table, td{
     text-align: center;
     border-radius: 10px;
     height: 400px;
+}
+
+  .dlt-h3{
+    margin-top: 50px;
 }
 
   .delete-btn{
@@ -529,10 +533,22 @@ table, td{
 
 .form-dlt-btn{
   margin-top: 35px;
+  background-color: red;
+  color: rgb(244, 244, 233);
+  border-radius: 5px;
+  border-color: red;
+  width: 150px;
+  height: 40px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.form-dlt-btn:hover{
+  color: red;
+  background-color: lightblue;
 }
 
 .dlt-description{
-  margin-top: 35px;
   font-weight: bold;
   font-size: large;
 }
@@ -545,4 +561,34 @@ table, td{
 .dlt-price{
   font-weight: bold;
   font-size: large;
+}
+
+.dlt-description-p{
+  margin-top: 55px;
+  font-size: large;
+}
+
+.dlt-qty-p{
+  font-size: large;
+}
+
+.dlt-price-p{
+  font-size: large;
+}
+
+.item-deleted-modal-content{
+    background-color: red;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+    text-align: center;
+    border-radius: 10px;
+    height: 100px;
+}
+
+.delete-modal-p{
+  font-size: larger;
+  font-weight: bold;
+  color: aliceblue;
 }

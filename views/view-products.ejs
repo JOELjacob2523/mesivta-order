@@ -120,8 +120,8 @@
         </div>
 
         <div class="update-modal" id="delete-modal-confarmation">
-            <div class="update-modal-content">
-                <p class="update-modal-p">Item Deleted Successfully</p>
+            <div class="item-deleted-modal-content">
+                <p class="delete-modal-p">Item Deleted Successfully</p>
             </div>
         </div>
 
@@ -154,9 +154,15 @@
          <div class="delete-model" id="delete-model">
             <div class="delete-model-content">
             <input type="button" onclick="hideDeleteComformation()" value="X" class="back">
-            <h3>Are You Sure You Want to Delete Item</h3>
-            <p class="dlt-description"></p> <p class="dlt-qty"></p> <p class="dlt-price"></p>
-            <form action="/delete" method="POST" id="delete-form">
+
+            <h3 class="dlt-h3">Are You Sure You Want to Delete Item</h3>
+
+            <p class="dlt-description-p">Description: <span class="dlt-description"></span></p> 
+            <p class="dlt-qty-p">Qty: <span class="dlt-qty"></span></p> 
+            <p class="dlt-price-p">Price: <span class="dlt-price"></span></p>
+
+            <form action="/delete" method="POST" id="delete-form" onsubmit="itemDeleted()">
+                <input type="hidden" id="deleteid" value="" name="productId">
                 <input type="submit" value="Delete Item" class="form-dlt-btn">
             </form>
             </div>        
@@ -240,8 +246,6 @@
         document.getElementById('create-update').style.display = 'none';
         document.getElementById('delete-model').style.display = 'block'
 
-        let form = document.getElementById('delete-form')
-
         const itemData = {
         productId: document.querySelector('.update-id').value,
         description: document.querySelector('.update-desc').value,
@@ -249,19 +253,17 @@
         price: document.querySelector('.update-price').value
         }
 
-        document.querySelector('.dlt-description').innerHTML = `Description: ${itemData.description}`;
-        document.querySelector('.dlt-qty').innerHTML = `Qty: ${itemData.qty}`;
-        document.querySelector('.dlt-price').innerHTML = `Price: ${itemData.price}`;
+        document.getElementById('deleteid').value = itemData.productId
 
+        document.querySelector('.dlt-description').innerHTML = `${itemData.description}`;
+        document.querySelector('.dlt-qty').innerHTML = `${itemData.qty}`;
+        document.querySelector('.dlt-price').innerHTML = `${itemData.price}`;
+
+        let form = document.getElementById('delete-form');
         form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const updatedData = {
-        productId: itemData.productId,
-        description: itemData.description,
-        perCase: itemData.qty,
-        price: itemData.price
-        };
+        document.getElementById('deleteid').value = itemData.productId;
 
         form.submit();
         document.getElementById('delete-model').style.display = 'none';

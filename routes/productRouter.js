@@ -164,7 +164,7 @@ Router.post('/login', async (req, res, next) => {
 
   Router.post('/delete', async(req, res, next) => {
     try{
-      await Controller.deleteProduct(req.body)
+      await Controller.deleteProduct(req.body.productId)
       setTimeout( () => {
         res.redirect('/viewProducts')
       }, 1500)
