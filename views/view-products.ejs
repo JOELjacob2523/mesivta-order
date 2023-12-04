@@ -25,8 +25,8 @@
     </div>
 
     <div class="between">
+        <p class="select-p">Select a Date to See All Vendor Orders</p>
         <form action="/between" method="POST">
-            <p class="select-p">Select a Date to See All Vendor Orders</p>
             <div class="label">
                 <label for="from">From:</label>
                     <input type="date" name="from" class="from-to">
@@ -58,6 +58,10 @@
     </div>
 
     <div class="items">
+        
+        <input type="text" id="searchInput" onkeyup="search()" class="searchInput"
+        placeholder="Search For Product...">
+
         <form action="/orderItems" method="POST" id="order-items">
             <div class="table-div">
                 <table id="myTable">
@@ -105,6 +109,7 @@
                     <input type="submit" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
                 </div>
             </form> 
+    </div>
     </div>
 
         <div class="modal" id="modal">
@@ -183,14 +188,25 @@
     }*/
 
     function sumBoxesPrice() {
-        let amount = parseInt(document.querySelector('.tbl-amount-input').value);
+        const row = event.target.parentNode;
+
+        const rowData = {
+        price: row.querySelector('.tbl-price-input').value
+       }
+
+       let sum = 0;
+       for (var i = 1; i < rowData.price.length; i++) {
+       sumVal = sumVal + parseFloat(rowData.price[i]);
+       document.getElementById('total-price-input').value = sumVal;
+    }
+        /*let amount = parseInt(document.querySelector('.tbl-amount-input').value);
         let price = document.querySelector('.tbl-price-input').value
 
         let totalBoxes = document.getElementById('total-boxes-input');
         totalBoxes.value = amount + amount;
 
         let totalPrice = document.getElementById('total-price-input');
-        totalPrice.value = amount * price;
+        totalPrice.value = amount * price;*/
         }
 
     function hideUpdateComformation(){
@@ -309,6 +325,30 @@
         document.getElementById('order-items').submit();
     })
 }
+
+        function search() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        var matchingRows = [];
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+                var rowData = {
+                    description: tr[i].getElementsByTagName('td')[3].innerHTML
+                };
+                matchingRows.push(rowData);
+            } else {
+                tr[i].style.display = "none";
+            }
+            }       
+        }
+        }
 
     </script>
 </body>

@@ -99,14 +99,12 @@ Router.post('/login', async (req, res, next) => {
         productdesc: req.body.productdesc,
         qty: req.body.qty,
         price: req.body.price,
-        totalboxes: req.body.totalboxes,
-        totalprice: req.body.totalprice,
         date: new Date(),
         orderId: orderid,
         vendorId: req.session.vendorId        
       }
 
-      const { amount, productdesc, qty, price, totalboxes, totalprice, date ,orderId, vendorId } = products;
+      const { amount, productdesc, qty, price, orderId, vendorId } = products;
 
       const productItems = [];
 
@@ -118,10 +116,8 @@ Router.post('/login', async (req, res, next) => {
         productdesc: productdesc[i],
         qty: qty[i],
         price: price[i],
-        totalboxes: totalboxes[i],
-        totalprice: totalprice[i],
         date: new Date(),
-        orderId: orderid,
+        orderId: orderId,
         vendorId: vendorId        
       };
 

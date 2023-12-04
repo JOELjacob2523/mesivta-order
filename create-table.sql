@@ -42,7 +42,8 @@ CREATE TABLE orderitems(
   totalprice DECIMAL (10,2) NULL,
   date DATE NULL,
   orderId BIGINT FOREIGN KEY REFERENCES orders(orderId),
-  vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId)
+  vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId),
+  productId BIGINT FOREIGN KEY REFERENCES products(productId)
 );
 
 /* This is for MySQL*/

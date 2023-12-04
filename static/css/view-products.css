@@ -164,6 +164,7 @@ th{
 table, td{
   border: rgb(92, 92, 242) solid 1px;
   background-color: rgb(176, 240, 219);
+  margin-top: 15px;
 }
 
 .tbl-num{
@@ -197,12 +198,21 @@ table, td{
   border: none;
   float: left;
   margin-left: 7px;
+  width: 200px;
+}
+
+.tbl-description-input:focus{
+  outline: none;
 }
 
 .tbl-amount-input{
   background-color: rgb(176, 240, 219);
   border: 0;
   width: 100px;
+}
+
+.tbl-amount-input:focus{
+  outline: none;
 }
 
 .tbl-qty-input{
@@ -213,6 +223,10 @@ table, td{
   float: left;
 }
 
+.tbl-qty-input:focus{
+  outline: none;
+}
+
 .tbl-price-input{
   background-color: rgb(176, 240, 219);
   border: 0;
@@ -221,7 +235,12 @@ table, td{
   float: left;
 }
 
+.tbl-price-input:focus{
+  outline: none;
+}
+
 .total-price-input{
+  background-color: rgb(217, 247, 247);
   border-radius: 10px;
   height: 35px;
   width: 250px;
@@ -229,6 +248,7 @@ table, td{
 }
 
 .total-boxes-input{
+  background-color: rgb(217, 247, 247);
   border-radius: 10px;
   height: 35px;
   width: 250px;
@@ -331,24 +351,48 @@ table, td{
 }
 
 .update-desc{
+  background-color: rgb(192, 218, 245);
   border-radius: 5px;
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: bold;
   text-align: center;
+  border: none;
+  width: 195px;
+  height: 35px;
+}
+
+.update-desc:focus{
+  outline: none;
 }
 
 .update-qty{
+  background-color: rgb(192, 218, 245);
   border-radius: 5px;
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: bold;
   text-align: center;
+  border: none;
+  width: 45px;
+  height: 35px;
+}
+
+.update-qty:focus{
+  outline: none;
 }
 
 .update-price{
+  background-color: rgb(192, 218, 245);
   border-radius: 5px;
-  margin-left: 10px;
+  margin-left: 5px;
   font-weight: bold;
   text-align: center;
+  border: none;
+  width: 70px;
+  height: 35px;
+}
+
+.update-price:focus{
+  outline: none;
 }
 
 .update-modal {
@@ -591,4 +635,20 @@ table, td{
   font-size: larger;
   font-weight: bold;
   color: aliceblue;
+}
+
+.container{
+  display: block;
+  margin: auto;
+}
+
+.searchInput{
+  width: 800px;
+  display: block;
+  margin: auto;
+  border-radius: 50px;
+  height: 50px;
+  background-color: rgb(209, 206, 206);
+  border-color: blue;
+  padding-left: 15px;
 }
