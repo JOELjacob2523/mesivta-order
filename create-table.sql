@@ -40,7 +40,7 @@ CREATE TABLE orderitems(
   price DECIMAL (10,2) NULL,
   totalboxes VARCHAR(255) NULL,
   totalprice DECIMAL (10,2) NULL,
-  date DATE NULL,
+  date DATETIME NULL,
   orderId BIGINT FOREIGN KEY REFERENCES orders(orderId),
   vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId),
   productId BIGINT FOREIGN KEY REFERENCES products(productId)

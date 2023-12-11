@@ -13,19 +13,19 @@
         <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
     </div>
 
+    <div class="orderDiv">
     <% for (let item of itemsDates) { %>
     <div class="items-div">
-                    <ol class="ol">
+                <ol class="ol">
                     <li class="li"><%= item.amount %></li>
                     <li class="li"><%= item.productdesc %></li>
                     <li class="li"><%= item.qty %></li>
-                    <li class="li"><%= item.price %></li>
-                    <li class="li"><%= item.totalboxes %></li>
-                    <li class="li"><%= item.totalprice %></li>
-                    <li class="li"><%= item.date.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'}) %></li>
+                    <li class="li"><span class="prefix">$</span><%= item.price %></li>
+                    <li class="li"><%= item.date.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}) %></li>
                 </ol>
             </div>
         <% } %>
+    </div>
     
 </body>
 </html>

@@ -68,7 +68,7 @@ h2{
 }
 
 .submit-update{
-    background-color: rgb(210, 206, 206);
+  background-color: rgb(201, 223, 231);
     color: blue;
     border-radius: 8px;
     border-color: blue;
@@ -209,6 +209,7 @@ table, td{
   background-color: rgb(176, 240, 219);
   border: 0;
   width: 100px;
+  font-size: small;
 }
 
 .tbl-amount-input:focus{
@@ -233,6 +234,12 @@ table, td{
   width: 60px;
   text-align: center;
   float: left;
+}
+
+.prefix {
+  margin-left: -47px;
+  margin-top: 1px;
+  position: absolute;
 }
 
 .tbl-price-input:focus{
@@ -357,7 +364,7 @@ table, td{
   font-weight: bold;
   text-align: center;
   border: none;
-  width: 195px;
+  width: 215px;
   height: 35px;
 }
 
@@ -648,7 +655,12 @@ table, td{
   margin: auto;
   border-radius: 50px;
   height: 50px;
-  background-color: rgb(209, 206, 206);
+  background-color: rgb(235, 230, 230);
   border-color: blue;
   padding-left: 15px;
+  font-weight: bold;
+}
+
+.searchInput:focus{
+  outline-color: blue;
 }

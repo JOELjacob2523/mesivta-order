@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/view-products.css">
-    <title>Create Product</title>
+    <title>View Product</title>
 </head>
 <body>
     <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
@@ -82,10 +82,18 @@
                     <tr id="TR" ondblclick="selectTableRowData(event)">
                     <input type="hidden" id="tbl-id" class="tbl-id-input" name="productId" value="<%= product.productId %>">
                     <td class="tbl-num"></td>
-                    <td class="tbl-amount"><input type="text" class="tbl-amount-input" name="amount" id="amount" onchange="sumBoxesPrice()"></td>
-                    <td class="tbl-description"><input type="text" class="tbl-description-input" id="td-desc" name="productdesc" value="<%= product.description %>" readonly></td>
-                    <td class="tbl-qty"><input type="text" class="tbl-qty-input" id="td-qty" name="qty" value="<%= product.perCase %>" readonly></td>
-                    <td class="tbl-price"><input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly></td> 
+                    <td class="tbl-amount">
+                        <input type="text" class="tbl-amount-input" name="amount" id="amount" value="" oninput="sumBoxesPrice(event)" placeholder="Enter Amount...">
+                    </td>
+                    <td class="tbl-description">
+                        <input type="text" class="tbl-description-input" id="td-desc" name="productdesc" value="<%= product.description %>" readonly>
+                    </td>
+                    <td class="tbl-qty">
+                        <input type="text" class="tbl-qty-input" id="td-qty" name="qty" value="<%= product.perCase %>" readonly>
+                    </td>
+                    <td class="tbl-price"><span class="prefix">$</span>
+                        <input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly>
+                    </td>
                     <input type="hidden" name="date">
                     </tr>
                 </tbody> 
@@ -99,10 +107,10 @@
               <div class="submit-order-div">
                     <div class="sub-total">
 
-                        <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes:</label>
+                        <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes Is:</label>
                         <input type="text" id="total-boxes-input" class="total-boxes-input" value="" readonly>
 
-                        <label for="total-price-input" class="total-price-lbl">Total Price:</label>        
+                        <label for="total-price-input" class="total-price-lbl">Total Price Is:</label>    
                         <input type="text" id="total-price-input" class="total-price-input" value="" readonly>
 
                     </div>
@@ -133,19 +141,19 @@
             <div class="create-update" id="create-update">
                 <div class="text-center">                    
                     <input type="button" onclick="hideUpdateComformation()" value="X" class="back">
-                    <h3 class="update-h3">Update Item</h3>                    
+                    <h3 class="update-h3">Edit Item</h3>                    
                 <form action="/update" method="POST" id="update" onsubmit="itemUpdated()">
                         <input type="hidden" value="" name="productId" id="update-productId" class="update-id">
                     <div class="update-desc-div">
-                        <p>Update Description:
+                        <p>Edit Description:
                         <input type="text" id="update-description" value="" name="description" class="update-desc">
                     </p></div>
                     <div class="update-qty-div">
-                        <p>Update Qty:
+                        <p>Edit Qty:
                         <input type="text" id="update-qty" value="" name="perCase" class="update-qty">
                     </p></div>
                     <div class="update-price-div">
-                        <p>Update Price:
+                        <p>Edit Price:
                         <input type="text" id="update-price" value="" name="price" class="update-price">
                     </p></div>                    
                     <div class="update-cancel">
@@ -175,39 +183,54 @@
 
     <script>
 
-    /*function sumBoxes() {
-        
-        let table = document.getElementById("myTable");
-        let amount = document.getElementById('amount');
-        let boxes = document.getElementById('total-boxes');
+    function sumBoxesPrice(event) {
+        var amount = document.getElementsByClassName('tbl-amount-input');
+        var price = document.getElementsByClassName('tbl-price-input');
 
-        for (var i = 0, row; row = table.rows[i]; i++) {
-        for (var j = 0, col; col = row.cells[j]; j++) {
-            boxes[j].innerHTML = amount + amount;
-      }
-    }*/
+        var amountLength = amount.length,
+        amountTotal = 0;
 
-    function sumBoxesPrice() {
-        const row = event.target.parentNode;
+        var priceLength = price.length,
+        priceTotal = 0;
 
-        const rowData = {
-        price: row.querySelector('.tbl-price-input').value
-       }
-
-       let sum = 0;
-       for (var i = 1; i < rowData.price.length; i++) {
-       sumVal = sumVal + parseFloat(rowData.price[i]);
-       document.getElementById('total-price-input').value = sumVal;
-    }
-        /*let amount = parseInt(document.querySelector('.tbl-amount-input').value);
-        let price = document.querySelector('.tbl-price-input').value
-
-        let totalBoxes = document.getElementById('total-boxes-input');
-        totalBoxes.value = amount + amount;
-
-        let totalPrice = document.getElementById('total-price-input');
-        totalPrice.value = amount * price;*/
+        for (var i = 0; i < amountLength; ++i) {
+        amountTotal += amountLength[i].value;
         }
+
+        for (var j = 0; j < priceLength; ++j) {
+        priceTotal += priceLength[j].value;
+        }
+
+        document.getElementById('total-price-input').value = amountTotal * priceTotal;
+        /*const amount = document.querySelector('.tbl-amount-input').value;
+        const price = document.querySelector('.tbl-price-input').value;
+        
+        const rowPriceData = []   
+        rowPriceData.push(price)
+        console.log(rowPriceData)
+
+        let sum = 0;
+        for (let i = 0; i < rowPriceData.length; i++){
+            sum += rowPriceData * amount;
+            console.log(sum)       
+            document.querySelector('.total-price-input').value = `$${sum.toFixed(2)}`
+         }*/
+        }
+
+        /*function sumBoxesPrice(event){
+            const row = event.target.parentNode;
+
+        const rowData = {        
+        productId: row.querySelector('.tbl-id-input').value,
+        price: row.querySelector('.tbl-price-input').value,
+       }
+        var firstCells = document.querySelectorAll('td:nth-child(1)');
+        var cellValues = [];
+        firstCells.forEach(function(singleCell) {
+        cellValues.push(singleCell.document.querySelector('.total-price-input').value = rowData.price);
+        });
+        console.log(cellValues);
+    }*/
 
     function hideUpdateComformation(){
         document.getElementById('create-update').style.display = 'none'
@@ -346,8 +369,8 @@
             } else {
                 tr[i].style.display = "none";
             }
-            }       
-        }
+           }
+          }       
         }
 
     </script>
