@@ -83,7 +83,7 @@
                     <input type="hidden" id="tbl-id" class="tbl-id-input" name="productId" value="<%= product.productId %>">
                     <td class="tbl-num"></td>
                     <td class="tbl-amount">
-                        <input type="text" class="tbl-amount-input" name="amount" id="amount" value="" oninput="sumBoxesPrice(event)" placeholder="Enter Amount...">
+                        <input type="text" class="tbl-amount-input" name="amount" id="amount" value="" placeholder="Enter Amount...">
                     </td>
                     <td class="tbl-description">
                         <input type="text" class="tbl-description-input" id="td-desc" name="productdesc" value="<%= product.description %>" readonly>
@@ -108,10 +108,10 @@
                     <div class="sub-total">
 
                         <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes Is:</label>
-                        <input type="text" id="total-boxes-input" class="total-boxes-input" value="" readonly>
+                        <input type="text" id="total-boxes-input" class="total-boxes-input" value="0" readonly>
 
                         <label for="total-price-input" class="total-price-lbl">Total Price Is:</label>    
-                        <input type="text" id="total-price-input" class="total-price-input" value="" readonly>
+                        <input type="text" id="total-price-input" class="total-price-input" value="$0.00" readonly>
 
                     </div>
                     <input type="submit" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
@@ -181,56 +181,55 @@
             </div>        
        </div>
 
-    <script>
+    <script type="text/javascript">
 
-    function sumBoxesPrice(event) {
-        var amount = document.getElementsByClassName('tbl-amount-input');
-        var price = document.getElementsByClassName('tbl-price-input');
+        function calculateTotalPrice() {
+        let total = 0;
 
-        var amountLength = amount.length,
-        amountTotal = 0;
+        const rows = document.querySelectorAll('#myTable tbody tr');
 
-        var priceLength = price.length,
-        priceTotal = 0;
+        rows.forEach(row => {
+        const amountInput = row.querySelector('.tbl-amount-input');
+        const priceInput = row.querySelector('.tbl-price-input');
 
-        for (var i = 0; i < amountLength; ++i) {
-        amountTotal += amountLength[i].value;
-        }
+        const amount = parseFloat(amountInput.value) || 0;
+        const price = parseFloat(priceInput.value) || 0;
 
-        for (var j = 0; j < priceLength; ++j) {
-        priceTotal += priceLength[j].value;
-        }
+        const rowTotal = amount * price;
+        total += rowTotal;
+      });
+        const totalPriceInput = document.getElementById('total-price-input');
+        totalPriceInput.value = '$' + total.toFixed(2);
+      }
+            
+        const amountInputs = document.querySelectorAll('.tbl-amount-input');
+        amountInputs.forEach(input => {
+        input.addEventListener('input', calculateTotalPrice);
+      });
 
-        document.getElementById('total-price-input').value = amountTotal * priceTotal;
-        /*const amount = document.querySelector('.tbl-amount-input').value;
-        const price = document.querySelector('.tbl-price-input').value;
-        
-        const rowPriceData = []   
-        rowPriceData.push(price)
-        console.log(rowPriceData)
+      function calculateTotalBoxes() {
+        let total = 0;
 
-        let sum = 0;
-        for (let i = 0; i < rowPriceData.length; i++){
-            sum += rowPriceData * amount;
-            console.log(sum)       
-            document.querySelector('.total-price-input').value = `$${sum.toFixed(2)}`
-         }*/
-        }
+        const rows = document.querySelectorAll('#myTable tbody tr');
 
-        /*function sumBoxesPrice(event){
-            const row = event.target.parentNode;
+        rows.forEach(row => {
+        const amountBoxInput = row.querySelector('.tbl-amount-input');
+        const amount = parseFloat(amountBoxInput.value) || 0;
 
-        const rowData = {        
-        productId: row.querySelector('.tbl-id-input').value,
-        price: row.querySelector('.tbl-price-input').value,
-       }
-        var firstCells = document.querySelectorAll('td:nth-child(1)');
-        var cellValues = [];
-        firstCells.forEach(function(singleCell) {
-        cellValues.push(singleCell.document.querySelector('.total-price-input').value = rowData.price);
-        });
-        console.log(cellValues);
-    }*/
+        const rowTotal = amount;
+        total += rowTotal;
+      });
+        const totalBoxesInput = document.getElementById('total-boxes-input');
+        totalBoxesInput.value = total;
+      }
+            
+        const amountBoxInputs = document.querySelectorAll('.tbl-amount-input');
+        amountBoxInputs.forEach(input => {
+        input.addEventListener('input', calculateTotalBoxes);
+      });
+
+        calculateTotalPrice();
+        calculateTotalBoxes();
 
     function hideUpdateComformation(){
         document.getElementById('create-update').style.display = 'none'

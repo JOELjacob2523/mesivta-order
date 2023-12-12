@@ -252,6 +252,7 @@ table, td{
   height: 35px;
   width: 250px;
   margin-left: 10px;
+  padding-left: 5px;
 }
 
 .total-boxes-input{
@@ -260,6 +261,7 @@ table, td{
   height: 35px;
   width: 250px;
   margin-left: 10px;
+  padding-left: 5px;
 }
 
 .total-price-lbl{
