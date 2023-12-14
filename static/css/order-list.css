@@ -36,19 +36,62 @@ h1{
     background-color: rgb(243, 218, 186);
     border-radius: 10px;
     padding: 15px;
-    width: 40%;
+    width: 50%;
     margin-top: 100px;
 }
 
 .items-div{
     display: block;
     margin: auto;
-    width: 60%;
+    width: 70%;
     background-color: rgb(222, 208, 208);
     border-radius: 10px;
+    border-radius: 5px;
+    padding-top: 15px;
 }
 
 .ol{
     align-items: center;
     font-size: larger;
+}
+
+.li{
+    text-align: center;
+    border-radius: 5px;
+    width: 95%;
+}
+
+.li:nth-child(odd){
+    background-color: rgb(206, 194, 194);;
+}
+
+.print_btn{
+    border-radius: 5px;
+    background-color: blue;
+    color: aliceblue;
+    float: right;
+    margin-right: 200px;
+    margin-top: 40px;
+    border-color: blue;
+}
+
+.print_btn:hover{
+    background-color: rgb(245, 238, 228);;
+    color: blue;
+    font-weight: bold;
+    border-color: blue;
+}
+
+.date-div{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+span{
+    font-weight: bold;
+}
+
+.order-num-p{
+    margin-right: 20px;
 }

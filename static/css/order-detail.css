@@ -1,0 +1,21 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(245, 238, 228);
+}
+
+h1{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+table{
+    width: 70%;
+    display: block;
+    margin: auto;
+}
+
+th{
+    width: 1200px;
+}

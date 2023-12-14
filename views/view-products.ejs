@@ -26,7 +26,7 @@
 
     <div class="between">
         <p class="select-p">Select a Date to See All Vendor Orders</p>
-        <form action="/between" method="POST">
+        <form action="/betweenOrders" method="POST">
             <div class="label">
                 <label for="from">From:</label>
                     <input type="date" name="from" class="from-to">
@@ -67,11 +67,11 @@
                 <table id="myTable">
                   <div>
                     <thead>
-                        <th>#</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th>Qty</th>
-                        <th>Price</th>
+                        <th class="thead-num">#</th>
+                        <th class="thead-amount">Amount</th>
+                        <th class="thead-description">Description</th>
+                        <th class="thead-qty">Qty</th>
+                        <th class="thead-price">Price</th>
                     </thead>
                 </div>
                 <% for(let product of products) { %>
@@ -108,10 +108,10 @@
                     <div class="sub-total">
 
                         <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes Is:</label>
-                        <input type="text" id="total-boxes-input" class="total-boxes-input" value="0" readonly>
+                        <input type="text" id="total-boxes-input" class="total-boxes-input" value="0" name="totalboxes" readonly>
 
                         <label for="total-price-input" class="total-price-lbl">Total Price Is:</label>    
-                        <input type="text" id="total-price-input" class="total-price-input" value="$0.00" readonly>
+                        <input type="text" id="total-price-input" class="total-price-input" value="$0.00" name="totalprice" readonly>
 
                     </div>
                     <input type="submit" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
@@ -183,6 +183,9 @@
 
     <script type="text/javascript">
 
+        calculateTotalPrice();
+        calculateTotalBoxes();
+
         function calculateTotalPrice() {
         let total = 0;
 
@@ -215,9 +218,7 @@
         rows.forEach(row => {
         const amountBoxInput = row.querySelector('.tbl-amount-input');
         const amount = parseFloat(amountBoxInput.value) || 0;
-
-        const rowTotal = amount;
-        total += rowTotal;
+        total += amount;
       });
         const totalBoxesInput = document.getElementById('total-boxes-input');
         totalBoxesInput.value = total;
@@ -227,9 +228,6 @@
         amountBoxInputs.forEach(input => {
         input.addEventListener('input', calculateTotalBoxes);
       });
-
-        calculateTotalPrice();
-        calculateTotalBoxes();
 
     function hideUpdateComformation(){
         document.getElementById('create-update').style.display = 'none'
@@ -319,28 +317,10 @@
         document.getElementById('delete-model').style.display = 'none'
     };
 
-    /*function sumBoxes() {
-        let rows = document.getElementsByClassName('details');
-        let totalBoxes = document.getElementById('total-boxes').value;
-
-        for (let i = 0; i < rows.length; i++) {
-            let amountInput = rows[i].querySelector('[name="amount"]');
-            let amount = parseFloat(amountInput.value);
-            let boxesPerCase = parseInt(rows[i].querySelector('[name="qty"]').value, 10);
-
-            let totalForRow = amount * boxesPerCase;
-            totalBoxes += totalForRow;
-
-            rows[i].querySelector('[name="totalboxes"]').value = totalForRow;
-        }
-
-        document.getElementById('total-boxes').value = totalBoxes;
-    }*/
-
     function orderConfirmed(){
         document.querySelector('#order-items').addEventListener('submit', (event) => {
         event.preventDefault();
-        document.getElementById('modal').style.display = 'block'        
+        document.getElementById('modal').style.display = 'block'      
         setTimeout( () => {
         document.getElementById('modal').style.display = 'none'
         }, 1500)

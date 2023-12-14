@@ -91,7 +91,15 @@ Router.post('/login', async (req, res, next) => {
 
   Router.post('/orderItems', async (req, res, next) => {
     try{
-      await Controller.orders(new Date(), req.session.vendorId);
+
+      const date = new Date();
+      const year = date.toLocaleString('en-US', { year: "numeric" })
+      const month = date.toLocaleString('en-US', { month: "2-digit" })
+      const day = date.toLocaleString('en-US', { day: "2-digit" })
+      const hour = date.toLocaleString('en-US', { hour: "2-digit", minute: "2-digit" })
+      let time = `${month}/${day}/${year} ${hour}`
+
+      await Controller.orders(time, req.session.vendorId);
       const orderid = await Controller.insertOrderId(req.session.vendorId)
 
       const products = {
@@ -99,12 +107,14 @@ Router.post('/login', async (req, res, next) => {
         productdesc: req.body.productdesc,
         qty: req.body.qty,
         price: req.body.price,
-        date: new Date(),
+        totalboxes: req.body.totalboxes,
+        totalprice: req.body.totalprice,
+        date: time,
         orderId: orderid,
         vendorId: req.session.vendorId        
       }
 
-      const { amount, productdesc, qty, price, orderId, vendorId } = products;
+      const { amount, productdesc, qty, price, totalboxes, totalprice, orderId, vendorId } = products;
 
       const productItems = [];
 
@@ -116,7 +126,9 @@ Router.post('/login', async (req, res, next) => {
         productdesc: productdesc[i],
         qty: qty[i],
         price: price[i],
-        date: new Date(),
+        totalboxes: totalboxes[i],
+        totalprice: totalprice[i],
+        date: time,
         orderId: orderId,
         vendorId: vendorId        
       };
@@ -169,12 +181,22 @@ Router.post('/login', async (req, res, next) => {
     }
   });
 
-  Router.post('/between', async(req, res, next) => {
+  Router.post('/betweenOrders', async(req, res, next) => {
     try{
-      let itemsDates = await Controller.between(req.body.from, req.body.to)
-      res.render('order-list', { itemsDates })
+      let betweenOrders = await Controller.betweenOrders(req.body.from, req.body.to, req.session.vendorId)
+      res.render('order-list', { betweenOrders })
     } catch(err){
-      res.redirect('login')
+      res.redirect('/viewProducts')
+    console.error(err)
+    }
+  })
+
+  Router.get('/between/:orderid', async(req, res, next) => {
+    try{
+      let itemsDates = await Controller.between(req.params.orderid)
+      res.render('order-detail', { itemsDates })
+    } catch(err){
+      res.redirect('/viewProducts')
       console.error(err)
     }
   });

@@ -19,7 +19,8 @@ module.exports = {
     updateProduct,
     between,
     insertOrderId,
-    deleteProduct
+    deleteProduct,
+    betweenOrders
 }
 
 
@@ -137,8 +138,8 @@ async function confirmUser(username, email, password, building) {
   }
 
   async function insertOrderId(vendorId){
-    const order = await knex("orders").where({vendorId: vendorId}).first();
-    const orderid = order.orderId;
+    const order = await knex("orders").where({vendorId: vendorId});
+    const orderid = order[order.length - 1].orderId;
 
     const payload = {
       vendorId: vendorId,
@@ -162,7 +163,11 @@ async function confirmUser(username, email, password, building) {
     return knex("products").where({productId: productId}).update({ description, perCase, price });
   }
 
-  async function between(from, to) {
+  async function between(orderId) {
     return knex.select('amount', 'productdesc', 'qty', 'price', 'totalboxes', 'totalprice', 'date')
-    .from('orderitems').where('date', '>=', from).where('date', '=', to);
+    .from('orderitems').where({orderId: orderId});
     };
+
+    async function betweenOrders(from, to, vendorId){
+      return knex.select().from('orders').whereBetween('date', [from, to]).where({vendorId: vendorId})
+    }
