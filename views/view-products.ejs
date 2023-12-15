@@ -185,6 +185,19 @@
 
         calculateTotalPrice();
         calculateTotalBoxes();
+        rowNum();
+
+        function rowNum(){
+
+            let num = 1;
+            const rows = document.querySelectorAll('#myTable tbody tr');
+            
+            rows.forEach(row => {
+                const rowNum = row.querySelector('.tbl-num');
+                rowNum.textContent = `${num ++}.`;
+
+            })
+        }
 
         function calculateTotalPrice() {
         let total = 0;

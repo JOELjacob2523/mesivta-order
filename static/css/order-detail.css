@@ -19,3 +19,15 @@ table{
 th{
     width: 1200px;
 }
+
+tr:nth-child(even){
+    background-color: rgb(212, 207, 207);
+}
+
+tr td{
+    border-radius: 7px;
+}
+
+td{
+    margin-left: 5px;
+}

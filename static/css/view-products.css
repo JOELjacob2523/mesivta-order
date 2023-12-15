@@ -143,17 +143,8 @@ h3{
 }
 
 table {
-  counter-reset: rowNumber;
   margin-left: auto;
   margin-right: auto;
-}
-
-table tbody::before{
-  display: flexbox;
-  counter-increment: rowNumber;
-  content: counter(rowNumber) ".";
-  padding-right: 0.3em;
-  position: absolute;
 }
 
 th{
