@@ -10,6 +10,11 @@ h1{
     margin-top: 20px;
 }
 
+h3{
+    text-align: center;
+    margin-top: 30px;
+}
+
 .go-back-div{
     float: left;
     display: block;
@@ -43,11 +48,11 @@ h1{
 .items-div{
     display: block;
     margin: auto;
-    width: 70%;
+    width: 85%;
     background-color: rgb(222, 208, 208);
     border-radius: 10px;
     border-radius: 5px;
-    padding-top: 15px;
+    padding: 15px 0 10px 0;
 }
 
 .ol{
@@ -65,23 +70,6 @@ h1{
     background-color: rgb(206, 194, 194);;
 }
 
-.print_btn{
-    border-radius: 5px;
-    background-color: blue;
-    color: aliceblue;
-    float: right;
-    margin-right: 200px;
-    margin-top: 40px;
-    border-color: blue;
-}
-
-.print_btn:hover{
-    background-color: rgb(245, 238, 228);;
-    color: blue;
-    font-weight: bold;
-    border-color: blue;
-}
-
 .date-div{
     display: flex;
     justify-content: center;
@@ -94,4 +82,8 @@ span{
 
 .order-num-p{
     margin-right: 20px;
+}
+
+.order-price-p{
+    margin-left: 20px;
 }

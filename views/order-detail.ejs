@@ -10,8 +10,10 @@
 <body>
         <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
      <div class="go-back-div">
-        <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
+        <button type="button" class="go-back-btn" onclick="window.history.go(-1)">Go Back</button>
     </div>
+
+    <button onclick="window.print()" class="print_btn">Print This Page</button>
 
     <div class="orderDiv">
     <div class="items-div">
@@ -35,6 +37,14 @@
              <% } %>
             </tbody>
         </table>
+        </div>
+        <div>
+            <% for (let getTotal of getTotals) { %>
+                <div class="total-div">
+            <p class="boxes-p">Total Boxes is:<span class="total"><%= getTotal.totalboxes %></span></p>
+            <p class="price-p">Total Price is:<span class="total"><%= getTotal.totalprice %></span></p>
+                </div>
+            <% } %>
         </div>
     </div>
     

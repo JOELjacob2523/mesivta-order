@@ -9,11 +9,19 @@
 </head>
 <body>
         <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
+        
+            <% for (let vendor of vendors) { %>
+                <% if (vendor.vendorId === vendorId) { %>
+                    <h3>Order List For:
+                        <span><%= vendor.companyname %></span>
+                        From <span><%= from %></span>
+                        To <span><%= to %></span>
+                    </h3>
+                <% } %>
+            <% } %>
      <div class="go-back-div">
         <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
     </div>
-
-    <button onclick="window.print()" class="print_btn">Print This Page</button>
 
     <div class="orderDiv">
     <div class="items-div">
@@ -26,13 +34,38 @@
                             </p>
                             <p>Order Date:
                                 <span><%= between.date.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
-                        </p>
-                    </div>
+                            </p>
+                            <p class="order-price-p">Total Order: 
+                                <span class="total-price"><%= between.totalprice %></span>
+                            </p>
+                        </div>
                     </li>
                     <% } %>
                 </ol>
             </div>
-    </div>
+            <p id="subTotal"></p>
+        </div>
+
+    <script type="text/javascript">
+
+        calculateTotalPrice()
+
+        function calculateTotalPrice() {
+        let total = 0;
+
+        const rows = document.querySelectorAll('.ol .li ');
+
+        rows.forEach(row => {
+        const priceInput = row.querySelector('.total-price');
+
+        const price = parseFloat(priceInput.textContent.slice(1)) || 0;
+        total += price;
+      });
+        const totalPriceInput = document.getElementById('subTotal');
+        totalPriceInput.textContent = `Sub Total: $${total.toFixed(2)}`;
+      }
+
+    </script>
     
 </body>
 </html>

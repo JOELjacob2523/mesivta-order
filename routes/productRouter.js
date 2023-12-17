@@ -114,7 +114,7 @@ Router.post('/login', async (req, res, next) => {
         vendorId: req.session.vendorId        
       }
 
-      const { amount, productdesc, qty, price, totalboxes, totalprice, orderId, vendorId } = products;
+      const { amount, productdesc, qty, price, orderId, vendorId } = products;
 
       const productItems = [];
 
@@ -126,8 +126,6 @@ Router.post('/login', async (req, res, next) => {
         productdesc: productdesc[i],
         qty: qty[i],
         price: price[i],
-        totalboxes: totalboxes[i],
-        totalprice: totalprice[i],
         date: time,
         orderId: orderId,
         vendorId: vendorId        
@@ -143,6 +141,7 @@ Router.post('/login', async (req, res, next) => {
         productItem.price = parseFloat(productItem.price);
 
       await Controller.orderDetails(productItem);
+      await Controller.orderTotal(orderid, products.totalboxes, products.totalprice)
       }
       setTimeout( () => {
         res.redirect('/viewProducts')
@@ -183,8 +182,12 @@ Router.post('/login', async (req, res, next) => {
 
   Router.post('/betweenOrders', async(req, res, next) => {
     try{
-      let betweenOrders = await Controller.betweenOrders(req.body.from, req.body.to, req.session.vendorId)
-      res.render('order-list', { betweenOrders })
+      let from = req.body.from;
+      let to = req.body.to;
+      let betweenOrders = await Controller.betweenOrders(from, to, req.session.vendorId)
+      let vendors = await Controller.getVendors();
+      const vendorId = req.session.vendorId;
+      res.render('order-list', { betweenOrders, vendors, vendorId, from, to })
     } catch(err){
       res.redirect('/viewProducts')
     console.error(err)
@@ -193,8 +196,9 @@ Router.post('/login', async (req, res, next) => {
 
   Router.get('/between/:orderid', async(req, res, next) => {
     try{
+      let getTotals = await Controller.getTotalBoxesPrice(req.params.orderid)
       let itemsDates = await Controller.between(req.params.orderid)
-      res.render('order-detail', { itemsDates })
+      res.render('order-detail', { itemsDates, getTotals })
     } catch(err){
       res.redirect('/viewProducts')
       console.error(err)

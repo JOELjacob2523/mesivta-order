@@ -180,6 +180,7 @@ table, td{
 
 .tbl-num{
   width: 100px;
+  text-align: center;
 }
 
 .tbl-amount{
@@ -431,15 +432,16 @@ table, td{
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 20%;
+  width: 30%;
   text-align: center;
   border-radius: 10px;
-  height: 100px;
+  height: 200px;
 }
 
 .update-modal-p{
-  font-size: larger;
+  font-size: 30px;
   font-weight: bold;
+  margin-top: 50px;
 }
 
 .p-header{
@@ -477,15 +479,16 @@ table, td{
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 20%;
+    width: 30%;
     text-align: center;
     border-radius: 10px;
-    height: 100px;
+    height: 200px;
 }
 
 .modal-p{
-    font-size: larger;
+    font-size: 30px;
     font-weight: bold;
+    margin-top: 50px;
 }
 
 .create-update {
@@ -640,19 +643,31 @@ table, td{
   font-size: large;
 }
 
+.delete-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
 .item-deleted-modal-content{
     background-color: red;
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 20%;
+    width: 30%;
     text-align: center;
     border-radius: 10px;
-    height: 100px;
+    height: 200px;
 }
 
 .delete-modal-p{
-  font-size: larger;
+  margin-top: 50px;
+  font-size: 30px;
   font-weight: bold;
   color: aliceblue;
 }

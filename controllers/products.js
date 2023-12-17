@@ -20,7 +20,9 @@ module.exports = {
     between,
     insertOrderId,
     deleteProduct,
-    betweenOrders
+    betweenOrders,
+    orderTotal,
+    getTotalBoxesPrice
 }
 
 
@@ -154,6 +156,10 @@ async function confirmUser(username, email, password, building) {
     await knex("orderitems").insert(products);
   }
 
+  async function orderTotal (orderid, totalboxes, totalprice){
+    await knex('orders').where({orderId: orderid}).update({ totalboxes, totalprice});
+  }
+
   async function getId(productId){
     return await knex("products").select().where({productId: productId});
   }
@@ -170,4 +176,8 @@ async function confirmUser(username, email, password, building) {
 
     async function betweenOrders(from, to, vendorId){
       return knex.select().from('orders').whereBetween('date', [from, to]).where({vendorId: vendorId})
+    }
+
+    async function getTotalBoxesPrice(orderid){
+      return knex.select('totalboxes', 'totalprice').from('orders').where({orderId: orderid})
     }

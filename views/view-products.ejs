@@ -108,10 +108,10 @@
                     <div class="sub-total">
 
                         <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes Is:</label>
-                        <input type="text" id="total-boxes-input" class="total-boxes-input" value="0" name="totalboxes" readonly>
+                        <input type="text" id="total-boxes-input" class="total-boxes-input" value="" name="totalboxes" readonly>
 
                         <label for="total-price-input" class="total-price-lbl">Total Price Is:</label>    
-                        <input type="text" id="total-price-input" class="total-price-input" value="$0.00" name="totalprice" readonly>
+                        <input type="text" id="total-price-input" class="total-price-input" value="" name="totalprice" readonly>
 
                     </div>
                     <input type="submit" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
@@ -132,7 +132,7 @@
             </div>
         </div>
 
-        <div class="update-modal" id="delete-modal-confarmation">
+        <div class="delete-modal" id="delete-modal-confarmation">
             <div class="item-deleted-modal-content">
                 <p class="delete-modal-p">Item Deleted Successfully</p>
             </div>
@@ -195,7 +195,6 @@
             rows.forEach(row => {
                 const rowNum = row.querySelector('.tbl-num');
                 rowNum.textContent = `${num ++}.`;
-
             })
         }
 
