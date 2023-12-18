@@ -170,7 +170,7 @@ async function confirmUser(username, email, password, building) {
   }
 
   async function between(orderId) {
-    return knex.select('amount', 'productdesc', 'qty', 'price', 'totalboxes', 'totalprice', 'date')
+    return knex.select('amount', 'productdesc', 'qty', 'price', 'date')
     .from('orderitems').where({orderId: orderId});
     };
 

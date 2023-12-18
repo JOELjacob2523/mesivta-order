@@ -8,23 +8,28 @@
     <title>Signup</title>
 </head>
 <body>
-    <h1>Welcome to Mesivta of Kiryes Joel</h1>
+    <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
+    <h3>Enter Username and Password</h3>
     <div class="signup">
         <form action="/signup" method="POST">
-            <p>Enter name: 
+            <p class="username-p">Enter First and Last Name: 
                 <input type="text" name="username" class="username" placeholder="Enter name..." required>
             </p>
-            <p>Enter Username: 
-                <input type="email" name="email" class="email" placeholder="Enter E-Mail..." required>
+            <p class="email-p">Enter Username: 
+                <input type="email" name="email" class="email" placeholder="Enter E-mail..." required>
             </p>
-            <p>Enter Password: 
+            <p class="password-p">Enter Password: 
                 <input type="password" name="password" class="password" placeholder="Enter password..." required>
             </p>
-            <p>Enter building #: 
+            <p class="building-p">Enter Building #: 
                 <input type="number" name="building" class="building" placeholder="Enter building #..." required>
             </p>
             <button type="submit" class="button">Submit</button>
         </form>
+        <div class="go-back-div">
+            <p class="go-back-p">Click Here to go Back to Previews Page</p>
+            <button type="button" class="go-back-btn" onclick="window.history.go(-1)">Go Back</button>
+        </div>
     </div>
 </body>
 </html>

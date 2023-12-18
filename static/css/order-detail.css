@@ -35,10 +35,20 @@ table{
     display: block;
     margin: auto;
     margin-top: 100px;
+    border-left: solid 1px blue;
+    border-right: solid 1px blue;
+    border-top: solid 1px blue;
+    border-bottom: solid 1px blue;
+    border-radius: 5px;
+    padding: 3px;
 }
 
 th{
     width: 1200px;
+    background-color: rgb(172, 165, 165);
+    padding-left: 7px;
+    border-radius: 5px;
+    padding-bottom: 5px;
 }
 
 tr:nth-child(even){
@@ -72,7 +82,7 @@ td{
 
 .total{
     font-weight: bold;
-    font-size: larger;
+    font-size: x-large;
     margin-left: 10px;
 }
 

@@ -29,7 +29,9 @@ CREATE TABLE orders(
   orderId BIGINT IDENTITY (1,1) PRIMARY KEY,
   date DATE NULL,
   vendorid BIGINT FOREIGN KEY REFERENCES vendors(vendorId),
-  token VARCHAR (MAX) NULL
+  token VARCHAR (MAX) NULL,
+  totalboxes VARCHAR(255) NULL,
+  totalprice VARCHAR (255) NULL,
 );
 
 CREATE TABLE orderitems(
@@ -38,8 +40,6 @@ CREATE TABLE orderitems(
   productdesc VARCHAR (255) NULL,
   qty VARCHAR (255) NULL,
   price DECIMAL (10,2) NULL,
-  totalboxes VARCHAR(255) NULL,
-  totalprice DECIMAL (10,2) NULL,
   date DATETIME NULL,
   orderId BIGINT FOREIGN KEY REFERENCES orders(orderId),
   vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId),
