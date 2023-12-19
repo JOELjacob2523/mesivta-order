@@ -147,11 +147,6 @@ table {
   margin-right: auto;
 }
 
-th{
-  background-color: rgb(215, 180, 249);
-  border-radius: 20px;
-}
-
 table, td{
   border: rgb(92, 92, 242) solid 1px;
   background-color: rgb(176, 240, 219);
@@ -319,14 +314,6 @@ table, td{
 .submit-p:hover{
     background-color: blue;
     color: aliceblue;
-}
-
-.headers{
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  padding-top: 10px;
-  padding-bottom: 10px;
 }
 
 .update-h3{

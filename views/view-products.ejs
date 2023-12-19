@@ -122,7 +122,7 @@
 
         <div class="modal" id="modal">
             <div class="modal-content">
-                <p class="modal-p">Order Submitted Successfully</p>
+                <p class="modal-p">Order Submitted and E-mailed Successfully</p>
             </div>
         </div>
 
@@ -186,6 +186,33 @@
         calculateTotalPrice();
         calculateTotalBoxes();
         rowNum();
+
+            document.addEventListener('DOMContentLoaded', function() {
+            const amountInputs = document.querySelectorAll('.tbl-amount-input');
+
+            amountInputs.forEach(input => {
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+
+                        const currentRow = input.closest('tr');
+                        const rows = Array.from(currentRow.parentElement.children);
+                        const rowIndex = rows.indexOf(currentRow);
+
+                        if (rowIndex < rows.length - 1) {
+                            const nextRow = rows[rowIndex + 1];
+                            const nextRowAmountInput = nextRow.querySelector('.tbl-amount-input');
+
+                        if (nextRowAmountInput) {
+                            nextRowAmountInput.focus();
+                        }
+                    }
+                }
+            });
+        });
+    });
+
+
 
         function rowNum(){
 

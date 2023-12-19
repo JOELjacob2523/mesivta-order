@@ -2,7 +2,9 @@ const { knex } = require("../db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-
+const nodemailer = require("nodemailer");
+const CONFIG = require('../config.json');
+const ejs = require ('ejs');
 
 module.exports = {
     createUser,
@@ -22,7 +24,8 @@ module.exports = {
     deleteProduct,
     betweenOrders,
     orderTotal,
-    getTotalBoxesPrice
+    getTotalBoxesPrice,
+    emailOrder
 }
 
 
@@ -181,3 +184,46 @@ async function confirmUser(username, email, password, building) {
     async function getTotalBoxesPrice(orderid){
       return knex.select('totalboxes', 'totalprice').from('orders').where({orderId: orderid})
     }
+
+    async function emailOrder(vendorId, userId, orderId) {
+      try {
+        let vendors = await knex("vendors").select();
+        let orders = await knex.select().from("orderitems").where({ vendorId: vendorId, orderId: orderId });
+        let totalOrders = await knex.select().from("orders").where({ vendorId: vendorId, orderId: orderId });
+        let users = await knex.select().from('users').where({userId: userId});
+
+        const date = new Date();
+        const year = date.toLocaleString('en-US', { year: "numeric" })
+        const month = date.toLocaleString('en-US', { month: "2-digit" })
+        const day = date.toLocaleString('en-US', { day: "2-digit" })
+        let time = `${month}/${day}/${year}`
+
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: "jsjprog4119@gmail.com",
+            pass: CONFIG.EMAIL_PASS,
+            },
+        });
+           ejs.renderFile('views/email.ejs', { vendors, vendorId, orders, totalOrders, users, orderId }, function (err, data) {
+             if (err) {
+               console.log(err)
+             } else {
+             const mailOptions = {
+               from: "jsjprog4119@gmail.com",
+               to: `shlomejacob@gmail.com`,
+               subject: `Order from KJ Mesivta ${ time }`,
+               html: data
+             };
+   
+            transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                console.log(error);
+               } else {
+                 console.log("Email sent: " + info.response);
+                }
+              });
+            }})
+        } catch (err) {
+          console.error(err);
+        }};

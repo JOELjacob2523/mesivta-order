@@ -71,7 +71,7 @@ Router.post('/login', async (req, res, next) => {
     const vendorId = req.session.vendorId;
     const products = await Controller.getAll(vendorId);
     const vendors = await Controller.getVendors();
-    res.render('view-products', { products, vendors, vendorId});
+    res.render('view-products', { products, vendors, vendorId });
   });
 
   Router.post('/createProduct', async(req, res, next) => {
@@ -142,7 +142,8 @@ Router.post('/login', async (req, res, next) => {
 
       await Controller.orderDetails(productItem);
       await Controller.orderTotal(orderid, products.totalboxes, products.totalprice)
-      }
+      }      
+      await Controller.emailOrder(req.session.vendorId, req.session.userId, orderid)
       setTimeout( () => {
         res.redirect('/viewProducts')
       }, 1500)
@@ -203,7 +204,7 @@ Router.post('/login', async (req, res, next) => {
       res.redirect('/viewProducts')
       console.error(err)
     }
-  });
+  }); 
 
   Router.get('/logout', (req, res, next) => {
     req.session.destroy((err) => {
