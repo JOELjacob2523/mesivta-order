@@ -140,6 +140,7 @@
                         <th class="thead-description">Description</th>
                         <th class="thead-qty">Qty</th>
                         <th class="thead-price">Price</th>
+                        <th class="thead-price">Total Price</th>
                     </thead>
                     <tbody>
                     <% for(let order of orders){ %>
@@ -148,6 +149,7 @@
                             <td class="td-desc"><%= order.productdesc %></td>
                             <td class="td-qty"><%= order.qty %></td>
                             <td class="td-price">$<%= parseFloat(order.price).toFixed(2) %></td>
+                            <td class="td-price">$<%= parseFloat(order.totalrowprice).toFixed(2) %></td>
                         </tr>                       
                     <% } %>
                     </tbody>

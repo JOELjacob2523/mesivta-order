@@ -23,6 +23,7 @@
                 <th>Description</th>
                 <th>Qty</th>
                 <th>Price</th>
+                <th>Total Price</th>
                 <th>Date & Time</th>
             </thead>
             <tbody>
@@ -32,6 +33,7 @@
                 <td><%= item.productdesc %></td>
                 <td><%= item.qty %></td>
                 <td><span>$</span><%= parseFloat(item.price).toFixed(2) %></td>
+                <td><span>$</span><%= parseFloat(item.totalrowprice).toFixed(2) %></td>
                 <td><%= item.date.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}) %></td>
             </tr>
              <% } %>
@@ -42,7 +44,7 @@
             <% for (let getTotal of getTotals) { %>
                 <div class="total-div">
             <p class="boxes-p">Total Boxes is:<span class="total"><%= getTotal.totalboxes %></span></p>
-            <p class="price-p">Total Price is:<span class="total"><%= getTotal.totalprice %></span></p>
+            <p class="price-p">Sub Total Price is:<span class="total"><%= getTotal.totalprice %></span></p>
                 </div>
             <% } %>
         </div>

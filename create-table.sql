@@ -40,6 +40,7 @@ CREATE TABLE orderitems(
   productdesc VARCHAR (255) NULL,
   qty VARCHAR (255) NULL,
   price DECIMAL (10,2) NULL,
+  totalrowprice VARCHAR (255) NULL,
   date DATETIME NULL,
   orderId BIGINT FOREIGN KEY REFERENCES orders(orderId),
   vendorId BIGINT FOREIGN KEY REFERENCES vendors(vendorId),

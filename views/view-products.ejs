@@ -72,6 +72,7 @@
                         <th class="thead-description">Description</th>
                         <th class="thead-qty">Qty</th>
                         <th class="thead-price">Price</th>
+                        <th class="thead-ttl-price">Total Price</th>
                     </thead>
                 </div>
                 <% for(let product of products) { %>
@@ -79,11 +80,11 @@
                         <% if (product.vendorId === vendor.vendorId) { %>
             <div>
                 <tbody>
-                    <tr id="TR" ondblclick="selectTableRowData(event)">
+                    <tr tabindex="2" id="TR" ondblclick="selectTableRowData(event)">
                     <input type="hidden" id="tbl-id" class="tbl-id-input" name="productId" value="<%= product.productId %>">
                     <td class="tbl-num"></td>
                     <td class="tbl-amount">
-                        <input type="text" class="tbl-amount-input" name="amount" id="amount" value="" placeholder="Enter Amount...">
+                        <input type="text" class="tbl-amount-input" name="amount" id="amount" value="">
                     </td>
                     <td class="tbl-description">
                         <input type="text" class="tbl-description-input" id="td-desc" name="productdesc" value="<%= product.description %>" readonly>
@@ -93,6 +94,9 @@
                     </td>
                     <td class="tbl-price"><span class="prefix">$</span>
                         <input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly>
+                    </td>
+                    <td class="tbl-price">
+                        <input type="text" class="tbl-rowprice-input" id="tbl-rowprice" name="totalrowprice" value="$0.00" readonly>
                     </td>
                     <input type="hidden" name="date">
                     </tr>
@@ -110,7 +114,7 @@
                         <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes Is:</label>
                         <input type="text" id="total-boxes-input" class="total-boxes-input" value="" name="totalboxes" readonly>
 
-                        <label for="total-price-input" class="total-price-lbl">Total Price Is:</label>    
+                        <label for="total-price-input" class="total-price-lbl">Sub Total Price Is:</label>    
                         <input type="text" id="total-price-input" class="total-price-input" value="" name="totalprice" readonly>
 
                     </div>
@@ -183,39 +187,11 @@
 
     <script type="text/javascript">
 
+        rowNum();
         calculateTotalPrice();
         calculateTotalBoxes();
-        rowNum();
-
-            document.addEventListener('DOMContentLoaded', function() {
-            const amountInputs = document.querySelectorAll('.tbl-amount-input');
-
-            amountInputs.forEach(input => {
-                input.addEventListener('keydown', function(e) {
-                    if (e.key === 'ArrowDown') {
-                        e.preventDefault();
-
-                        const currentRow = input.closest('tr');
-                        const rows = Array.from(currentRow.parentElement.children);
-                        const rowIndex = rows.indexOf(currentRow);
-
-                        if (rowIndex < rows.length - 1) {
-                            const nextRow = rows[rowIndex + 1];
-                            const nextRowAmountInput = nextRow.querySelector('.tbl-amount-input');
-
-                        if (nextRowAmountInput) {
-                            nextRowAmountInput.focus();
-                        }
-                    }
-                }
-            });
-        });
-    });
-
-
 
         function rowNum(){
-
             let num = 1;
             const rows = document.querySelectorAll('#myTable tbody tr');
             
@@ -224,6 +200,28 @@
                 rowNum.textContent = `${num ++}.`;
             })
         }
+
+        function calculateTotalRowPrice(event) {
+            let total = 0;
+
+            const amountInput = event.target;
+            const row = amountInput.closest('tr');
+
+            const priceInput = row.querySelector('.tbl-price-input');
+            const totalPriceInput = row.querySelector('.tbl-rowprice-input');
+
+            const amount = parseFloat(amountInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+
+            total += amount * price;
+            totalPriceInput.value = `$${total.toFixed(2)}`;
+        }
+
+        const rowamountInputs = document.querySelectorAll('.tbl-amount-input');
+        rowamountInputs.forEach(input => {
+        input.addEventListener('input', calculateTotalRowPrice);
+      });
+
 
         function calculateTotalPrice() {
         let total = 0;

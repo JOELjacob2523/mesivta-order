@@ -173,6 +173,10 @@ table, td{
   width: 100px;
 }
 
+.thead-ttl-price{
+  width: 100px;
+}
+
 .tbl-num{
   width: 100px;
   text-align: center;
@@ -216,7 +220,7 @@ table, td{
   background-color: rgb(176, 240, 219);
   border: 0;
   width: 100px;
-  font-size: small;
+  padding-left: 10px;
 }
 
 .tbl-amount-input:focus{
@@ -241,6 +245,18 @@ table, td{
   width: 60px;
   text-align: center;
   float: left;
+}
+
+.tbl-rowprice-input{
+  background-color: rgb(176, 240, 219);
+  border: 0;
+  width: 60px;
+  text-align: center;
+  float: left;
+}
+
+.tbl-rowprice-input:focus{
+  outline: none;
 }
 
 .prefix {
