@@ -19,64 +19,78 @@ h3{
     display: block;
     margin: auto;
     width: 700px;
-    background-color: rgb(189, 186, 186);
+    background-color: blanchedalmond;
     border-radius: 5px;
     padding: 25px;
     margin-top: 100px;
     height: 500px;
+    border: rgb(255, 204, 129) 2px solid;
 }
 
 .go-back-div{
     display: block;
     margin: auto;
-    width: 300px;
+    width: 400px;
     height: 100px;
-    background-color: rgb(189, 186, 186);
+    background-color: rgb(247, 215, 166);
     border-radius: 10px;
     margin-top: 45px;
+    border: rgb(255, 204, 129) 1px solid;
 }
 
 .go-back-btn{
     display: block;
     margin: auto;
     border-radius: 10px;
-    background-color: rgb(84, 84, 246);
-    color: aliceblue;
+    background-color: rgb(172, 151, 119);
+    border-color: rgb(172, 151, 119);
+    color: rgb(78, 73, 66);
+    font-weight: bold;
+    font-size: large;
     margin-top: 20px;
-    width: 100px;
+    width: 140px;
+}
+
+.go-back-btn:hover{
+    background-color: rgb(78, 73, 66);
+    color: rgb(172, 151, 119);
 }
 
 .go-back-p{
     text-align: center;
-    background-color: rgb(241, 230, 207);
+    background-color: rgb(247, 215, 166);
     border-radius: 5px;
 }
 
 .username-p{
     text-align: center;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .email-p{
     text-align: center;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .password-p{
     text-align: center;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .building-p{
     text-align: center;
     border-radius: 5px;
+    font-weight: bold;
 }
 
 .username{
     width: 300px;
     height: 40px;
     border-radius: 5px;
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(247, 215, 166);
     margin-left: 10px;
 }
 
@@ -84,7 +98,7 @@ h3{
     width: 300px;
     height: 40px;
     border-radius: 5px;
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(247, 215, 166);
     margin-left: 10px;
 }
 
@@ -92,7 +106,7 @@ h3{
     width: 300px;
     height: 40px;
     border-radius: 5px;
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(247, 215, 166);
     margin-left: 10px;
 }
 
@@ -100,7 +114,7 @@ h3{
     width: 300px;
     height: 40px;
     border-radius: 5px;
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(247, 215, 166);
     margin-left: 10px;
 }
 
@@ -108,10 +122,17 @@ h3{
     display: block;
     margin: auto;
     border-radius: 5px;
-    width: 120px;
+    width: 150px;
     height: 35px;
-    background-color: green;
-    color: wheat;
+    background-color: rgb(251, 208, 144);
+    color: rgb(168, 104, 9);
     font-weight: bold;
+    font-size: larger;
     margin-top: 45px;
+    border-color:rgb(168, 104, 9);
+}
+
+.button:hover{
+    background-color: rgb(168, 104, 9);
+    color: rgb(251, 208, 144);
 }
