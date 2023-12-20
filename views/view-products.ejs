@@ -49,7 +49,7 @@
                 <input type="number" class="per-cs" name="perCase" placeholder="Per Case...">
             </div>
             <div class="price">
-                <input type="number" class="price" name="price" step="0.25" placeholder="Price...">
+                <input type="number" class="price" name="price" step="0.01" placeholder="Price...">
             </div>
             <div class="submit">
                 <input type="submit" value="Create" class="submit-p">
@@ -87,13 +87,14 @@
                         <input type="text" class="tbl-amount-input" name="amount" id="amount" value="">
                     </td>
                     <td class="tbl-description">
-                        <input type="text" class="tbl-description-input" id="td-desc" name="productdesc" value="<%= product.description %>" readonly>
+                        <input type="text" class="tbl-description-input" id="td-desc" name="productdesc" 
+                        value="<%= product.description.charAt(0).toUpperCase() + product.description.slice(1) %>" readonly>
                     </td>
                     <td class="tbl-qty">
                         <input type="text" class="tbl-qty-input" id="td-qty" name="qty" value="<%= product.perCase %>" readonly>
                     </td>
                     <td class="tbl-price"><span class="prefix">$</span>
-                        <input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly>
+                        <input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= parseFloat(product.price).toFixed(2) %>" readonly>
                     </td>
                     <td class="tbl-price"><span class="prefix">$</span>
                         <input type="text" class="tbl-rowprice-input" id="tbl-rowprice" name="totalrowprice" value="" readonly>
