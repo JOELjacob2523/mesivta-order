@@ -131,7 +131,7 @@
 </head>
 <body>
     <div class="body">
-        <% for(let vendor in vendors){ %>
+        <% for(let vendor of vendors){ %>
             <% for(let user of users){ %>
                 <% if (vendor.vendorId === vendorId) { %>
                     <h1>Order For <span class="v-name"><%= vendor.companyname %></span>

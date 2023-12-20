@@ -187,7 +187,8 @@ async function confirmUser(username, email, password, building) {
 
     async function emailOrder(vendorId, userId, orderId) {
       try {
-        let vendors = await knex("vendors").select().where({vendorId: vendorId}).first();
+        let vendorEmail = await knex("vendors").select().where({vendorId: vendorId}).first();
+        let vendors = await knex("vendors").select()
         let orders = await knex.select().from("orderitems").where({ vendorId: vendorId, orderId: orderId });
         let totalOrders = await knex.select().from("orders").where({ vendorId: vendorId, orderId: orderId });
         let users = await knex.select().from('users').where({userId: userId});
@@ -211,7 +212,7 @@ async function confirmUser(username, email, password, building) {
              } else {
              const mailOptions = {
                from: "jsjprog4119@gmail.com",
-               to: vendors.vendoremail,
+               to: vendorEmail.vendoremail,
                subject: `Order from KJ Mesivta ${ time }`,
                html: data
              };
