@@ -32,8 +32,14 @@
                 <td><%= item.amount %></td>
                 <td><%= item.productdesc %></td>
                 <td><%= item.qty %></td>
-                <td><span>$</span><%= parseFloat(item.price).toFixed(2) %></td>
-                <td><span>$</span><%= parseFloat(item.totalrowprice).toFixed(2) %></td>
+                <td>$<%= parseFloat(item.price).toFixed(2) %></td>
+                <td>
+                    <% if (!isNaN(parseFloat(item.totalrowprice))) { %>
+                        $<%= parseFloat(item.totalrowprice).toFixed(2) %>
+                      <% } else { %>
+                        0.00
+                      <% } %>
+                </td>
                 <td><%= item.date.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}) %></td>
             </tr>
              <% } %>

@@ -95,8 +95,8 @@
                     <td class="tbl-price"><span class="prefix">$</span>
                         <input type="text" class="tbl-price-input" id="td-price" name="price" value="<%= product.price %>" readonly>
                     </td>
-                    <td class="tbl-price">
-                        <input type="text" class="tbl-rowprice-input" id="tbl-rowprice" name="totalrowprice" value="$0.00" readonly>
+                    <td class="tbl-price"><span class="prefix">$</span>
+                        <input type="text" class="tbl-rowprice-input" id="tbl-rowprice" name="totalrowprice" value="" readonly>
                     </td>
                     <input type="hidden" name="date">
                     </tr>
@@ -213,8 +213,12 @@
             const amount = parseFloat(amountInput.value) || 0;
             const price = parseFloat(priceInput.value) || 0;
 
-            total += amount * price;
-            totalPriceInput.value = `$${total.toFixed(2)}`;
+            if (isNaN(amount) || isNaN(price)) {
+                totalPriceInput.value = ''; 
+            } else {
+                const total = amount * price;
+                totalPriceInput.value = total.toFixed(2);
+            }
         }
 
         const rowamountInputs = document.querySelectorAll('.tbl-amount-input');

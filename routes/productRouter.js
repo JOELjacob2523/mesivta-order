@@ -107,12 +107,12 @@ Router.post('/login', async (req, res, next) => {
         productdesc: req.body.productdesc,
         qty: req.body.qty,
         price: req.body.price,
-        totalrowprice: req.body.totalrowprice,
         totalboxes: req.body.totalboxes,
         totalprice: req.body.totalprice,
         date: time,
         orderId: orderid,
-        vendorId: req.session.vendorId        
+        vendorId: req.session.vendorId,
+        totalrowprice: req.body.totalrowprice        
       }
 
       const { amount, productdesc, qty, price, totalrowprice, orderId, vendorId } = products;
@@ -127,10 +127,10 @@ Router.post('/login', async (req, res, next) => {
         productdesc: productdesc[i],
         qty: qty[i],
         price: price[i],
-        totalrowprice: totalrowprice[i],
         date: time,
         orderId: orderId,
-        vendorId: vendorId        
+        vendorId: vendorId,
+        totalrowprice: totalrowprice[i]        
       };
 
       productItems.push(productItem);

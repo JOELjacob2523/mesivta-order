@@ -173,7 +173,7 @@ async function confirmUser(username, email, password, building) {
   }
 
   async function between(orderId) {
-    return knex.select('amount', 'productdesc', 'qty', 'price', 'date')
+    return knex.select('amount', 'productdesc', 'qty', 'price', 'date', 'totalrowprice')
     .from('orderitems').where({orderId: orderId});
     };
 
@@ -210,7 +210,7 @@ async function confirmUser(username, email, password, building) {
                console.log(err)
              } else {
              const mailOptions = {
-               from: "jsjprog4119@gmail.com",
+               from: "utamky6@gmail.com",
                to: `shlomejacob@gmail.com`,
                subject: `Order from KJ Mesivta ${ time }`,
                html: data

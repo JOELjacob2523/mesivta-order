@@ -23,7 +23,7 @@
         padding-bottom: 20px;
     }
     .product-info{
-        background-color: rgb(219, 219, 219);
+        background-color: rgb(240, 240, 240);
         border-radius: 10px;
         margin: auto;
         width: 900px;
@@ -90,6 +90,12 @@
         padding-left: 5px;
     }
 
+    .ttl-td-price{
+        width: 170px;
+        border: gray 1px solid;
+        padding-left: 5px;
+    }
+
     .total-div{
         display: flex;
         justify-content: center;
@@ -149,7 +155,13 @@
                             <td class="td-desc"><%= order.productdesc %></td>
                             <td class="td-qty"><%= order.qty %></td>
                             <td class="td-price">$<%= parseFloat(order.price).toFixed(2) %></td>
-                            <td class="td-price">$<%= parseFloat(order.totalrowprice).toFixed(2) %></td>
+                            <td class="ttl-td-price">
+                                <% if (!isNaN(parseFloat(order.totalrowprice))) { %>
+                                    $<%= parseFloat(order.totalrowprice).toFixed(2) %>
+                                  <% } else { %>
+                                    0
+                                  <% } %>
+                            </td>
                         </tr>                       
                     <% } %>
                     </tbody>
