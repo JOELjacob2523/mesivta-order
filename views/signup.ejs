@@ -10,6 +10,12 @@
 <body>
     <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
     <h3>Enter Username and Password</h3>
+
+    <div class="go-back-div">
+        <p class="go-back-p">Click Here to go Back to Previews Page</p>
+        <button type="button" class="go-back-btn" onclick="window.history.go(-1)">Go Back</button>
+    </div>
+    
     <div class="signup">
         <form action="/signup" method="POST">
             <p class="username-p">Enter First and Last Name: 
@@ -26,10 +32,6 @@
             </p>
             <button type="submit" class="button">Submit</button>
         </form>
-        <div class="go-back-div">
-            <p class="go-back-p">Click Here to go Back to Previews Page</p>
-            <button type="button" class="go-back-btn" onclick="window.history.go(-1)">Go Back</button>
-        </div>
     </div>
 </body>
 </html>
