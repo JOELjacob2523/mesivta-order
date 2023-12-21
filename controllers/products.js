@@ -25,7 +25,8 @@ module.exports = {
     betweenOrders,
     orderTotal,
     getTotalBoxesPrice,
-    emailOrder
+    emailOrder,
+    getTotalItemOrdered
 }
 
 
@@ -183,6 +184,11 @@ async function confirmUser(username, email, password, building) {
 
     async function getTotalBoxesPrice(orderid){
       return knex.select('totalboxes', 'totalprice').from('orders').where({orderId: orderid})
+    }
+
+    async function getTotalItemOrdered(vendorId, from, to, productdesc){
+      return knex('orderitems').select().where({productdesc: productdesc})
+      .whereBetween('date', [from, to]).where({vendorId: vendorId})
     }
 
     async function emailOrder(vendorId, userId, orderId) {

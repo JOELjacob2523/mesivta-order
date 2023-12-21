@@ -10,6 +10,7 @@
 <body>
         <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
         
+        <div id="main-div">
             <% for (let vendor of vendors) { %>
                 <% if (vendor.vendorId === vendorId) { %>
                     <h3>Order List For:
@@ -19,9 +20,14 @@
                     </h3>
                 <% } %>
             <% } %>
-     <div class="go-back-div">
-        <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
-    </div>
+
+            <div class="go-back-div">
+                <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
+            </div>
+
+            <div class="print_btn_div">
+                <button onclick="printPageArea('main-div')" class="print_btn">Print This Page</button>
+            </div>
 
     <div class="orderDiv">
     <div class="items-div">
@@ -46,7 +52,8 @@
             <div class="total-div">
             <p class="sub-total-p">Sub Total:<span id="subTotal" class="sub-total"></span></p>
         </div>
-        </div>
+      </div>
+    </div>
 
     <script type="text/javascript">
 
@@ -66,6 +73,14 @@
         const totalPriceInput = document.getElementById('subTotal');
         totalPriceInput.textContent = `$${total.toFixed(2)}`;
       }
+
+        function printPageArea(areaID){
+        let printContent = document.getElementById(areaID).innerHTML;
+        let originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+        }
 
     </script>
     

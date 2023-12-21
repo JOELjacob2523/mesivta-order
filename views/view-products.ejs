@@ -24,6 +24,8 @@
         </form>
     </div>
 
+    <div class="between-divs">
+
     <div class="between">
         <p class="select-p">Select a Date to See All Vendor Orders</p>
         <form action="/betweenOrders" method="POST">
@@ -38,6 +40,30 @@
             </div>
         </form>
     </div>
+
+    <div class="between-items">
+        <p class="select-p">Select a Item to See Item Orders</p>
+            <form action="/between_item" method="POST">
+        <div class="label">
+            <label for="from">From:</label>
+                <input type="date" name="from" class="from-to">
+            <label for="to">To:</label>
+                <input type="date" name="to" class="from-to">
+                <label for="products">Choose Item:</label>
+            <input type="text" list="products" name="products" class="products" placeholder="Click to choose..." required>
+                        <datalist id="products" aria-required="true">
+                            <% for(let product of products){ %> 
+                                <option value="<%= product.description %>">
+                            <% } %>
+                        </datalist>
+                    </div>
+                <div>
+            <input type="submit" value="Select" class="select-btn">
+        </div>
+      </form>
+    </div>
+    
+</div>
 
     <div class="create">
         <h3>Create New Product</h3>

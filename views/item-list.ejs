@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/item-list.css">
+    <title>Order List</title>
+</head>
+<body>
+        <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
+        
+        <div id="main-div">
+                <% for (let vendor of vendors) { %>
+                    <% if (vendor.vendorId === vendorId) { %>
+                      <h3>Item List For:
+                            <span><%= vendor.companyname %></span>
+                          From <span><%= new Date(from).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
+                          To <span><%= new Date(to).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
+                        </h3>
+                    <% } %>
+                <% } %>   
+
+            <div class="go-back-div">
+                <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
+            </div>
+
+            <div class="print_btn_div">
+                <button onclick="printPageArea('main-div')" class="print_btn">Print This Page</button>
+            </div>
+
+    <div class="orderDiv">
+    <div class="items-div">
+                <ol class="ol">       
+                    <% for (let betweenItem of betweenItems) { %>
+                    <li class="li">
+                        <div class="date-div">
+                            <p class="order-num-p">Amount:
+                                <span class="amount"><%= betweenItem.amount %></span>
+                            </p>
+                            <p class="order-num-p">Description:
+                                <span><%= betweenItem.productdesc %></span>
+                            </p>
+                            <p class="order-num-p">Price:
+                                <span class="price">$<%= parseFloat(betweenItem.price).toFixed(2) %></span>
+                            </p>
+                            <p class="order-num-p">Total Price:
+                                <span class="total"><%= betweenItem.totalrowprice %></span>
+                            </p>
+                            <p class="order-num-p">Order Date:
+                                <span><%= betweenItem.date.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
+                            </p>
+                        </div>
+                    </li>
+                    <% } %>
+                </ol>
+            </div>
+
+            <div class="main-ttl-div">
+            <div class="total-amount-div">
+            <p class="total-amount-p">Total Amount:<span id="total-amount" class="total-amount"></span></p>
+        </div>
+
+        <div class="total-price-div">
+            <p class="total-price-p">Total Price:<span id="total-price" class="total-price"></span></p>
+        </div>
+    </div>
+
+    <div class="sub-total-div">
+        <p class="sub-total-p">Sub Total:<span id="subTotal" class="sub-total"></span></p>
+    </div>
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+        calculateTotalAmount()
+        calculateSubTotalPrice()
+        calculateTotalPrice()
+
+        function calculateTotalAmount() {
+        let total = 0;
+
+        const rows = document.querySelectorAll('.ol .li ');
+
+        rows.forEach(row => {
+        const amountInput = row.querySelector('.amount');
+
+        const amount = parseFloat(amountInput.innerHTML) || 0;
+
+        total += amount;
+      });
+        const totalPriceInput = document.getElementById('total-amount');
+        totalPriceInput.textContent = total;
+      }
+
+      function calculateTotalPrice() {
+        let total = 0;
+
+        const rows = document.querySelectorAll('.ol .li ');
+
+        rows.forEach(row => {
+        const amountInput = row.querySelector('.amount');
+        const priceInput = row.querySelector('.price');
+
+        const amount = parseFloat(amountInput.innerHTML) || 0;
+        const price = parseFloat(priceInput.innerHTML.slice(1)) || 0;
+
+        const rowTotal = amount * price
+        total += rowTotal;
+      });
+        const totalPriceInput = document.getElementById('total-price');
+        totalPriceInput.innerText = `$${total.toFixed(2)}`;
+      }
+
+      function calculateSubTotalPrice() {
+        let total = 0;
+
+        const rows = document.querySelectorAll('.ol .li ');
+
+        rows.forEach(row => {
+        const subPriceInput = row.querySelector('.total');
+
+        const price = parseFloat(subPriceInput.innerHTML) || 0;
+        total += price;
+      });
+        const totalPriceInput = document.getElementById('subTotal');
+        totalPriceInput.textContent = `$${total.toFixed(2)}`;
+      }
+
+        function printPageArea(areaID){
+        let printContent = document.getElementById(areaID).innerHTML;
+        let originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+        }
+
+    </script>
+    
+</body>
+</html>

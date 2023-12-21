@@ -190,7 +190,23 @@ Router.post('/login', async (req, res, next) => {
       let betweenOrders = await Controller.betweenOrders(from, to, req.session.vendorId)
       let vendors = await Controller.getVendors();
       const vendorId = req.session.vendorId;
-      res.render('order-list', { betweenOrders, vendors, vendorId, from, to })
+      let products = await Controller.getAll(vendorId)
+      res.render('order-list', { betweenOrders, vendors, vendorId, from, to, products })
+    } catch(err){
+      res.redirect('/viewProducts')
+    console.error(err)
+    }
+  })
+
+  Router.post('/between_item', async(req, res, next) => {
+    try{
+      const vendorId = req.session.vendorId;
+      let from = req.body.from;
+      let to = req.body.to;
+      let betweenItems = await Controller.getTotalItemOrdered(vendorId, from, to, req.body.products)
+      let vendors = await Controller.getVendors();
+      let products = await Controller.getAll(vendorId)
+      res.render('item-list', { betweenItems, vendors, vendorId, from, to, products })
     } catch(err){
       res.redirect('/viewProducts')
     console.error(err)

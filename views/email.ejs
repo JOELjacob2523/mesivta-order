@@ -134,7 +134,7 @@
         <% for(let vendor of vendors){ %>
             <% for(let user of users){ %>
                 <% if (vendor.vendorId === vendorId) { %>
-                    <h1>Order For <span class="v-name"><%= vendor.companyname %></span>
+                    <h1>Order To <span class="v-name"><%= vendor.companyname %></span>
                         From UTA Mesivta <span class="u-building">#<%= user.building %></span></h1>
                 <% } %>
             <% } %>

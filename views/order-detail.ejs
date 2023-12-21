@@ -13,10 +13,12 @@
         <button type="button" class="go-back-btn" onclick="window.history.go(-1)">Go Back</button>
     </div>
 
-    <button onclick="window.print()" class="print_btn">Print This Page</button>
+    <div>
+        <button onclick="printPageArea('items-div')" class="print_btn">Print This Page</button>
+    </div>
 
     <div class="orderDiv">
-    <div class="items-div">
+    <div class="items-div" id="items-div">
         <table>
             <thead>
                 <th>Amount</th>
@@ -55,6 +57,16 @@
             <% } %>
         </div>
     </div>
+
+    <script>
+        function printPageArea(areaID){
+        let printContent = document.getElementById(areaID).innerHTML;
+        let originalContent = document.body.innerHTML;
+        document.body.innerHTML = printContent;
+        window.print();
+        document.body.innerHTML = originalContent;
+}
+    </script>
     
 </body>
 </html>

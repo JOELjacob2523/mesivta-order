@@ -31,10 +31,10 @@ h1{
 }
 
 table{
-    width: 70%;
+    width: 80%;
     display: block;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 150px;
     border-left: solid 1px blue;
     border-right: solid 1px blue;
     border-top: solid 1px blue;
