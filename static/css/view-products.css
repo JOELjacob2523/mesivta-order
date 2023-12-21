@@ -33,6 +33,7 @@ h3{
   margin-right: 40px;
   width: 400px;
   padding: 7px 0 10px 0;
+  border: gray solid 1px;
 }
 
 .select-p{
@@ -80,6 +81,7 @@ h3{
   width: 400px;
   padding: 7px 0 10px 0;
   margin-top: 40px;
+  border: gray solid 1px;
 }
 
 .products{

@@ -60,51 +60,95 @@ h3{
     background-color: rgb(243, 218, 186);
     border-radius: 10px;
     padding: 15px;
-    width: 70%;
+    width: 60%;
     margin-top: 100px;
 }
 
 .items-div{
     display: block;
     margin: auto;
-    width: 85%;
+    width: 90%;
     background-color: rgb(222, 208, 208);
     border-radius: 10px;
     border-radius: 5px;
-    padding: 15px 0 5px 0;
+    padding: 10px 0 5px 0;
 }
 
-.ol{
-    align-items: center;
-    font-size: larger;
+.myTable{
+    display: block;
+    margin: auto;
+    padding: 10px;
 }
 
-.li{
-    text-align: center;
+th{
+    padding-bottom: 10px;
+}
+
+.th-order-num{
+    width: 120px;
+}
+
+.th-amount{
+    width: 120px;
+}
+
+.th-description{
+    width: 400px;
+}
+
+.th-price{
+    width: 120px;
+}
+
+.th-ttl-price{
+    width: 120px;
+}
+
+.th-date{
+    width: 160px;
+}
+
+.TR:nth-child(odd){
+    background-color: rgb(206, 194, 194);
+}
+
+.td-amount{
+    width: 120px;
+    padding-left: 10px;
+    border-left: rgb(243, 218, 186) solid 2px;
     border-radius: 5px;
-    width: 95%;
 }
 
-.li:nth-child(odd){
-    background-color: rgb(206, 194, 194);;
+.td-description{
+    width: 400px;
+    padding-left: 10px;
+    border-left: rgb(243, 218, 186) solid 2px;
+    border-radius: 5px;
 }
 
-.date-div{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
+.td-price{
+    width: 120px;
+    padding-left: 10px;
+    border-left: rgb(243, 218, 186) solid 2px;
+    border-radius: 5px;
 }
 
-span{
+.td-ttl-price{
+    width: 120px;
+    padding-left: 10px;
+    border-left: rgb(243, 218, 186) solid 2px;
+    border-radius: 5px;
+}
+
+.td-date{
+    width: 160px;
+    padding-left: 10px;
+    border-left: rgb(243, 218, 186) solid 2px;
+    border-radius: 5px;
+}
+
+.head-desc{
     font-weight: bold;
-}
-
-.order-num-p{
-    margin-right: 20px;
-}
-
-.order-price-p{
-    margin-left: 20px;
 }
 
 .main-ttl-div{

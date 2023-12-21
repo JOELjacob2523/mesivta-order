@@ -14,9 +14,9 @@
                 <% for (let vendor of vendors) { %>
                     <% if (vendor.vendorId === vendorId) { %>
                       <h3>Item List For:
-                            <span><%= vendor.companyname %></span>
-                          From <span><%= new Date(from).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
-                          To <span><%= new Date(to).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
+                            <span class="head-desc"><%= vendor.companyname %></span>
+                          From <span class="head-desc"><%= new Date(from).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
+                          To <span class="head-desc"><%= new Date(to).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
                         </h3>
                     <% } %>
                 <% } %>   
@@ -31,29 +31,48 @@
 
     <div class="orderDiv">
     <div class="items-div">
-                <ol class="ol">       
-                    <% for (let betweenItem of betweenItems) { %>
-                    <li class="li">
+                <table class="myTable">
+                    <thead>
+                        <th class="th-order-num">Order Number</th>
+                        <th class="th-amount">Amount</th>
+                        <th class="th-description">Description</th>
+                        <th class="th-price">Price</th>
+                        <th class="th-ttl-price">Total Price</th>
+                        <th class="th-date">Date</th>
+                    </thead>
+                    <tbody>
+                        <% for (let betweenItem of betweenItems) { %>
+                        <tr class="TR">
                         <div class="date-div">
-                            <p class="order-num-p">Amount:
+                            <td class="td-order-num">
+                                <span class="order-num"><%= betweenItem.orderId %></span>
+                            </td>
+                            <td class="td-amount">
                                 <span class="amount"><%= betweenItem.amount %></span>
-                            </p>
-                            <p class="order-num-p">Description:
+                            </td>
+                            <td class="td-description">
                                 <span><%= betweenItem.productdesc %></span>
-                            </p>
-                            <p class="order-num-p">Price:
+                            </td>
+                            <td class="td-price">
                                 <span class="price">$<%= parseFloat(betweenItem.price).toFixed(2) %></span>
-                            </p>
-                            <p class="order-num-p">Total Price:
-                                <span class="total"><%= betweenItem.totalrowprice %></span>
-                            </p>
-                            <p class="order-num-p">Order Date:
+                            </td>
+                            <td class="td-ttl-price"> 
+                                <span class="total">
+                                    <% if (!isNaN(parseFloat(betweenItem.totalrowprice))) { %>
+                                        $<%= parseFloat(betweenItem.totalrowprice).toFixed(2) %>
+                                      <% } else { %>
+                                        $0
+                                      <% } %>
+                                </span>
+                            </td>
+                            <td class="td-date">
                                 <span><%= betweenItem.date.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
-                            </p>
+                            </td>
                         </div>
-                    </li>
+                </tr>
                     <% } %>
-                </ol>
+                </tbody>
+                </table>
             </div>
 
             <div class="main-ttl-div">
@@ -82,7 +101,7 @@
         function calculateTotalAmount() {
         let total = 0;
 
-        const rows = document.querySelectorAll('.ol .li ');
+        const rows = document.querySelectorAll('.myTable tbody tr ');
 
         rows.forEach(row => {
         const amountInput = row.querySelector('.amount');
@@ -98,7 +117,7 @@
       function calculateTotalPrice() {
         let total = 0;
 
-        const rows = document.querySelectorAll('.ol .li ');
+        const rows = document.querySelectorAll('.myTable tbody tr ');
 
         rows.forEach(row => {
         const amountInput = row.querySelector('.amount');
@@ -117,7 +136,7 @@
       function calculateSubTotalPrice() {
         let total = 0;
 
-        const rows = document.querySelectorAll('.ol .li ');
+        const rows = document.querySelectorAll('.myTable tbody tr ');
 
         rows.forEach(row => {
         const subPriceInput = row.querySelector('.total');
