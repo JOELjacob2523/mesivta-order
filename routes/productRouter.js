@@ -1,5 +1,7 @@
 const Router = require('express').Router();
+const { consumers } = require('nodemailer/lib/xoauth2');
 const Controller = require('../controllers/products');
+const multer = require('multer');
 
 Router.get('/signup', (req, res, next) => {
     res.render('signup');
@@ -222,7 +224,23 @@ Router.post('/login', async (req, res, next) => {
       res.redirect('/viewProducts')
       console.error(err)
     }
-  }); 
+  });
+
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, __dirname + '/uploads/')
+    },
+    filename: (req, file, cb) => {
+      cb(null, new Date().toDateString() + '_' + file.originalname)
+    },
+  })
+
+  const uploadFiles = multer({storage})
+
+  Router.post('/uploads', uploadFiles.single('items'), (req, res, next) =>{
+    console.log(req.file.originalname)
+  } 
+  )
 
   Router.get('/logout', (req, res, next) => {
     req.session.destroy((err) => {

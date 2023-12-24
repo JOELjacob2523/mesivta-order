@@ -50,7 +50,7 @@
             <label for="to">To:</label>
                 <input type="date" name="to" class="from-to">
                 <label for="products">Choose Item:</label>
-            <input type="text" list="products" name="products" class="products" placeholder="Click to choose..." required>
+            <input type="text" list="products" name="products" class="products" placeholder="Choose item..." required>
                         <datalist id="products" aria-required="true">
                             <% for(let product of products){ %> 
                                 <option value="<%= product.description %>">
@@ -63,6 +63,13 @@
       </form>
     </div>
     
+</div>
+
+<div>
+    <form action="/uploads" method="POST" enctype="multipart/form-data">
+        <input type="file" name="items">
+        <input type="submit">
+    </form>
 </div>
 
     <div class="create">
