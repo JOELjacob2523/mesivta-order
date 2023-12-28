@@ -2,6 +2,7 @@ const Router = require('express').Router();
 const { consumers } = require('nodemailer/lib/xoauth2');
 const Controller = require('../controllers/products');
 const multer = require('multer');
+const XLSX = require('xlsx');
 
 Router.get('/signup', (req, res, next) => {
     res.render('signup');
@@ -68,12 +69,36 @@ Router.post('/login', async (req, res, next) => {
   Router.get('/main', (req, res, next) => {
     res.redirect('/order')
   })
+  
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, __dirname + '/uploads/')
+    },
+    filename: (req, file, cb) => {
+      cb(null, new Date().toDateString() + '_' + file.originalname)
+    },
+  })
+
+  const uploadFiles = multer({storage})
+
+  let excelData;
+
+  Router.post('/uploads', uploadFiles.single('items'), (req, res, next) =>{
+    const excelFilePath = req.file.path;
+
+    const workbook = XLSX.readFile(excelFilePath);
+    const sheetName = workbook.SheetNames[0];
+    excelData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+    res.send('Uploaded succsessful')
+  })
 
   Router.get('/viewProducts', async(req, res, next) => {
     const vendorId = req.session.vendorId;
     const products = await Controller.getAll(vendorId);
     const vendors = await Controller.getVendors();
-    res.render('view-products', { products, vendors, vendorId });
+    console.log('Excel data from viewProducts route is:', excelData)
+    res.render('view-products', { products, vendors, vendorId, excelData: excelData || '' });
   });
 
   Router.post('/createProduct', async(req, res, next) => {
@@ -225,22 +250,6 @@ Router.post('/login', async (req, res, next) => {
       console.error(err)
     }
   });
-
-  const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, __dirname + '/uploads/')
-    },
-    filename: (req, file, cb) => {
-      cb(null, new Date().toDateString() + '_' + file.originalname)
-    },
-  })
-
-  const uploadFiles = multer({storage})
-
-  Router.post('/uploads', uploadFiles.single('items'), (req, res, next) =>{
-    console.log(req.file.originalname)
-  } 
-  )
 
   Router.get('/logout', (req, res, next) => {
     req.session.destroy((err) => {

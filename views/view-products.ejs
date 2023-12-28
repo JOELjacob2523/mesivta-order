@@ -8,6 +8,7 @@
     <title>View Product</title>
 </head>
 <body>
+
     <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
     <div>
         <% for(let vendor of vendors){ %>
@@ -20,7 +21,7 @@
     <div class="go-back">
         <p class="back-p">Click Here to go Back to Previews Page</p>
         <form action="/main" method="GET">
-            <input type="submit" value="Go Back" class="back-vendor">
+            <input type="submit" value="Go Back" class="back-vendor" title="Go Back">
         </form>
     </div>
 
@@ -65,15 +66,33 @@
     
 </div>
 
-<div>
-    <form action="/uploads" method="POST" enctype="multipart/form-data">
-        <input type="file" name="items">
-        <input type="submit">
-    </form>
-</div>
-
     <div class="create">
         <h3>Create New Product</h3>
+
+        <div class="upload">
+            <h5>To upload a file click here</h5>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="upload-input-div">
+                    <input type="file" name="items" class="upload-input"/>
+                </div>
+                <div>
+                    <input type="submit" value="Upload" class="upload-submit-btn" title="Upload"/>
+                </div>
+            </form>
+        </div>
+    
+        <div class="uploadedItems" id="uploadedItems">
+            <div class="uploadedItemsModel">
+                <h5>You are uploading the following item list</h5>
+                <form action="" method="">
+            <% for (let item of excelData) { %>
+                    <p><%= item.description %> <%= item.perCase %> <%= item.price %></p>
+                <% } %>
+                <input type="submit" value="Submit">
+            </form>
+            </div>
+        </div>
+
         <form action="/createProduct" method="POST">
             <div class="description">
                 <input type="textarea" rows="4" name="description" class="description" placeholder="Description...">
@@ -85,7 +104,7 @@
                 <input type="number" class="price" name="price" step="0.01" placeholder="Price...">
             </div>
             <div class="submit">
-                <input type="submit" value="Create" class="submit-p">
+                <input type="submit" value="Create" class="submit-p" title="Create">
             </div>
         </form>
     </div>
@@ -113,7 +132,7 @@
                         <% if (product.vendorId === vendor.vendorId) { %>
             <div>
                 <tbody>
-                    <tr tabindex="2" id="TR" ondblclick="selectTableRowData(event)">
+                    <tr id="TR" ondblclick="selectTableRowData(event)">
                     <input type="hidden" id="tbl-id" class="tbl-id-input" name="productId" value="<%= product.productId %>">
                     <td class="tbl-num"></td>
                     <td class="tbl-amount">
@@ -224,6 +243,53 @@
         rowNum();
         calculateTotalPrice();
         calculateTotalBoxes();
+        nextInput()
+
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            fetch('/uploads', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+
+                const uploadedItemsDiv = document.getElementById('uploadedItems') 
+                uploadedItemsDiv.style.display = 'block';            
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+
+        function nextInput() {
+        const rows = document.querySelectorAll('#myTable tbody tr');
+
+        rows.forEach((row, index) => {
+            let cells = row.querySelectorAll('.tbl-amount-input');
+            cells.forEach((cell, cellIndex) => {
+              cell.addEventListener('keydown', (e) => {
+                if (e.keyCode === 40) {
+                  if (index < rows.length - 1) {
+                    let nextRow = rows[index + 1];
+                    let nextCell = nextRow.querySelectorAll('.tbl-amount-input')[cellIndex];
+                    nextCell.focus();
+                  }
+                } else if (e.keyCode === 38) {
+                  if (index > 0) {
+                    let prevRow = rows[index - 1];
+                    let prevCell = prevRow.querySelectorAll('.tbl-amount-input')[cellIndex];
+                    prevCell.focus();
+                }
+              }
+            });
+          });
+        });
+       }
 
         function rowNum(){
             let num = 1;
@@ -428,5 +494,16 @@
         }
 
     </script>
+
+    <footer>
+        <p> <span class="footer-span">Edit Instructions:</span>
+               To edit an item, Double click on the row of this item.
+        </p>
+        <p> <span class="footer-span">Upload Instructions:</span>
+            Before you upload a file ask for a tamplate, 
+            Do not use your own tamplate as it will not be updated in the database,
+            You can ask for a tamplate at: <a href="mailto:utamky6@gmail.com">Ask for a tamplate</a>.
+        </p>
+    </footer>
 </body>
 </html>
