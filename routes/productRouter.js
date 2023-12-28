@@ -116,6 +116,45 @@ Router.post('/login', async (req, res, next) => {
     }
   });
 
+  Router.post('/createProductList', async (req, res, next) => {
+    try{
+
+      const product = {
+        description: req.body.description,
+        perCase: req.body.perCase,
+        price: req.body.price,
+        vendorId: req.session.vendorId        
+      }
+
+      const { description, perCase, price, vendorId } = product;
+
+      const productItems = [];
+
+      const numProducts = description.length;
+
+      for (let i = 0; i < numProducts; i++) {
+      const productItem = {
+        description: description[i],
+        perCase: perCase[i],
+        price: price[i],
+        vendorId: vendorId        
+      };
+
+      productItems.push(productItem);
+    }
+      for (const productItem of productItems){
+
+        productItem.price = parseFloat(productItem.price);
+
+        await Controller.createProduct(productItem);
+      }      
+      res.redirect('/viewProducts');
+
+    } catch(err) {
+      console.error(err)
+    }
+  })
+
   Router.post('/orderItems', async (req, res, next) => {
     try{
 

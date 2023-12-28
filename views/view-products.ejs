@@ -76,7 +76,7 @@
                     <input type="file" name="items" class="upload-input"/>
                 </div>
                 <div>
-                    <input type="submit" value="Upload" class="upload-submit-btn" title="Upload"/>
+                    <input type="submit" value="Upload" class="upload-submit-btn" title="Upload" />
                 </div>
             </form>
         </div>
@@ -84,9 +84,11 @@
         <div class="uploadedItems" id="uploadedItems">
             <div class="uploadedItemsModel">
                 <h5>You are uploading the following item list</h5>
-                <form action="" method="">
+                <form action="/createProductList" method="POST">
             <% for (let item of excelData) { %>
-                    <p><%= item.description %> <%= item.perCase %> <%= item.price %></p>
+                    <input type="text" name="description" value="<%= item.description %>">
+                    <input type="text" name="perCase" value="<%= item.perCase %>">
+                    <input type="text" name="price" value="<%= item.price %>">
                 <% } %>
                 <input type="submit" value="Submit">
             </form>
@@ -257,8 +259,9 @@
             .then(response => response.text())
             .then(data => {
 
-                const uploadedItemsDiv = document.getElementById('uploadedItems') 
-                uploadedItemsDiv.style.display = 'block';            
+                const uploadedItemsDiv = document.getElementById('uploadedItems')
+                    uploadedItemsDiv.style.display = 'block'; 
+                    
             })
             .catch(error => {
                 console.error('Error:', error);
