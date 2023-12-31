@@ -73,7 +73,8 @@
             <h5>To upload a file click here</h5>
             <form id="uploadForm" enctype="multipart/form-data">
                 <div class="upload-input-div">
-                    <input type="file" name="items" class="upload-input"/>
+                    <label for="upload-input" class="upload-input-lbl">Drop files here to upload</label>
+                    <input type="file" name="items" class="upload-input" id="upload-input"/>
                 </div>
                 <div>
                     <input type="submit" value="Upload" class="upload-submit-btn" title="Upload" />
@@ -83,14 +84,9 @@
     
         <div class="uploadedItems" id="uploadedItems">
             <div class="uploadedItemsModel">
-                <h5>You are uploading the following item list</h5>
-                <form action="/createProductList" method="POST">
-            <% for (let item of excelData) { %>
-                    <input type="text" name="description" value="<%= item.description %>">
-                    <input type="text" name="perCase" value="<%= item.perCase %>">
-                    <input type="text" name="price" value="<%= item.price %>">
-                <% } %>
-                <input type="submit" value="Submit">
+                <input type="button" onclick="hideUploadListComformation()" value="X" class="back">
+                <h5 class="uploadListHeader">You are uploading the following item list</h5>
+                <form action="/createProductList" method="POST" onsubmit="uploadedConformaition()">
             </form>
             </div>
         </div>
@@ -197,6 +193,12 @@
             </div>
         </div>
 
+        <div class="update-modal" id="uploaded-modal">
+            <div class="update-modal-content">
+                <p class="update-modal-p">List Uploded Successfully</p>
+            </div>
+        </div>
+
             <div class="create-update" id="create-update">
                 <div class="text-center">                    
                     <input type="button" onclick="hideUpdateComformation()" value="X" class="back">
@@ -258,9 +260,50 @@
             })
             .then(response => response.text())
             .then(data => {
+                const excelData = JSON.parse(data);
+
+                const form = document.querySelector('.uploadedItemsModel form');
+                    form.innerHTML = '';
+                
+                excelData.forEach(item => {
+
+                    const inputContainer = document.createElement('div');
+                    inputContainer.classList.add('inputContainer');
+
+                    const descriptionInput = document.createElement('input');
+                    descriptionInput.setAttribute('type', 'text');
+                    descriptionInput.setAttribute('name', 'description');
+                    descriptionInput.setAttribute('value', item.description);
+                    descriptionInput.classList.add('excelDataDesc');
+                    form.appendChild(descriptionInput);
+                    form.appendChild(inputContainer);
+
+                    const perCaseInput = document.createElement('input');
+                    perCaseInput.setAttribute('type', 'text');
+                    perCaseInput.setAttribute('name', 'perCase');
+                    perCaseInput.setAttribute('value', item.perCase);
+                    perCaseInput.classList.add('excelDataQty');
+                    form.appendChild(perCaseInput);
+                    form.appendChild(inputContainer);
+
+                    const priceInput = document.createElement('input');
+                    priceInput.setAttribute('type', 'text');
+                    priceInput.setAttribute('name', 'price');
+                    priceInput.setAttribute('value', item.price);
+                    priceInput.classList.add('excelDataPrice');
+                    form.appendChild(priceInput);
+                    form.appendChild(inputContainer);
+                    
+                })                
+
+                const submitButton = document.createElement('input');
+                submitButton.setAttribute('type', 'submit');
+                submitButton.setAttribute('value', 'Submit');
+                submitButton.classList.add('uploadListSubmitBtn')
+                form.appendChild(submitButton);
 
                 const uploadedItemsDiv = document.getElementById('uploadedItems')
-                    uploadedItemsDiv.style.display = 'block'; 
+                    uploadedItemsDiv.style.display = 'block';
                     
             })
             .catch(error => {
@@ -268,6 +311,17 @@
             });
         });
 
+        function hideUploadListComformation(){
+            const uploadedItemsDiv = document.getElementById('uploadedItems')
+                    uploadedItemsDiv.style.display = 'none';
+        }
+
+        function uploadedConformaition(){
+        document.getElementById('uploaded-modal').style.display = 'block'        
+        setTimeout( () => {
+        document.getElementById('uploaded-modal').style.display = 'none'
+        }, 1500)
+    }
 
         function nextInput() {
         const rows = document.querySelectorAll('#myTable tbody tr');

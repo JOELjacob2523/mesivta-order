@@ -90,14 +90,13 @@ Router.post('/login', async (req, res, next) => {
     const sheetName = workbook.SheetNames[0];
     excelData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
-    res.send('Uploaded succsessful')
+    res.send(excelData)
   })
 
   Router.get('/viewProducts', async(req, res, next) => {
     const vendorId = req.session.vendorId;
     const products = await Controller.getAll(vendorId);
     const vendors = await Controller.getVendors();
-    console.log('Excel data from viewProducts route is:', excelData)
     res.render('view-products', { products, vendors, vendorId, excelData: excelData || '' });
   });
 
@@ -148,7 +147,9 @@ Router.post('/login', async (req, res, next) => {
 
         await Controller.createProduct(productItem);
       }      
+      setTimeout(() => {
       res.redirect('/viewProducts');
+      }, 1500)
 
     } catch(err) {
       console.error(err)

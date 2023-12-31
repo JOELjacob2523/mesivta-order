@@ -206,6 +206,28 @@ h3{
   margin: auto;
 }
 
+input[type="file"]{
+  display: none;
+}
+
+.upload-input-lbl{
+  display: inline-block;
+  border: 2px dashed blue;
+  cursor: pointer;
+  width: 60%;
+  height: 40px;
+  border-radius: 5px;
+  padding-top: 5px;
+  background-color: rgb(213, 238, 246);
+  font-weight: bold;
+  color: blue;
+}
+
+.upload-input-lbl:hover{
+  background-color: rgb(57, 57, 254);
+  color: aliceblue;
+}
+
 .upload-input{
   margin-left: 25%;
   margin-bottom: 5px;
@@ -222,6 +244,70 @@ h3{
 }
 
 .upload-submit-btn:hover{
+  background-color: blue;
+  color: aliceblue;
+}
+
+.uploadedItems{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.uploadedItemsModel{
+  background-color: rgb(201, 223, 231);
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.uploadListHeader{
+  margin-bottom: 15px;
+}
+
+.excelDataDesc{
+  font-weight: bold;
+  margin: 5px;
+  border-radius: 5px;
+  width: 45%;
+  background-color: rgb(229, 241, 246);
+}
+
+.excelDataQty{
+  font-weight: bold;
+  margin: 5px;
+  border-radius: 5px;
+  width: 10%;
+  background-color: rgb(229, 241, 246);
+}
+
+.excelDataPrice{
+  font-weight: bold;
+  margin: 5px;
+  border-radius: 5px;
+  width: 10%;
+  background-color: rgb(229, 241, 246);
+}
+
+.uploadListSubmitBtn{
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: rgb(201, 223, 231);
+  border-color: blue;
+  font-weight: bold;
+  width: 25%;
+  color: blue;
+}
+
+.uploadListSubmitBtn:hover{
   background-color: blue;
   color: aliceblue;
 }
@@ -754,27 +840,6 @@ table, td{
 
 .searchInput:focus{
   outline-color: blue;
-}
-
-.uploadedItems{
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-}
-
-.uploadedItemsModel{
-    background-color: rgb(201, 223, 231);
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    text-align: center;
-    border-radius: 10px;
 }
 
 footer{
