@@ -63,6 +63,10 @@ td{
     padding-left: 10px;
 }
 
+.td-date{
+    text-transform: lowercase;
+}
+
 .print_btn{
     border-radius: 5px;
     background-color: blue;

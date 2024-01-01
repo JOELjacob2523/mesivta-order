@@ -85,7 +85,12 @@
         <div class="uploadedItems" id="uploadedItems">
             <div class="uploadedItemsModel">
                 <input type="button" onclick="hideUploadListComformation()" value="X" class="back">
-                <h5 class="uploadListHeader">You are uploading the following item list</h5>
+                <h4 class="uploadListHeader">You are uploading the following item list</h4>
+                <div class="upload-p-div">
+                    <p class="descP">Description</p>
+                    <p class="qtyP">Qty</p>
+                    <p class="priceP">Price</p>
+                </div>
                 <form action="/createProductList" method="POST" onsubmit="uploadedConformaition()">
             </form>
             </div>
@@ -292,8 +297,7 @@
                     priceInput.setAttribute('value', item.price);
                     priceInput.classList.add('excelDataPrice');
                     form.appendChild(priceInput);
-                    form.appendChild(inputContainer);
-                    
+                    form.appendChild(inputContainer);        
                 })                
 
                 const submitButton = document.createElement('input');
@@ -317,10 +321,11 @@
         }
 
         function uploadedConformaition(){
-        document.getElementById('uploaded-modal').style.display = 'block'        
-        setTimeout( () => {
-        document.getElementById('uploaded-modal').style.display = 'none'
-        }, 1500)
+            document.getElementById('uploadedItems').style.display = 'none'
+                document.getElementById('uploaded-modal').style.display = 'block'        
+              setTimeout( () => {
+                document.getElementById('uploaded-modal').style.display = 'none'
+              }, 1500)
     }
 
         function nextInput() {

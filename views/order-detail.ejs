@@ -42,7 +42,9 @@
                         0.00
                       <% } %>
                 </td>
-                <td><%= item.date.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}) %></td>
+                <td class="td-date">
+                    <%= item.date.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}) %>
+                </td>
             </tr>
              <% } %>
             </tbody>

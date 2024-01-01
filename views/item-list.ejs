@@ -81,12 +81,8 @@
         </div>
 
         <div class="total-price-div">
-            <p class="total-price-p">Total Price:<span id="total-price" class="total-price"></span></p>
+            <p class="total-price-p">Sub Total:<span id="total-price" class="total-price"></span></p>
         </div>
-    </div>
-
-    <div class="sub-total-div">
-        <p class="sub-total-p">Sub Total:<span id="subTotal" class="sub-total"></span></p>
     </div>
 
       </div>
@@ -95,7 +91,6 @@
     <script type="text/javascript">
 
         calculateTotalAmount()
-        calculateSubTotalPrice()
         calculateTotalPrice()
 
         function calculateTotalAmount() {
@@ -132,22 +127,6 @@
         const totalPriceInput = document.getElementById('total-price');
         totalPriceInput.innerText = `$${total.toFixed(2)}`;
       }
-
-      function calculateSubTotalPrice() {
-        let total = 0;
-
-        const rows = document.querySelectorAll('.myTable tbody tr ');
-
-        rows.forEach(row => {
-        const subPriceInput = row.querySelector('.total');
-
-        const price = parseFloat(subPriceInput.innerHTML) || 0;
-        total += price;
-      });
-        const totalPriceInput = document.getElementById('subTotal');
-        totalPriceInput.textContent = `$${total.toFixed(2)}`;
-      }
-
         function printPageArea(areaID){
         let printContent = document.getElementById(areaID).innerHTML;
         let originalContent = document.body.innerHTML;

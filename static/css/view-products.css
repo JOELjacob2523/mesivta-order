@@ -270,31 +270,43 @@ input[type="file"]{
 }
 
 .uploadListHeader{
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .excelDataDesc{
-  font-weight: bold;
   margin: 5px;
   border-radius: 5px;
   width: 45%;
+  border: none;
   background-color: rgb(229, 241, 246);
+}
+
+.excelDataDesc:focus{
+  outline: none;
 }
 
 .excelDataQty{
-  font-weight: bold;
   margin: 5px;
   border-radius: 5px;
   width: 10%;
+  border: none;
   background-color: rgb(229, 241, 246);
 }
 
+.excelDataQty:focus{
+  outline: none;
+}
+
 .excelDataPrice{
-  font-weight: bold;
   margin: 5px;
   border-radius: 5px;
   width: 10%;
+  border: none;
   background-color: rgb(229, 241, 246);
+}
+
+.excelDataPrice:focus{
+  outline: none;
 }
 
 .uploadListSubmitBtn{
@@ -310,6 +322,26 @@ input[type="file"]{
 .uploadListSubmitBtn:hover{
   background-color: blue;
   color: aliceblue;
+}
+
+.upload-p-div{
+  display: flex;
+  align-items: flex-end;
+}
+
+.descP{
+  font-weight: bold;
+  margin-left: 17%;
+}
+
+.qtyP{
+  font-weight: bold;
+  margin-left: 36%;
+}
+
+.priceP{
+  font-weight: bold;
+  margin-left: 8%;
 }
 
 .items {

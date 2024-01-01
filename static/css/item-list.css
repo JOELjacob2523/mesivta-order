@@ -174,16 +174,6 @@ th{
     padding: 5px 10px 0 10px;
 }
 
-.sub-total-div{
-    display: block;
-    margin: auto;
-    margin-top: 20px;
-    width: 40%;
-    background-color: rgb(243, 230, 213);
-    border-radius: 5px;
-    padding: 5px 10px 3px 10px;
-}
-
 .total-amount{
     font-weight: bold;
     font-size: x-large;
@@ -198,22 +188,10 @@ th{
     padding: 7px;
 }
 
-.sub-total{
-    font-weight: bold;
-    font-size: xx-large;
-    margin-left: 10px;
-    padding: 7px;
-}
-
 .total-amount-p{
     text-align: center;
 }
 
 .total-price-p{
     text-align: center;
-}
-
-.sub-total-p{
-    text-align: center;
-    font-size: large;
 }
