@@ -558,6 +558,8 @@
     </script>
 
     <footer>
+        <% const date = new Date() %>
+        <p>&copy; <%= date.toLocaleString('en-US', { year: "numeric" }) %> Copyright UTA Mesivta KJ. All Rights reserved.</p>
         <p> <span class="footer-span">Edit Instructions:</span>
                To edit an item, Double click on the row of this item.
         </p>
