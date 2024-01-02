@@ -63,6 +63,7 @@ CREATE TABLE products (
   description VARCHAR(255),
   perCase VARCHAR (255) NULL,
   price VARCHAR (255) NULL,
+  vendorId BIGINT,
   FOREIGN KEY(vendorId) REFERENCES vendors(vendorId),
   PRIMARY KEY (productId)
 );
@@ -73,7 +74,8 @@ CREATE TABLE vendors (
   companyname VARCHAR (255) NULL,
   vendoremail VARCHAR (255) NULL,
   phone VARCHAR (255) NULL,
-  token TEXT NULL
+  token TEXT NULL,
+  PRIMARY KEY (vendorId)
 );
 
 CREATE TABLE orders (
@@ -82,7 +84,9 @@ CREATE TABLE orders (
   totalboxes VARCHAR(255) NULL,
   totalprice VARCHAR (255) NULL,
   token TEXT NULL,
-  FOREIGN KEY(vendorId) REFERENCES vendors(vendorId)
+  vendorId BIGINT,
+  FOREIGN KEY(vendorId) REFERENCES vendors(vendorId),
+  PRIMARY KEY (orderId)
 );
 
 CREATE TABLE orderitems (
@@ -93,7 +97,10 @@ CREATE TABLE orderitems (
   price VARCHAR (255) NULL,
   totalrowprice VARCHAR (255) NULL,
   date DATETIME NULL,
+  vendorId BIGINT,
+  orderId BIGINT,
   FOREIGN KEY(orderId) REFERENCES orders(orderId),
-  FOREIGN KEY(vendorId) REFERENCES vendors(vendorId)
+  FOREIGN KEY(vendorId) REFERENCES vendors(vendorId),
+  PRIMARY KEY (orderitemsId)
 );
 
