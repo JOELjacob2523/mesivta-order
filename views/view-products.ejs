@@ -73,7 +73,7 @@
             <h5>To upload a file click here</h5>
             <form id="uploadForm" enctype="multipart/form-data">
                 <div class="upload-input-div">
-                    <label for="upload-input" class="upload-input-lbl">Drop files here to upload</label>
+                    <label for="upload-input" class="upload-input-lbl" title="Drop file">Drop file here to upload</label>
                     <input type="file" name="items" class="upload-input" id="upload-input"/>
                 </div>
                 <div>
@@ -98,13 +98,13 @@
 
         <form action="/createProduct" method="POST">
             <div class="description">
-                <input type="textarea" rows="4" name="description" class="description" placeholder="Description...">
+                <input type="textarea" rows="4" name="description" class="description" placeholder="Description..." required>
             </div>
             <div class="qty">
-                <input type="number" class="per-cs" name="perCase" placeholder="Per Case...">
+                <input type="number" class="per-cs" name="perCase" placeholder="Per Case..." required>
             </div>
             <div class="price">
-                <input type="number" class="price" name="price" step="0.01" placeholder="Price...">
+                <input type="number" class="price" name="price" step="0.01" placeholder="Price..." required>
             </div>
             <div class="submit">
                 <input type="submit" value="Create" class="submit-p" title="Create">

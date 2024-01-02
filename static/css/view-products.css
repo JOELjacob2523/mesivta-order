@@ -72,6 +72,16 @@ h3{
   width: 275px;
   height: 40px;
   border-radius: 7px;
+  padding-left: 3px;
+  border: 0;
+}
+
+.from-to:focus{
+  outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  font-size: large;
 }
 
 .between-items{
@@ -91,6 +101,12 @@ h3{
   width: 275px;
   height: 40px;
   border-radius: 7px;
+  border: 0;
+  padding-left: 3px;
+}
+
+.products:focus{
+  outline: none;
 }
 
 .go-back{
