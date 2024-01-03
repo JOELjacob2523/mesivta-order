@@ -30,7 +30,9 @@ Router.post('/login', async (req, res, next) => {
       res.redirect('/order');
     } catch (error) {
       console.error('Error inserting user credentials:', error);
-      //res.redirect('incorrect-login');
+      setTimeout(() => {
+        res.redirect('/login');
+      }, 2000)
     }
   });
 
@@ -61,7 +63,9 @@ Router.post('/login', async (req, res, next) => {
       req.session.vendorId = vendorId
       res.redirect('/viewProducts');
     }catch(err){
-      res.redirect('/updateVendor')
+      setTimeout(() => {
+        res.redirect('/order')
+      }, 2000)
       console.error(err)
     }
   });

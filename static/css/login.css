@@ -107,3 +107,11 @@ h1{
     background-color: rgb(153, 110, 54);
     color: rgb(227, 192, 146);
 }
+
+.invalid-p {
+  display: none;
+  color: red;
+  font-size: large;
+  font-weight: bold;
+  margin-top: 20px;
+}
