@@ -34,7 +34,10 @@
 
     document.getElementById('login').addEventListener('submit', (event) => {
         if (event){
-            document.getElementById('invalid-p').style.display = 'block';
+                document.getElementById('invalid-p').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('invalid-p').style.display = 'none';
+            }, 2000)
         }
     })
 </script>

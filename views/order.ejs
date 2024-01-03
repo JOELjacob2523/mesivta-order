@@ -69,6 +69,9 @@
     document.getElementById('updateVendor').addEventListener('submit', (event) => {
         if (event){
             document.getElementById('invalid-div').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('invalid-div').style.display = 'none';
+        }, 2000)
         }
     })
 </script>
