@@ -113,9 +113,11 @@
     </div>
 
     <div class="items">
-        
-        <input type="text" id="searchInput" onkeyup="search()" class="searchInput"
-        placeholder="Search For Product...">
+
+          <label class="searchLabel">
+            <input type="text" id="searchInput" onkeyup="search()" class="searchInput"
+            placeholder="Search For Product..." >
+        </label>
 
         <form action="/orderItems" method="POST" id="order-items">
             <div class="table-div">
