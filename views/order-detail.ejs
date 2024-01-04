@@ -21,12 +21,12 @@
     <div class="items-div" id="items-div">
         <table>
             <thead>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Total Price</th>
-                <th>Date & Time</th>
+                <th class="th-amount">Amount</th>
+                <th class="th-desc">Description</th>
+                <th class="th-qty">Qty</th>
+                <th class="th-price">Price</th>
+                <th class="th-ttl-price">Total Price</th>
+                <th class="th-date-time">Date & Time</th>
             </thead>
             <tbody>
                 <% for (let item of itemsDates) { %>
@@ -53,8 +53,8 @@
         <div>
             <% for (let getTotal of getTotals) { %>
                 <div class="total-div">
-            <p class="boxes-p">Total Boxes is:<span class="total"><%= getTotal.totalboxes %></span></p>
-            <p class="price-p">Sub Total Price is:<span class="total"><%= getTotal.totalprice %></span></p>
+            <p class="boxes-p">Total Boxes:<span class="total"><%= getTotal.totalboxes %></span></p>
+            <p class="price-p">Sub Total Price:<span class="total"><%= getTotal.totalprice %></span></p>
                 </div>
             <% } %>
         </div>

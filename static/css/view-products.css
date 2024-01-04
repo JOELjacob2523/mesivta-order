@@ -291,6 +291,7 @@ input[type="file"]{
 
 .excelDataDesc{
   margin: 5px;
+  padding-left: 5px;
   border-radius: 5px;
   width: 45%;
   border: none;
@@ -303,6 +304,7 @@ input[type="file"]{
 
 .excelDataQty{
   margin: 5px;
+  padding-left: 5px;
   border-radius: 5px;
   width: 10%;
   border: none;
@@ -313,8 +315,23 @@ input[type="file"]{
   outline: none;
 }
 
+.excelDataQtyZero{
+  margin: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+  width: 10%;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(249, 64, 64);
+}
+
+.excelDataQtyZero:focus{
+  outline: none;
+}
+
 .excelDataPrice{
   margin: 5px;
+  padding-left: 5px;
   border-radius: 5px;
   width: 10%;
   border: none;
@@ -322,6 +339,20 @@ input[type="file"]{
 }
 
 .excelDataPrice:focus{
+  outline: none;
+}
+
+.excelDataPriceZero{
+  margin: 5px;
+  padding-left: 5px;
+  border-radius: 5px;
+  width: 10%;
+  border: none;
+  font-weight: bold;
+  background-color: rgb(249, 64, 64);
+}
+
+.excelDataPriceZero:focus{
   outline: none;
 }
 

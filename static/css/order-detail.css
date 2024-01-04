@@ -31,7 +31,7 @@ h1{
 }
 
 table{
-    width: 80%;
+    width: 65%;
     display: block;
     margin: auto;
     margin-top: 150px;
@@ -44,11 +44,34 @@ table{
 }
 
 th{
-    width: 1200px;
     background-color: rgb(172, 165, 165);
     padding-left: 7px;
     border-radius: 5px;
     padding-bottom: 5px;
+}
+
+.th-amount{
+    width: 125px;
+}
+
+.th-desc{
+   width: 500px; 
+}
+
+.th-qty{
+    width: 125px;
+}
+
+.th-price{
+    width: 150px;
+}
+
+.th-ttl-price{
+    width: 150px;
+}
+
+.th-date-time{
+    width: 200px;
 }
 
 tr:nth-child(even){

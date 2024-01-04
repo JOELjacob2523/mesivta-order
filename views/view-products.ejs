@@ -288,16 +288,24 @@
                     const perCaseInput = document.createElement('input');
                     perCaseInput.setAttribute('type', 'text');
                     perCaseInput.setAttribute('name', 'perCase');
-                    perCaseInput.setAttribute('value', item.perCase);
-                    perCaseInput.classList.add('excelDataQty');
+                    perCaseInput.setAttribute('value', item.perCase || '0');
+                    if (perCaseInput.value > 0){
+                        perCaseInput.classList.add('excelDataQty');
+                    } else {
+                        perCaseInput.classList.add('excelDataQtyZero');
+                    }                    
                     form.appendChild(perCaseInput);
                     form.appendChild(inputContainer);
 
                     const priceInput = document.createElement('input');
                     priceInput.setAttribute('type', 'text');
                     priceInput.setAttribute('name', 'price');
-                    priceInput.setAttribute('value', item.price);
-                    priceInput.classList.add('excelDataPrice');
+                    priceInput.setAttribute('value', item.price || '0');
+                    if (priceInput.value > 0){
+                        priceInput.classList.add('excelDataPrice');
+                    } else {
+                        priceInput.classList.add('excelDataPriceZero');
+                    }
                     form.appendChild(priceInput);
                     form.appendChild(inputContainer);        
                 })                
