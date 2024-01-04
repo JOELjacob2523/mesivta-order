@@ -153,7 +153,7 @@ Router.post('/login', async (req, res, next) => {
       }      
       setTimeout(() => {
       res.redirect('/viewProducts');
-      }, 1500)
+      }, 5000)
 
     } catch(err) {
       console.error(err)
@@ -219,7 +219,7 @@ Router.post('/login', async (req, res, next) => {
       await Controller.emailOrder(req.session.vendorId, req.session.userId, orderid)
       setTimeout( () => {
         res.redirect('/viewProducts')
-      }, 1500)
+      }, 5000)
 
     }catch(err){
       res.redirect('/login')
@@ -237,7 +237,7 @@ Router.post('/login', async (req, res, next) => {
       await Controller.updateProduct(req.body)
       setTimeout( () => {
         res.redirect('/viewProducts')
-      }, 1500)
+      }, 5000)
     }catch(err){
       console.error(err)
     }
@@ -248,7 +248,7 @@ Router.post('/login', async (req, res, next) => {
       await Controller.deleteProduct(req.body.productId)
       setTimeout( () => {
         res.redirect('/viewProducts')
-      }, 1500)
+      }, 5000)
     }catch(err){
       console.error(err)
     }

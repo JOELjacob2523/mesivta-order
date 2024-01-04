@@ -320,13 +320,8 @@ input[type="file"]{
   padding-left: 5px;
   border-radius: 5px;
   width: 10%;
-  border: none;
-  font-weight: bold;
-  background-color: rgb(249, 64, 64);
-}
-
-.excelDataQtyZero:focus{
-  outline: none;
+  background-color: rgb(229, 241, 246);
+  border-color: red;
 }
 
 .excelDataPrice{
@@ -347,13 +342,8 @@ input[type="file"]{
   padding-left: 5px;
   border-radius: 5px;
   width: 10%;
-  border: none;
-  font-weight: bold;
-  background-color: rgb(249, 64, 64);
-}
-
-.excelDataPriceZero:focus{
-  outline: none;
+  background-color: rgb(229, 241, 246);
+  border-color: red;
 }
 
 .uploadListSubmitBtn{
@@ -711,6 +701,17 @@ table, td{
   text-align: center;
   border-radius: 10px;
   height: 200px;
+  animation-duration: 5s;
+  animation-name: slidein;
+}
+
+@keyframes slidein{
+  from{
+    margin-left: 100%;
+  }
+  to{
+    margin-left: 30%;
+  }
 }
 
 .update-modal-p{
@@ -758,6 +759,8 @@ table, td{
     text-align: center;
     border-radius: 10px;
     height: 200px;
+    animation-duration: 5s;
+    animation-name: slidein;
 }
 
 .modal-p{
@@ -891,6 +894,8 @@ table, td{
     text-align: center;
     border-radius: 10px;
     height: 200px;
+    animation-duration: 5s;
+    animation-name: slidein;
 }
 
 .delete-modal-p{
