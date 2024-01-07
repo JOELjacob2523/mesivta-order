@@ -249,11 +249,18 @@ input[type="file"]{
   margin-bottom: 5px;
 }
 
+.filename-p{
+  margin-top: 5px;
+}
+
+.filename{
+  font-weight: bold;
+}
+
 .upload-submit-btn{
   border-radius: 10px;
   background-color: rgb(234, 234, 234);
   color: blue;
-  margin-top: 10px;
   font-weight: bold;
   border-color: blue;
   width: 30%;
