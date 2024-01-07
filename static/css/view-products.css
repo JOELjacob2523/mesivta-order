@@ -250,6 +250,7 @@ input[type="file"]{
 }
 
 .filename-p{
+  display: none;
   margin-top: 5px;
 }
 
@@ -264,6 +265,7 @@ input[type="file"]{
   font-weight: bold;
   border-color: blue;
   width: 30%;
+  margin-top: 5px;
 }
 
 .upload-submit-btn:hover{
