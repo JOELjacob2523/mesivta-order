@@ -96,7 +96,7 @@ async function confirmUser(username, email, password, building) {
   async function updateVendor(vendorname, companyname, vendoremail){    
     const vendor = await knex("vendors").where({companyname: companyname}).first();
     if (!vendor) {
-      throw new Error("Invalid username or password");
+      throw new Error("Please choose a valid vendor");
     }    
     const id = vendor.vendorId;
 
