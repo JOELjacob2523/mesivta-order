@@ -208,7 +208,7 @@ async function confirmUser(username, email, password, building) {
         const transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
-            user: "jsjprog4119@gmail.com",
+            user: "utamky6@gmail.com",
             pass: CONFIG.EMAIL_PASS,
             },
         });
@@ -217,7 +217,7 @@ async function confirmUser(username, email, password, building) {
                console.log(err)
              } else {
              const mailOptions = {
-               from: "jsjprog4119@gmail.com",
+               from: "utamky6@gmail.com",
                to: vendorEmail.vendoremail,
                subject: `Order from KJ Mesivta ${ time }`,
                html: data
