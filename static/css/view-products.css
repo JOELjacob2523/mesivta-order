@@ -814,7 +814,7 @@ table, td{
   }
 
   .delete-model-content{
-    background-color: lightblue;
+    background-image: radial-gradient( lightblue 40%, rgb(247, 79, 79) );
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -895,7 +895,7 @@ table, td{
 }
 
 .item-deleted-modal-content{
-    background-color: red;
+    background-image: radial-gradient(lightblue 40%, red);
     margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -911,7 +911,7 @@ table, td{
   margin-top: 50px;
   font-size: 30px;
   font-weight: bold;
-  color: aliceblue;
+  color: red;
 }
 
 .container{
