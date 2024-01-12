@@ -177,11 +177,18 @@
                         <input type="text" id="total-price-input" class="total-price-input" value="" name="totalprice" readonly>
 
                     </div>
-                    <input type="submit" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
+                    <input type="button" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
                 </div>
             </form> 
     </div>
     </div>
+
+        <div class="confirm-order-model" id="confirm-order-model">
+            <div class="confirm-order-modal-content">
+               <p class="confirm-order-modal-p">Are you sure you want to submit the order?</p>
+               <input type="submit" value="Submit" class="confirm-submit-order">
+            </div>
+        </div>
 
         <div class="modal" id="modal">
             <div class="modal-content">
@@ -541,8 +548,9 @@
     };
 
     function orderConfirmed(){
-        document.querySelector('#order-items').addEventListener('submit', (event) => {
+        document.querySelector('#order-items').addEventListener('click', (event) => {
         event.preventDefault();
+        document.getElementById('confirm-order-model').style.display = 'block'
         document.getElementById('modal').style.display = 'block'      
         setTimeout( () => {
         document.getElementById('modal').style.display = 'none'

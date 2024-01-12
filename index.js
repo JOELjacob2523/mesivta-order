@@ -28,6 +28,9 @@ app.get('/', (req, res, next) => {
     res.render('login')
 })
 
-app.listen(config.PORT, () => {
+const server = app.listen(config.PORT, () => {
     console.log(`Server is now running at http://localhost:${config.PORT}`)
 })
+
+server.keepAliveTimeout = 15 * 1000;
+server.headersTimeout = 16 * 1000;

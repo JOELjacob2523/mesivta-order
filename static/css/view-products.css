@@ -748,6 +748,36 @@ table, td{
     margin-top: 30px;
 }
 
+.confirm-order-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.confirm-order-modal-content{
+  background-color: rgb(201, 223, 231);
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  text-align: center;
+  border-radius: 10px;
+  height: 200px;
+  animation-duration: 5s;
+  animation-name: slidein;
+}
+
+.confirm-order-modal-p{
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
 .modal {
     display: none;
     position: fixed;
