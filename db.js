@@ -8,6 +8,6 @@ exports.knex = Knex({
         user: config.DB_USER,
         password: config.DB_PESS,
         database: config.DATABASE,
-        port: config.DB_PORT || 1433,
+        port: config.DB_PORT || 3306,
     }
 })
