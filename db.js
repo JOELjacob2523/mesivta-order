@@ -2,7 +2,7 @@ const config = require('./config.json');
 const Knex = require('knex');
 
 exports.knex = Knex({
-    client: 'mssql',
+    client: config.CLIENT,
     connection: {
         host: config.DB_SERVER,
         user: config.DB_USER,

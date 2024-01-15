@@ -748,7 +748,7 @@ table, td{
     margin-top: 30px;
 }
 
-.confirm-order-model {
+.confirm-order-modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -759,7 +759,7 @@ table, td{
   overflow: auto;
 }
 
-.confirm-order-model-content{
+.confirm-order-modal-content{
   background-color: rgb(201, 223, 231);
   margin: 10% auto;
   padding: 20px;
@@ -769,7 +769,7 @@ table, td{
   border-radius: 10px;
 }
 
-.confirm-order-model-p{
+.confirm-order-modal-p{
   font-size: 30px;
   font-weight: bold;
   margin-top: 50px;
