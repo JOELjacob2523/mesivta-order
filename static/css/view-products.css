@@ -767,15 +767,27 @@ table, td{
   width: 30%;
   text-align: center;
   border-radius: 10px;
-  height: 200px;
-  animation-duration: 5s;
-  animation-name: slidein;
 }
 
 .confirm-order-modal-p{
   font-size: 30px;
   font-weight: bold;
   margin-top: 50px;
+}
+
+.confirm-submit-order{
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: rgb(201, 223, 231);
+  border-color: blue;
+  font-weight: bold;
+  width: 25%;
+  color: blue;
+}
+
+.confirm-submit-order:hover{
+  background-color: blue;
+  color: aliceblue;
 }
 
 .modal {

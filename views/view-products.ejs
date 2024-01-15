@@ -177,16 +177,17 @@
                         <input type="text" id="total-price-input" class="total-price-input" value="" name="totalprice" readonly>
 
                     </div>
-                    <input type="button" class="submit-order" onclick="orderConfirmed()" value="Submit Order" id="submit-order">
+                    <input type="button" class="submit-order" value="Submit Order" id="submit-order">
                 </div>
             </form> 
     </div>
     </div>
 
-        <div class="confirm-order-model" id="confirm-order-model">
-            <div class="confirm-order-modal-content">
-               <p class="confirm-order-modal-p">Are you sure you want to submit the order?</p>
-               <input type="submit" value="Submit" class="confirm-submit-order">
+        <div class="confirm-order-modal" id="confirm-order-modal">
+            <div class="confirm-order-modal-content">                
+            <input type="button" onclick="hideConfirmComformation()" value="X" class="back">
+               <p class="confirm-order-modal-p">Are you sure you want to Submit the order ?</p>
+               <input type="button" value="Submit" class="confirm-submit-order">
             </div>
         </div>
 
@@ -547,17 +548,23 @@
         document.getElementById('delete-model').style.display = 'none'
     };
 
-    function orderConfirmed(){
-        document.querySelector('#order-items').addEventListener('click', (event) => {
-        event.preventDefault();
-        document.getElementById('confirm-order-model').style.display = 'block'
+        document.querySelector('#submit-order').addEventListener('click', () => {
+        document.getElementById('confirm-order-modal').style.display = 'block';
+
+        document.querySelector('.confirm-submit-order').addEventListener('click', () =>{            
+        document.getElementById('order-items').submit();
+        document.getElementById('confirm-order-modal').style.display = 'none'
+
         document.getElementById('modal').style.display = 'block'      
         setTimeout( () => {
         document.getElementById('modal').style.display = 'none'
         }, 5000)
-        document.getElementById('order-items').submit();
+        })
     })
-}
+
+    function hideConfirmComformation(){
+        document.getElementById('confirm-order-modal').style.display = 'none'
+    };
 
         function search() {
         var input, filter, table, tr, td, i;
