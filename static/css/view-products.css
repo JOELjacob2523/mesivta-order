@@ -150,10 +150,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-weight: bold;
     font-size: x-large;
     float: right;
-    border: blue solid 1px;
+    border: none;
     border-radius: 100px;
     width: 40px;
     height: 40px;
+}
+
+.back:focus{
+  outline: none;
 }
 
 .back:hover{
@@ -603,6 +607,29 @@ table, td{
   color: aliceblue;
 }
 
+.email_msg_div{
+  width: 50%;
+  display: block;
+  margin: auto;
+  border-radius: 5px;
+  background-color: rgb(234, 234, 234);
+  margin-top: 15px;
+  padding: 7px;
+  border: blue 1px solid;
+}
+
+.email_msg_lbl{
+  display: block;
+  margin: auto;
+  font-weight: bold;
+}
+
+.email_msg{
+  width: 60%;
+  border: rgb(144, 217, 241) 2px solid;
+  background-color: azure;
+}
+
 .update-h3{
   font-weight: bold;
   font-size: 40px;
@@ -864,6 +891,29 @@ table, td{
     text-align: center;
     border-radius: 10px;
     height: 400px;
+}
+
+.back-dlt{
+    background-color: red;
+    color: rgb(252, 191, 191);
+    margin-right: 10px;
+    margin-left: -200px;
+    font-weight: bold;
+    font-size: x-large;
+    float: right;
+    border: none;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+}
+
+.back-dlt:hover{
+  background-color: rgb(252, 191, 191);
+  color: red;
+}
+
+.back-dlt:focus{
+  outline: none;
 }
 
   .dlt-h3{

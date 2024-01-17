@@ -19,16 +19,16 @@
     </div>
 
     <div class="go-back">
-        <p class="back-p">Click Here to go Back to Previews Page</p>
+        <p class="back-p">Click Here to choose another vendor</p>
         <form action="/main" method="GET">
-            <input type="submit" value="Go Back" class="back-vendor" title="Go Back">
+            <input type="submit" value="Choose vendor" class="back-vendor" title="Choose another vendor">
         </form>
     </div>
 
     <div class="between-divs">
 
     <div class="between">
-        <p class="select-p">Select a Date to See All Vendor Orders</p>
+        <p class="select-p">Select a DATE to see all vendor orders</p>
         <form action="/betweenOrders" method="POST">
             <div class="label">
                 <label for="from">From:</label>
@@ -37,13 +37,13 @@
                     <input type="date" name="to" class="from-to">
                 </div>
                     <div>
-                <input type="submit" value="Select" class="select-btn">
+                <input type="submit" value="Select" class="select-btn" title="Select a date">
             </div>
         </form>
     </div>
 
     <div class="between-items">
-        <p class="select-p">Select an Item to See Item Orders</p>
+        <p class="select-p">Select an ITEM to see item orders</p>
             <form action="/between_item" method="POST">
         <div class="label">
             <label for="from">From:</label>
@@ -59,7 +59,7 @@
                         </datalist>
                     </div>
                 <div>
-            <input type="submit" value="Select" class="select-btn">
+            <input type="submit" value="Select" class="select-btn" title="Select an item">
         </div>
       </form>
     </div>
@@ -120,7 +120,8 @@
             placeholder="Search For Product..." >
         </label>
 
-        <form action="/orderItems" method="POST" id="order-items">
+        <form action="/orderItems" method="POST" id="order-items">            
+
             <div class="table-div">
                 <table id="myTable">
                   <div>
@@ -177,7 +178,13 @@
                         <input type="text" id="total-price-input" class="total-price-input" value="" name="totalprice" readonly>
 
                     </div>
-                    <input type="button" class="submit-order" value="Submit Order" id="submit-order">
+
+                    <div class="email_msg_div">
+                        <label for="email_msg" class="email_msg_lbl">Write a message for the vendor</label>
+                        <textarea type="text" name="email_msg" class="email_msg"></textarea>
+                    </div>
+
+                    <input type="button" class="submit-order" value="Submit Order" id="submit-order" title="Submit order">
                 </div>
             </form> 
     </div>
@@ -243,7 +250,7 @@
 
          <div class="delete-model" id="delete-model">
             <div class="delete-model-content">
-            <input type="button" onclick="hideDeleteComformation()" value="X" class="back">
+            <input type="button" onclick="hideDeleteComformation()" value="X" class="back-dlt">
 
             <h3 class="dlt-h3">Are You Sure You Want to Delete Item</h3>
 

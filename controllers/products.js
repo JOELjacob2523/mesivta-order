@@ -191,7 +191,7 @@ async function confirmUser(username, email, password, building) {
       .whereBetween('date', [from, to]).where({vendorId: vendorId})
     }
 
-    async function emailOrder(vendorId, userId, orderId) {
+    async function emailOrder(vendorId, userId, orderId, msg) {
       try {
         let vendorEmail = await knex("vendors").select().where({vendorId: vendorId}).first();
         let vendors = await knex("vendors").select()
@@ -212,7 +212,7 @@ async function confirmUser(username, email, password, building) {
             pass: CONFIG.EMAIL_PASS,
             },
         });
-           ejs.renderFile('views/email.ejs', { vendors, vendorId, orders, totalOrders, users, orderId }, function (err, data) {
+           ejs.renderFile('views/email.ejs', { vendors, vendorId, orders, totalOrders, users, orderId, msg }, function (err, data) {
              if (err) {
                console.log(err)
              } else {
@@ -220,6 +220,7 @@ async function confirmUser(username, email, password, building) {
                from: "utamky6@gmail.com",
                to: vendorEmail.vendoremail,
                subject: `Order from KJ Mesivta ${ time }`,
+               text: msg,
                html: data
              };
    

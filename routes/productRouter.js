@@ -215,8 +215,8 @@ Router.post('/login', async (req, res, next) => {
 
       await Controller.orderDetails(productItem);
       await Controller.orderTotal(orderid, products.totalboxes, products.totalprice)
-      }      
-      await Controller.emailOrder(req.session.vendorId, req.session.userId, orderid)
+      }
+      await Controller.emailOrder(req.session.vendorId, req.session.userId, orderid, req.body.email_msg)
       setTimeout( () => {
         res.redirect('/viewProducts')
       }, 5000)
