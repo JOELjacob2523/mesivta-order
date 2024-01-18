@@ -171,10 +171,10 @@
               <div class="submit-order-div">
                     <div class="sub-total">
 
-                        <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes Is:</label>
+                        <label for="total-boxes-input" class="total-boxes-lbl">Total Boxes:</label>
                         <input type="text" id="total-boxes-input" class="total-boxes-input" value="" name="totalboxes" readonly>
 
-                        <label for="total-price-input" class="total-price-lbl">Sub Total Price Is:</label>    
+                        <label for="total-price-input" class="total-price-lbl">Sub Total Price:</label>    
                         <input type="text" id="total-price-input" class="total-price-input" value="" name="totalprice" readonly>
 
                     </div>
@@ -193,7 +193,7 @@
         <div class="confirm-order-modal" id="confirm-order-modal">
             <div class="confirm-order-modal-content">                
             <input type="button" onclick="hideConfirmComformation()" value="X" class="back">
-               <p class="confirm-order-modal-p">Are you sure you want to Submit the order ?</p>
+               <p class="confirm-order-modal-p">Are you sure you want to Submit this order ?</p>
                <input type="button" value="Submit" class="confirm-submit-order">
             </div>
         </div>
@@ -201,24 +201,36 @@
         <div class="modal" id="modal">
             <div class="modal-content">
                 <p class="modal-p">Order Submitted and E-mailed Successfully</p>
+                  <div class="update-check-div">
+                     <p class="update-check-p">&#x2713;</p>
+                  </div>
             </div>
         </div>
 
         <div class="update-modal" id="update-modal">
             <div class="update-modal-content">
                 <p class="update-modal-p">Item Updated Successfully</p>
+                <div class="update-check-div">
+                <p class="update-check-p">&#x2713;</p>
+                </div>
             </div>
         </div>
 
         <div class="delete-modal" id="delete-modal-confarmation">
             <div class="item-deleted-modal-content">
                 <p class="delete-modal-p">Item Deleted Successfully</p>
+                  <div class="delete-check-div">
+                    <p class="delete-check-p">&#x2713;</p>
+                  </div>
             </div>
         </div>
 
         <div class="update-modal" id="uploaded-modal">
             <div class="update-modal-content">
                 <p class="update-modal-p">List Uploded Successfully</p>
+                <div class="update-check-div">
+                    <p class="update-check-p">&#x2713;</p>
+                    </div>
             </div>
         </div>
 
@@ -248,7 +260,7 @@
                 </div>
             </div>
 
-         <div class="delete-model" id="delete-model">
+         <div class="delete-model-question" id="delete-model">
             <div class="delete-model-content">
             <input type="button" onclick="hideDeleteComformation()" value="X" class="back-dlt">
 

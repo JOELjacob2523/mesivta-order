@@ -753,7 +753,23 @@ table, td{
 .update-modal-p{
   font-size: 30px;
   font-weight: bold;
-  margin-top: 50px;
+  margin-top: 30px;
+}
+
+.update-check-div{
+  border-radius: 50%;
+  width: 60px;
+  height: 70px;
+  display: block;
+  margin: auto;
+  background-color: aliceblue;
+  border: rgb(72, 199, 242) 1px solid;
+}
+
+.update-check-p{
+  font-size: 45px;
+  font-weight: bold;
+  color: rgb(72, 199, 242);
 }
 
 .p-header{
@@ -791,7 +807,7 @@ table, td{
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 30%;
+  width: 40%;
   text-align: center;
   border-radius: 10px;
 }
@@ -836,7 +852,6 @@ table, td{
     width: 30%;
     text-align: center;
     border-radius: 10px;
-    height: 200px;
     animation-duration: 5s;
     animation-name: slidein;
 }
@@ -844,7 +859,7 @@ table, td{
 .modal-p{
     font-size: 30px;
     font-weight: bold;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .create-update {
@@ -870,7 +885,7 @@ table, td{
     height: 500px;
   }
 
-  .delete-model {
+  .delete-model-question {
     background-color: rgba(130, 125, 125, 0.4);
     display: none;
     position: fixed;
@@ -1000,8 +1015,24 @@ table, td{
 }
 
 .delete-modal-p{
-  margin-top: 50px;
+  margin-top: 30px;
   font-size: 30px;
+  font-weight: bold;
+  color: red;
+}
+
+.delete-check-div{
+  border-radius: 50%;
+  width: 60px;
+  height: 70px;
+  display: block;
+  margin: auto;
+  background-color: aliceblue;
+  border: red 1px solid;
+}
+
+.delete-check-p{
+  font-size: 45px;
   font-weight: bold;
   color: red;
 }
