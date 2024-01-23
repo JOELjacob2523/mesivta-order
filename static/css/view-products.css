@@ -435,6 +435,11 @@ input[type="file"]{
     display: block;
     margin: auto;
     margin-bottom: 5px;
+    border: 0;
+}
+
+.description:focus{
+  outline: none;
 }
 
 .per-cs{
@@ -444,6 +449,11 @@ input[type="file"]{
     display: block;
     margin: auto;
     margin-bottom: 5px;
+    border: 0;
+}
+
+.per-cs:focus{
+  outline: none;
 }
 
 .price{
@@ -453,6 +463,11 @@ input[type="file"]{
     display: block;
     margin: auto;
     margin-bottom: 5px;
+    border: 0;
+}
+
+.price:focus{
+  outline: none;
 }
 
 table {
