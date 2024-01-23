@@ -18,12 +18,30 @@
         <% } %>
     </div>
 
+    <div class="back_info-div">
+
     <div class="go-back">
-        <p class="back-p">Click Here to choose another vendor</p>
+        <p class="back-p">To choose another vendor <br> Click here</p>
         <form action="/main" method="GET">
             <input type="submit" value="Choose vendor" class="back-vendor" title="Choose another vendor">
         </form>
     </div>
+
+    <div class="vendor-info-div">
+        <% for(let vendor of vendors){ %>
+            <% if (vendor.vendorId === vendorId) { %>
+                <p class="vendor-info-head-p">Personal information for vendor <br>
+                    <span class="vendor-info-head-span"><%= vendor.companyname %></span></p>
+                <p class="vendor-info">Name: 
+                    <span class="vendor-info-head-span"><%= vendor.vendorname %></span></p> 
+                <p class="vendor-info">Email: 
+                    <span class="vendor-info-head-span"><%= vendor.vendoremail %></span></p>
+                <p class="vendor-info">Contact Number: 
+                    <span class="vendor-info-head-span"><%= vendor.phone %></span></p> 
+            <% } %>
+            <% } %>
+    </div>
+</div>
 
     <div class="between-divs">
 
