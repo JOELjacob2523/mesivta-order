@@ -30,7 +30,7 @@
     <div class="vendor-info-div">
         <% for(let vendor of vendors){ %>
             <% if (vendor.vendorId === vendorId) { %>
-                <p class="vendor-info-head-p">Personal information for vendor <br>
+                <p class="vendor-info-head-p">Personal information of vendor <br>
                     <span class="vendor-info-head-span"><%= vendor.companyname %></span></p>
                 <p class="vendor-info">Name: <br>
                     <span class="vendor-info-head-span"><%= vendor.vendorname %></span></p> 
@@ -199,7 +199,7 @@
 
                     <div class="email_msg_div">
                         <label for="email_msg" class="email_msg_lbl">Write a message for the vendor</label>
-                        <textarea type="text" name="email_msg" class="email_msg"></textarea>
+                        <textarea type="text" name="email_msg" class="email_msg" placeholder="Write here a message..."></textarea>
                     </div>
 
                     <input type="button" class="submit-order" value="Submit Order" id="submit-order" title="Submit order">
@@ -302,31 +302,41 @@
         calculateTotalBoxes();
         nextInput()
 
+        //function to show file name when uploading a file
         function showFileName(){
             document.getElementById('filename-p').style.display = 'block';
         }
 
+        //get the file name when uploading a file
         document.getElementById('upload-input').addEventListener('change', (e) => {
             let filename = e.target.files[0].name;
             document.getElementById('filename').innerHTML = filename;
         })
 
+        //prevent to submit upload form
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
+            //create new form data
             let formData = new FormData(this);
 
+            //fetch upload form
             fetch('/uploads', {
                 method: 'POST',
                 body: formData
             })
+
+            //extrect file data
             .then(response => response.text())
             .then(data => {
+
+                //add data into json
                 const excelData = JSON.parse(data);
 
                 const form = document.querySelector('.uploadedItemsModel form');
                     form.innerHTML = '';
-                
+
+                //add each data into the inputs
                 excelData.forEach(item => {
 
                     const inputContainer = document.createElement('div');
@@ -365,6 +375,7 @@
                     form.appendChild(inputContainer);        
                 })                
 
+                //submit upload form
                 const submitButton = document.createElement('input');
                 submitButton.setAttribute('type', 'submit');
                 submitButton.setAttribute('value', 'Submit');
@@ -384,7 +395,8 @@
             const uploadedItemsDiv = document.getElementById('uploadedItems')
                     uploadedItemsDiv.style.display = 'none';
         }
-
+        
+        //msg for user that upload is successfull
         function uploadedConformaition(){
             document.getElementById('uploadedItems').style.display = 'none'
                 document.getElementById('uploaded-modal').style.display = 'block'        
@@ -393,6 +405,7 @@
               }, 5000)
     }
 
+        //move to next row with the up & down arrow
         function nextInput() {
         const rows = document.querySelectorAll('#myTable tbody tr');
 
@@ -418,6 +431,7 @@
         });
        }
 
+        //incease row number
         function rowNum(){
             let num = 1;
             const rows = document.querySelectorAll('#myTable tbody tr');
@@ -428,6 +442,7 @@
             })
         }
 
+        //calculate the total row price
         function calculateTotalRowPrice(event) {
             let total = 0;
 
@@ -453,7 +468,7 @@
         input.addEventListener('input', calculateTotalRowPrice);
       });
 
-
+        //calculate total order price
         function calculateTotalPrice() {
         let total = 0;
 
@@ -477,7 +492,8 @@
         amountInputs.forEach(input => {
         input.addEventListener('input', calculateTotalPrice);
       });
-
+      
+      //calculate total order boxes
       function calculateTotalBoxes() {
         let total = 0;
 
@@ -501,6 +517,7 @@
         document.getElementById('create-update').style.display = 'none'
     };
 
+    //update an item
     function selectTableRowData(event){
         document.getElementById('create-update').style.display = 'block';
 
@@ -539,6 +556,7 @@
       });
     };
 
+    //msg for user that update is successfull
     function itemUpdated(){
         document.getElementById('update-modal').style.display = 'block'        
         setTimeout( () => {
@@ -574,6 +592,7 @@
     });
     }
 
+    //msg for user that delete is successfull
     function itemDeleted(){
         document.getElementById('delete-modal-confarmation').style.display = 'block'        
         setTimeout( () => {
@@ -588,6 +607,7 @@
         document.querySelector('#submit-order').addEventListener('click', () => {
         document.getElementById('confirm-order-modal').style.display = 'block';
 
+        //asking if user is sure to submit the order
         document.querySelector('.confirm-submit-order').addEventListener('click', () =>{            
         document.getElementById('order-items').submit();
         document.getElementById('confirm-order-modal').style.display = 'none'
@@ -603,6 +623,7 @@
         document.getElementById('confirm-order-modal').style.display = 'none'
     };
 
+        //search function
         function search() {
         var input, filter, table, tr, td, i;
         input = document.getElementById("searchInput");

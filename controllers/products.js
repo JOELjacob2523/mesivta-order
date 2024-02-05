@@ -219,7 +219,7 @@ async function confirmUser(username, email, password, building) {
              const mailOptions = {
                from: "utamky6@gmail.com",
                to: vendorEmail.vendoremail,
-               subject: `Order from KJ Mesivta ${ time }`,
+               subject: `Order from Mesivta KJ ${ time }`,
                text: msg,
                html: data
              };

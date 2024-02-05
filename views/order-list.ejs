@@ -9,8 +9,16 @@
 </head>
 <body>
         <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
+
+        <div class="go-back-div">
+            <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
+        </div>
+
+        <div class="print_btn_div">
+            <button onclick="printPageArea('main-div')" class="print_btn">Print This Page</button>
+        </div>
         
-        <div id="main-div">
+        <div id="main-div" class="main-div">
             <% for (let vendor of vendors) { %>
                 <% if (vendor.vendorId === vendorId) { %>
                     <h3>Order List For:
@@ -20,14 +28,6 @@
                     </h3>
                 <% } %>
             <% } %>
-
-            <div class="go-back-div">
-                <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
-            </div>
-
-            <div class="print_btn_div">
-                <button onclick="printPageArea('main-div')" class="print_btn">Print This Page</button>
-            </div>
 
     <div class="orderDiv">
     <div class="items-div">
