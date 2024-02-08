@@ -31,6 +31,7 @@
             <tbody>
                 <% for (let item of itemsDates) { %>
             <tr>
+                <% if (item.amount > 0) { %>
                 <td><%= item.amount %></td>
                 <td><%= item.productdesc %></td>
                 <td><%= item.qty %></td>
@@ -45,6 +46,7 @@
                 <td class="td-date">
                     <%= item.date.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit'}) %>
                 </td>
+                <% } %>
             </tr>
              <% } %>
             </tbody>

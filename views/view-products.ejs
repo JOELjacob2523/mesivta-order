@@ -413,7 +413,7 @@
             let cells = row.querySelectorAll('.tbl-amount-input');
             cells.forEach((cell, cellIndex) => {
               cell.addEventListener('keydown', (e) => {
-                if (e.keyCode === 40) {
+                if (e.keyCode === 40 || e.keyCode === 13) {
                   if (index < rows.length - 1) {
                     let nextRow = rows[index + 1];
                     let nextCell = nextRow.querySelectorAll('.tbl-amount-input')[cellIndex];

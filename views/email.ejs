@@ -162,6 +162,7 @@
                     <tbody>
                     <% for(let order of orders){ %>
                         <tr>
+                            <% if (order.amount > 0) { %>
                             <td class="td-amount"><%= order.amount %></td>
                             <td class="td-desc"><%= order.productdesc %></td>
                             <td class="td-qty"><%= order.qty %></td>
@@ -173,6 +174,7 @@
                                     $0
                                   <% } %>
                             </td>
+                            <% } %>
                         </tr>                       
                     <% } %>
                     </tbody>
