@@ -436,6 +436,7 @@ input[type="file"]{
     margin: auto;
     margin-bottom: 5px;
     border: 0;
+    padding-left: 10px;
 }
 
 .description:focus{
@@ -450,6 +451,7 @@ input[type="file"]{
     margin: auto;
     margin-bottom: 5px;
     border: 0;
+    padding-left: 10px;
 }
 
 .per-cs:focus{
@@ -464,6 +466,7 @@ input[type="file"]{
     margin: auto;
     margin-bottom: 5px;
     border: 0;
+    padding-left: 10px;
 }
 
 .price:focus{

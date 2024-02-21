@@ -1,88 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/css/order-list.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/static/css/order-list.css" />
     <title>Order List</title>
-</head>
-<body>
-        <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
+  </head>
+  <body>
+    <h1>Welcome to UTA Mesivta of Kiryes Joel</h1>
 
-        <div class="go-back-div">
-            <button type="button" class="go-back-btn" onclick="window.location.replace('/viewProducts')">Go Back</button>
-        </div>
+    <div class="go-back-div">
+      <button
+        type="button"
+        class="go-back-btn"
+        onclick="window.location.replace('/viewProducts')"
+      >
+        Go Back
+      </button>
+    </div>
 
-        <div class="print_btn_div">
-            <button onclick="printPageArea('main-div')" class="print_btn">Print This Page</button>
-        </div>
-        
-        <div id="main-div" class="main-div">
-            <% for (let vendor of vendors) { %>
-                <% if (vendor.vendorId === vendorId) { %>
-                    <h3>Order List For:
-                        <span><%= vendor.companyname %></span>
-                        From <span><%= new Date(from).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
-                        To <span><%= new Date(to).toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
-                    </h3>
-                <% } %>
+    <div class="print_btn_div">
+      <button onclick="printPageArea('main-div')" class="print_btn">
+        Print This Page
+      </button>
+    </div>
+
+    <div id="main-div" class="main-div">
+      <% for (let vendor of vendors) { %> <% if (vendor.vendorId === vendorId) {
+      %>
+      <h3>
+        Order List For:
+        <span><%= vendor.companyname %></span>
+        From
+        <span
+          ><%= new Date(from).toLocaleString('en-US', { timeZone: 'UTC', year:
+          'numeric', month: '2-digit', day: '2-digit'}) %></span
+        >
+        To
+        <span
+          ><%= new Date(to).toLocaleString('en-US', { timeZone: 'UTC', year:
+          'numeric', month: '2-digit', day: '2-digit'}) %></span
+        >
+      </h3>
+      <% } %> <% } %>
+
+      <div class="orderDiv">
+        <div class="items-div">
+          <ol class="ol">
+            <% for (let between of betweenOrders) { %>
+            <li
+              class="li"
+              ondblclick="window.location.href = '/between/<%= between.orderId %>'"
+            >
+              <div class="date-div">
+                <p class="order-num-p">
+                  Order Number:
+                  <span><%= between.orderId %></span>
+                </p>
+                <p>
+                  Order Date:
+                  <span
+                    ><%= between.date.toLocaleString('en-US', { timeZone: 'UTC',
+                    year: 'numeric', month: '2-digit', day: '2-digit'}) %></span
+                  >
+                </p>
+                <p class="order-price-p">
+                  Total Order:
+                  <span class="total-price"><%= between.totalprice %></span>
+                </p>
+              </div>
+            </li>
             <% } %>
-
-    <div class="orderDiv">
-    <div class="items-div">
-                <ol class="ol">       
-                    <% for (let between of betweenOrders) { %>
-                    <li class="li" ondblclick="window.location.href = '/between/<%= between.orderId %>'">
-                        <div class="date-div">
-                            <p class="order-num-p">Order Number:
-                                <span><%= between.orderId %></span>
-                            </p>
-                            <p>Order Date:
-                                <span><%= between.date.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit'}) %></span>
-                            </p>
-                            <p class="order-price-p">Total Order: 
-                                <span class="total-price"><%= between.totalprice %></span>
-                            </p>
-                        </div>
-                    </li>
-                    <% } %>
-                </ol>
-            </div>
-            <div class="total-div">
-            <p class="sub-total-p">Sub Total:<span id="subTotal" class="sub-total"></span></p>
+          </ol>
+        </div>
+        <div class="total-div">
+          <p class="sub-total-p">
+            Sub Total:<span id="subTotal" class="sub-total"></span>
+          </p>
         </div>
       </div>
     </div>
 
     <script type="text/javascript">
+      calculateTotalPrice();
 
-        calculateTotalPrice()
-
-        function calculateTotalPrice() {
+      function calculateTotalPrice() {
         let total = 0;
 
-        const rows = document.querySelectorAll('.ol .li ');
+        const rows = document.querySelectorAll(".ol .li ");
 
-        rows.forEach(row => {
-        const priceInput = row.querySelector('.total-price');
+        rows.forEach((row) => {
+          const priceInput = row.querySelector(".total-price");
 
-        const price = parseFloat(priceInput.textContent.slice(1)) || 0;
-        total += price;
-      });
-        const totalPriceInput = document.getElementById('subTotal');
+          const price = parseFloat(priceInput.textContent.slice(1)) || 0;
+          total += price;
+        });
+        const totalPriceInput = document.getElementById("subTotal");
         totalPriceInput.textContent = `$${total.toFixed(2)}`;
       }
 
-        function printPageArea(areaID){
+      function printPageArea(areaID) {
         let printContent = document.getElementById(areaID).innerHTML;
         let originalContent = document.body.innerHTML;
         document.body.innerHTML = printContent;
         window.print();
         document.body.innerHTML = originalContent;
-        }
-
+      }
     </script>
-    
-</body>
+  </body>
 </html>
