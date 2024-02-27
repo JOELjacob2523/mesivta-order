@@ -25,6 +25,7 @@ h3{
 
 .between-divs{
   float: right;
+  filter: drop-shadow(8px 8px 8px gray);
 }
 
 .between{
@@ -109,8 +110,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
 }
 
-.back_info-div{
+.back-info-div{
   float: left;
+  filter: drop-shadow(8px 8px 8px gray);
 }
 
 .vendor-info-div{
@@ -121,6 +123,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 300px;
   padding: 15px;
   border: gray 1px solid;
+  filter: drop-shadow(8px 8px 8px gray);
 }
 
 .vendor-info-head-p{
@@ -213,6 +216,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: 30%;
     padding-bottom: 20px;
     border: 1px solid gray;
+    filter: drop-shadow(8px 8px 8px gray);
 }
 
 .submit-p{
@@ -426,6 +430,7 @@ input[type="file"]{
     margin-right: 27%;
     border: 1px solid gray;
     padding: 20px;
+    filter: drop-shadow(8px 8px 8px gray);
 }
 
 .description{
