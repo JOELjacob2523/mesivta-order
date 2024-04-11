@@ -13,7 +13,7 @@
     <div>
         <% for(let vendor of vendors){ %>
             <% if (vendor.vendorId === vendorId) { %>
-                <h2>You are making an order for <span class="companyname"><%= vendor.companyname %></span></h2>
+                <h2>Order for <span class="companyname"><%= vendor.companyname %></span></h2>
             <% } %>
         <% } %>
     </div>
@@ -199,7 +199,7 @@
 
                     <div class="email_msg_div">
                         <label for="email_msg" class="email_msg_lbl">Write a message for the vendor</label>
-                        <textarea type="text" name="email_msg" class="email_msg" placeholder="Write here a message..."></textarea>
+                        <textarea type="text" name="email_msg" class="email_msg" placeholder="write a message..."></textarea>
                     </div>
 
                     <input type="button" class="submit-order" value="Submit Order" id="submit-order" title="Submit order">
@@ -302,6 +302,25 @@
         calculateTotalBoxes();
         nextInput()
 
+        //set rows A to Z
+    /*document.addEventListener("DOMContentLoaded", function() {
+        const tbody = document.querySelector("#myTable tbody");
+        const rows = Array.from(tbody.querySelectorAll("tr"));
+
+        rows.sort((rowA, rowB) => {
+            const descriptionA = rowA.querySelector(".tbl-description-input").value.toLowerCase();
+            const descriptionB = rowB.querySelector(".tbl-description-input").value.toLowerCase();
+            return descriptionA.localeCompare(descriptionB);
+        });
+
+        tbody.innerHTML = "";
+
+        rows.forEach(row => {
+            tbody.appendChild(row);
+        });
+    });*/
+
+        
         //function to show file name when uploading a file
         function showFileName(){
             document.getElementById('filename-p').style.display = 'block';
